@@ -9,7 +9,7 @@ public class PlayerIdleState : State<Player>
 
     public override void Update(Player owner)
     {
-        if (PlayerInputManager.instance.RMC.IsPressed())
+        if (PlayerInputManager.instance.RMC.triggered)
         {
             Vector3 mouseWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             owner.MoveTarget = new Vector2(mouseWorld.x, mouseWorld.y);
