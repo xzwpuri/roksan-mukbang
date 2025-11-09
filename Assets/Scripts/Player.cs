@@ -53,7 +53,7 @@ public class Player : MonoBehaviour, IUnit
     private void Start()
     {
         // 초기 값 세팅 (원하면 인스펙터에서 직접 넣고 Init 생략해도 됨)
-        Init(100f, 5f);
+        Init(100f, 5f, 1);
 
         // 기존에 this.movespeed 참조하던 부분을 프로퍼티로 변경
         mspeed = MoveSpeed;
@@ -81,11 +81,11 @@ public class Player : MonoBehaviour, IUnit
     }
 
     // === IUnit 메서드 구현 ===
-    public void Init(float hp, float moveSpeed)
+    public void Init(float hp, float moveSpeed, int element)
     {
         Hp = hp;
         MoveSpeed = moveSpeed;
-        // 필요하면 element 초기화도 여기서: Element = 1;
+        SetElement(element);
     }
 
     public void GetDamage(float damage)
@@ -97,4 +97,12 @@ public class Player : MonoBehaviour, IUnit
             // Destroy(gameObject);
         }
     }
+
+    // 임시로 넣어둔거
+    public void SetElement(int newElement)
+    {
+        Element = newElement; // 1/2/3...
+        GetComponent<SkillCaster>()?.RefreshLoadout();
+    }
+
 }
