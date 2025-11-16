@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
-
+//테스트
+//테스트
 public enum StateType
 {
     Idle,
