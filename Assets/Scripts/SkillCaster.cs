@@ -1,4 +1,4 @@
-// SkillCaster.cs (½Å±Ô)
+// SkillCaster.cs (ì‹ ê·œ)
 using System;
 using UnityEngine;
 
@@ -8,11 +8,11 @@ public class SkillCaster : MonoBehaviour
     private Player owner;
     private PlayerInputManager Bus => PlayerInputManager.instance;
 
-    // °íÁ¤ ½½·Ô ÇÚµé·¯
+    // ê³ ì • ìŠ¬ë¡¯ í•¸ë“¤ëŸ¬
     private Action onQ;
     private Action onR;
 
-    // °¡º¯(W/E) ÇöÀç ÇÚµé·¯
+    // ê°€ë³€(W/E) í˜„ì¬ í•¸ë“¤ëŸ¬
     private Action onW;
     private Action onE;
 
@@ -20,37 +20,37 @@ public class SkillCaster : MonoBehaviour
     {
         owner = GetComponent<Player>();
 
-        // Q/R °íÁ¤ ¹ÙÀÎµù(µ¨¸®°ÔÀÌÆ® »ı¼º)
+        // Q/R ê³ ì • ë°”ì¸ë”©(ë¸ë¦¬ê²Œì´íŠ¸ ìƒì„±)
         onQ = () => SkillLibrary.Q_Fixed(owner);
         onR = () => SkillLibrary.R_Fixed(owner);
     }
 
     private void OnEnable()
     {
-        // ÀÔ·Â ÀÌº¥Æ® ¹ö½º ±¸µ¶
+        // ì…ë ¥ ì´ë²¤íŠ¸ ë²„ìŠ¤ êµ¬ë…
         Bus.OnQPressed += onQ;
         Bus.OnRPressed += onR;
 
-        // ÇöÀç element ±âÁØÀ¸·Î W/E µî·Ï
+        // í˜„ì¬ element ê¸°ì¤€ìœ¼ë¡œ W/E ë“±ë¡
         BindWEForElement(owner.Element);
     }
 
     private void OnDisable()
     {
-        // °íÁ¤ ÇØÁ¦
+        // ê³ ì • í•´ì œ
         Bus.OnQPressed -= onQ;
         Bus.OnRPressed -= onR;
 
-        // W/E ÇØÁ¦
+        // W/E í•´ì œ
         UnbindWE();
     }
 
-    // Player¿¡¼­ element º¯°æ ½Ã È£ÃâÇØÁà
+    // Playerì—ì„œ element ë³€ê²½ ì‹œ í˜¸ì¶œí•´ì¤˜
     public void RefreshLoadout() => BindWEForElement(owner.Element);
 
     private void BindWEForElement(int element)
     {
-        // ±âÁ¸ ¹ÙÀÎµù Á¦°Å
+        // ê¸°ì¡´ ë°”ì¸ë”© ì œê±°
         UnbindWE();
 
         switch (element)
@@ -74,7 +74,7 @@ public class SkillCaster : MonoBehaviour
             default:
                 onW = null;
                 onE = null;
-                Debug.LogWarning($"[SkillCaster] element {element} ¿¡ ´ëÇÑ W/E ¸ÅÇÎÀÌ ¾ø½À´Ï´Ù.");
+                Debug.LogWarning($"[SkillCaster] element {element} ì— ëŒ€í•œ W/E ë§¤í•‘ì´ ì—†ìŠµë‹ˆë‹¤.");
                 break;
         }
 

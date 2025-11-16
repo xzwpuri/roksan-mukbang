@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 [DefaultExecutionOrder(-500)]
-//½Ì±ÛÅæ ÆĞÅÏ
+//ì‹±ê¸€í†¤ íŒ¨í„´
 public class PlayerInputManager : MonoBehaviour
 {
     public static PlayerInputManager instance { get; private set; }
@@ -26,7 +26,7 @@ public class PlayerInputManager : MonoBehaviour
         if (instance != null && instance != this) { Destroy(gameObject); return; }
         instance = this;
 
-        // ¿©±â¼­ »ı¼º/¹ÙÀÎµù(Á¸Àç º¸Àå ´Ü°è)
+        // ì—¬ê¸°ì„œ ìƒì„±/ë°”ì¸ë”©(ì¡´ì¬ ë³´ì¥ ë‹¨ê³„)
         actions = new PlayerInputAction();
         Q = actions.Player.QSkill;
         W = actions.Player.WSkill;
@@ -37,7 +37,7 @@ public class PlayerInputManager : MonoBehaviour
 
     private void OnEnable()
     {
-        //  ¿©±â¼­ Enable + ±¸µ¶
+        //  ì—¬ê¸°ì„œ Enable + êµ¬ë…
         actions.Enable();
         Q.Enable(); W.Enable(); E.Enable(); R.Enable(); RMC.Enable();
 
@@ -49,7 +49,7 @@ public class PlayerInputManager : MonoBehaviour
 
     private void OnDisable()
     {
-        // ¿©±â¼­ ÇØÁ¦
+        // ì—¬ê¸°ì„œ í•´ì œ
         Q.performed -= HandleQ;
         W.performed -= HandleW;
         E.performed -= HandleE;

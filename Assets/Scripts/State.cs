@@ -1,9 +1,9 @@
 public abstract class State<T> where T : class
 {
-    //»óÅÂ ÁøÀÔ
+    //ìƒíƒœ ì§„ì…
     public abstract void Enter(T owner);
-    //»óÅÂ Áß
+    //ìƒíƒœ ì¤‘
     public abstract void Update(T owner);
-    //»óÅÂ Á¾·á
+    //ìƒíƒœ ì¢…ë£Œ
     public abstract void Exit(T owner);
 }

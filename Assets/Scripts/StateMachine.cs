@@ -2,11 +2,11 @@ using UnityEngine.XR;
 
 public class StateMachine<T> where T : class
 {
-    //¼ÒÀ¯ÀÚ
+    //ì†Œìœ ì
     private T owner;
-    //ÇöÀç »óÅÂ
+    //í˜„ì¬ ìƒíƒœ
     private State<T> currentState;
-    //ÀÌÀü »óÅÂ
+    //ì´ì „ ìƒíƒœ
     private State<T> previousState;
 
     public void Setup(T _onwer, State<T> state)
