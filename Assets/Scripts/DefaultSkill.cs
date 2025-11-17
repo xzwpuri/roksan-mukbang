@@ -45,9 +45,11 @@ public class DefaultSkill : MonoBehaviour
         Vector3 skillPos = transform.position + dir * 0.3f;
         return (dir, angleToMouse, skillPos);
     }
+
     IEnumerator Jabbing()
     {
         isJabbing = true;
+
         var (dir, angleToMouse, skillPos) = MouseDirection();
 
         GameObject jab = Instantiate(JabPivot, skillPos, Quaternion.Euler(0, 0, angleToMouse));
@@ -86,11 +88,10 @@ public class DefaultSkill : MonoBehaviour
 
         var (dir, angleToMouse, skillPos) = MouseDirection();
 
-        GameObject swing = Instantiate(SwingPivot, skillPos, Quaternion.identity);
+        GameObject swing = Instantiate(SwingPivot, skillPos, Quaternion.Euler(0, 0, angleToMouse + swingAngle1));
         swing.transform.SetParent(transform);
-
-        swing.transform.localRotation = Quaternion.Euler(0, 0, angleToMouse + swingAngle1);
         swing.transform.localScale = new Vector3(swingReach, swingWidth, 1f);
+
         currentAngle = swingAngle1;
 
         while (currentAngle > swingAngle2)
