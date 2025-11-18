@@ -1,4 +1,3 @@
-// SkillLibrary.cs (신규)
 using UnityEngine;
 
 public static class SkillLibrary
