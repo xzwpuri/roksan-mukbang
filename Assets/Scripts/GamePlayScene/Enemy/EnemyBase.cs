@@ -15,8 +15,8 @@ public abstract class EnemyBase : MonoBehaviour, IUnit
     [SerializeField] protected float attackRange = 4f;   // ✅ 스킬을 쓰기 시작하는 거리
 
     [Header("스킬 쿨타임")]
-    [SerializeField] protected float skill1Cooldown = 1.5f;
-    [SerializeField] protected float skill2Cooldown = 4f;
+    [SerializeField] protected float skill1Cooldown = 7f;
+    [SerializeField] protected float skill2Cooldown = 8f;
 
     public Transform Target { get; set; } // 보통 Player Transform
 

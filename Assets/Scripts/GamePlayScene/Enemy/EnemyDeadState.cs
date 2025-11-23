@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class EnemyDeadState : State<EnemyBase>
 {
-    private float removeDelay = 1.0f;
+    private float removeDelay = 5.0f;
     private float timer;
 
     public override void Enter(EnemyBase owner)
@@ -11,9 +11,11 @@ public class EnemyDeadState : State<EnemyBase>
             owner.Animator.SetTrigger("Dead");
 
         owner.Rigidbody2D.linearVelocity = Vector2.zero;
-        owner.Rigidbody2D.simulated = false;
+        //owner.Rigidbody2D.simulated = false;
 
         owner.gameObject.tag = "Dead";
+        SpriteRenderer spriteRenderer = owner.GetComponent<SpriteRenderer>();
+        spriteRenderer.color = Color.gray;
         timer = removeDelay;
     }
 
