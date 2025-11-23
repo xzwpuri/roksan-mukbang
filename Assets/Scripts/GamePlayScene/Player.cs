@@ -3,8 +3,11 @@ using UnityEngine;
 public enum StateType
 {
     Idle,
-    Move
+    Move,
+    Dead,
+    Attack
 }
+
 
 public class Player : MonoBehaviour, IUnit
 {
@@ -34,6 +37,12 @@ public class Player : MonoBehaviour, IUnit
         set => element = value;
     }
 
+    public int Stomach
+    {
+        get => stomach;
+        set => stomach = value;
+    }
+
     // === 기존 필드 ===
     public Dictionary<StateType, State<Player>> States;
     public StateMachine<Player> StateMachine;
@@ -54,7 +63,7 @@ public class Player : MonoBehaviour, IUnit
     private void Start()
     {
         // 초기 값 세팅 (원하면 인스펙터에서 직접 넣고 Init 생략해도 됨)
-        Init(100f, 5f, 0);
+        Init(100f, 5f, 0, 0);
         previousStomach = stomach;
 
         // 기존에 this.movespeed 참조하던 부분을 프로퍼티로 변경
@@ -84,12 +93,13 @@ public class Player : MonoBehaviour, IUnit
     }
 
     // === IUnit 메서드 구현 ===
-    public void Init(float hp, float moveSpeed, int element)
+    public void Init(float hp, float moveSpeed, int element, int stomach)
     {
         Hp = hp;
         MoveSpeed = moveSpeed;
         Element = element;
-        Setstomach(element);
+        Stomach = stomach;
+        Setstomach(stomach);
     }
 
     public void GetDamage(float damage)
