@@ -12,6 +12,8 @@ public class Player : MonoBehaviour, IUnit
     [SerializeField] private float hp;
     [SerializeField] private float moveSpeed;
     [SerializeField] private int element; // 1 -> 2 -> 3 -> 1 (f(x) = (x % 3) + 1)
+    [SerializeField] public int stomach;
+    private int previousStomach;
 
     // === IUnit 프로퍼티 구현 ===
     public float Hp
@@ -52,7 +54,8 @@ public class Player : MonoBehaviour, IUnit
     private void Start()
     {
         // 초기 값 세팅 (원하면 인스펙터에서 직접 넣고 Init 생략해도 됨)
-        Init(100f, 5f, 1);
+        Init(100f, 5f, 0);
+        previousStomach = stomach;
 
         // 기존에 this.movespeed 참조하던 부분을 프로퍼티로 변경
         mspeed = MoveSpeed;
@@ -70,6 +73,7 @@ public class Player : MonoBehaviour, IUnit
     {
         StateMachine.Update();
         CheckFlipX();
+        if (stomach !=  previousStomach) Setstomach(stomach);
     }
 
     private void CheckFlipX()
@@ -84,7 +88,8 @@ public class Player : MonoBehaviour, IUnit
     {
         Hp = hp;
         MoveSpeed = moveSpeed;
-        SetElement(element);
+        Element = element;
+        Setstomach(element);
     }
 
     public void GetDamage(float damage)
@@ -98,9 +103,9 @@ public class Player : MonoBehaviour, IUnit
     }
 
     // 임시로 넣어둔거
-    public void SetElement(int newElement)
+    public void Setstomach(int newstomach)
     {
-        Element = newElement; // 1/2/3...
+        stomach = newstomach; // 1/2/3...
         GetComponent<SkillCaster>()?.RefreshLoadout();
     }
 

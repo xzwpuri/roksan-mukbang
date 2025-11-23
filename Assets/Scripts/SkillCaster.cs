@@ -45,14 +45,14 @@ public class SkillCaster : MonoBehaviour
     }
 
     // Player에서 element 변경 시 호출해줘
-    public void RefreshLoadout() => BindWEForElement(owner.Element);
+    public void RefreshLoadout() => BindWEForElement(owner.stomach);
 
-    private void BindWEForElement(int element)
+    private void BindWEForElement(int stomach)
     {
         // 기존 바인딩 제거
         UnbindWE();
 
-        switch (element)
+        switch (stomach)
         {
             case 0:
                 onW = () => SkillLibrary.W_Default(owner);
@@ -73,7 +73,7 @@ public class SkillCaster : MonoBehaviour
             default:
                 onW = null;
                 onE = null;
-                Debug.LogWarning($"[SkillCaster] element {element} 에 대한 W/E 매핑이 없습니다.");
+                Debug.LogWarning($"[SkillCaster] stomach {stomach} 에 대한 W/E 매핑이 없습니다.");
                 break;
         }
 
