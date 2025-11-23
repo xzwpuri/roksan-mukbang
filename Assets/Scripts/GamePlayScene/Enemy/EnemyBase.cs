@@ -98,14 +98,19 @@ public abstract class EnemyBase : MonoBehaviour, IUnit
         StateMachine.Update();
     }
 
-    public virtual void GetDamage(float damage)
+    public virtual void GetDamage(float damage, int attackerElement)
     {
-        Hp -= damage;
+        // 공격자 속성과 내(Element) 속성으로 상성 적용
+        float finalDamage = ElementCalculate.ApplyElementModifier(damage, attackerElement, Element);
+
+        Hp -= finalDamage;
+
         if (Hp <= 0f)
         {
             StateMachine.ChangeState(States[StateType.Dead]);
         }
     }
+
 
     // ★ 몬스터별 공격 구현 포인트
     public abstract void Skill1();

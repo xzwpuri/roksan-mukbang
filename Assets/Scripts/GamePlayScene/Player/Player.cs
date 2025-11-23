@@ -106,13 +106,18 @@ public class Player : MonoBehaviour, IUnit
         Setstomach(stomach);
     }
 
-    public void GetDamage(float damage)
+    public void GetDamage(float damage, int attackerElement)
     {
-        Hp -= damage;
+        // 공격자 속성과 내(Element) 속성으로 상성 적용
+        float finalDamage = ElementCalculate.ApplyElementModifier(damage, attackerElement, Element);
+
+        Hp -= finalDamage;
+
         if (Hp <= 0f)
         {
             Debug.Log("플레이어 사망!");
-            // Destroy(gameObject);
+            // TODO: 죽는 상태로 State 변경 등
+            // StateMachine.ChangeState(States[StateType.Dead]); 이런 식으로 나중에 연결 가능
         }
     }
     public void Setstomach(int newstomach)

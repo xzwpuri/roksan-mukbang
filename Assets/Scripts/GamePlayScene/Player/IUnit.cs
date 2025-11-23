@@ -7,5 +7,5 @@ public interface IUnit
     int Stomach{ get; set; }
 
     void Init(float hp, float moveSpeed, int element, int stomach);
-    void GetDamage(float damage);
+    void GetDamage(float damage, int attackerElement);
 }
