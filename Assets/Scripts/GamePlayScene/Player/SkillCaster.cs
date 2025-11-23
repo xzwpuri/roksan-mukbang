@@ -15,61 +15,82 @@ public class SkillCaster : MonoBehaviour
     private Action onW;
     private Action onE;
 
+    // === 쿨타임 설정 ===
+    [Header("쿨타임(초)")]
+    [SerializeField] private float qCooldown = 2f;
+    [SerializeField] private float wCooldown = 3f;
+    [SerializeField] private float eCooldown = 4f;
+    [SerializeField] private float rCooldown = 10f;
+
+    // 다음 사용 가능 시간(Time.time 기준)
+    private float nextQTime;
+    private float nextWTime;
+    private float nextETime;
+    private float nextRTime;
+
     private void Awake()
     {
         owner = GetComponent<Player>();
 
-        // Q/R 고정 바인딩(델리게이트 생성)
-        onQ = () => SkillLibrary.Q_Fixed(owner);
-        onR = () => SkillLibrary.R_Fixed(owner);
+        // Q/R 고정 바인딩(쿨타임 포함)
+        onQ = () => TryCast(ref nextQTime, qCooldown, () => SkillLibrary.Q_Fixed(owner));
+        onR = () => TryCast(ref nextRTime, rCooldown, () => SkillLibrary.R_Fixed(owner));
     }
 
     private void OnEnable()
     {
-        // 입력 이벤트 버스 구독
         Bus.OnQPressed += onQ;
         Bus.OnRPressed += onR;
 
-        // 현재 element 기준으로 W/E 등록
-        BindWEForElement(owner.Element);
+        // 현재 stomach 기준으로 W/E 등록
+        BindWEForElement(owner.stomach);
     }
 
     private void OnDisable()
     {
-        // 고정 해제
         Bus.OnQPressed -= onQ;
         Bus.OnRPressed -= onR;
-
-        // W/E 해제
         UnbindWE();
     }
 
-    // Player에서 element 변경 시 호출해줘
     public void RefreshLoadout() => BindWEForElement(owner.stomach);
+
+    // 공통 쿨타임 처리 로직
+    private void TryCast(ref float nextTime, float cooldown, Action castAction)
+    {
+        if (Time.time < nextTime)
+        {
+            Debug.Log($"쿨타임 남음: {nextTime - Time.time:0.00}초");
+            return;
+        }
+
+        castAction?.Invoke();
+        nextTime = Time.time + cooldown;
+    }
 
     private void BindWEForElement(int stomach)
     {
-        // 기존 바인딩 제거
         UnbindWE();
 
         switch (stomach)
         {
             case 0:
-                onW = () => SkillLibrary.W_Default(owner);
-                onE = () => SkillLibrary.E_Default (owner);
+                onW = () => TryCast(ref nextWTime, wCooldown, () => SkillLibrary.W_Default(owner));
+                onE = () => TryCast(ref nextETime, eCooldown, () => SkillLibrary.E_Default(owner));
                 break;
             case 1:
-                onW = () => SkillLibrary.W_Fire(owner);
-                onE = () => SkillLibrary.E_Fire(owner);
+                onW = () => TryCast(ref nextWTime, wCooldown, () => SkillLibrary.W_Fire(owner));
+                onE = () => TryCast(ref nextETime, eCooldown, () => SkillLibrary.E_Fire(owner));
                 break;
             case 2:
-                onW = () => SkillLibrary.W_Water(owner);
-                onE = () => SkillLibrary.E_Water(owner);
+                onW = () => TryCast(ref nextWTime, wCooldown, () => SkillLibrary.W_Water(owner));
+                onE = () => TryCast(ref nextETime, eCooldown, () => SkillLibrary.E_Water(owner));
                 break;
             case 3:
-                onW = () => SkillLibrary.W_Grass(owner);
-                onE = () => SkillLibrary.E_Grass(owner);
+                onW = () => TryCast(ref nextWTime, wCooldown, () => SkillLibrary.W_Grass(owner));
+                onE = () => TryCast(ref nextETime, eCooldown, () => SkillLibrary.E_Grass(owner));
                 break;
+
             default:
                 onW = null;
                 onE = null;
@@ -85,5 +106,12 @@ public class SkillCaster : MonoBehaviour
     {
         if (onW != null) { Bus.OnWPressed -= onW; onW = null; }
         if (onE != null) { Bus.OnEPressed -= onE; onE = null; }
+    }
+
+    public float GetWCooldownRatio()
+    {
+        float remain = nextWTime - Time.time;
+        if (remain <= 0) return 0f;
+        return remain / wCooldown;   // 0~1
     }
 }

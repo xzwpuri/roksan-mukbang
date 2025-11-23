@@ -82,7 +82,11 @@ public class Player : MonoBehaviour, IUnit
     {
         StateMachine.Update();
         CheckFlipX();
-        if (stomach !=  previousStomach) Setstomach(stomach);
+        if (stomach != previousStomach)
+        {
+            Setstomach(stomach);
+            previousStomach = stomach;
+        }
     }
 
     private void CheckFlipX()
@@ -111,12 +115,32 @@ public class Player : MonoBehaviour, IUnit
             // Destroy(gameObject);
         }
     }
-
-    // 임시로 넣어둔거
     public void Setstomach(int newstomach)
     {
         stomach = newstomach; // 1/2/3...
         GetComponent<SkillCaster>()?.RefreshLoadout();
     }
 
+    // ===============================
+    //  Default Skill (Jab / Swing)
+    // ===============================
+    [Header("Default Skill - Swing")]
+    public float swingSpeed = 180f;
+    public float swingAngle1 = 60f;
+    public float swingAngle2 = -60f;
+    public float swingReach = 1.2f;
+    public float swingWidth = 0.3f;
+    public float swingCooldown = 3f;
+    public GameObject swingPivotPrefab;
+
+    [Header("Default Skill - Jab")]
+    public float jabSpeed = 5f;
+    public float jabCooldown = 2f;
+    public float jabReach = 1.7f;
+    public float jabWidth = 0.5f;
+    public GameObject jabPivotPrefab;
+
+    // 코루틴 중복 방지 플래그
+    [HideInInspector] public bool isSwinging = false;
+    [HideInInspector] public bool isJabbing = false;
 }
