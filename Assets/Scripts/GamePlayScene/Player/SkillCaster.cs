@@ -75,8 +75,8 @@ public class SkillCaster : MonoBehaviour
         switch (stomach)
         {
             case 0:
-                onW = () => TryCast(ref nextWTime, wCooldown, () => SkillLibrary.W_Default(owner));
-                onE = () => TryCast(ref nextETime, eCooldown, () => SkillLibrary.E_Default(owner));
+                onW = () => TryCast(ref nextWTime, 0.5f, () => SkillLibrary.W_Default(owner));
+                onE = () => TryCast(ref nextETime, 2f, () => SkillLibrary.E_Default(owner));
                 break;
             case 1:
                 onW = () => TryCast(ref nextWTime, wCooldown, () => SkillLibrary.W_Fire(owner));
