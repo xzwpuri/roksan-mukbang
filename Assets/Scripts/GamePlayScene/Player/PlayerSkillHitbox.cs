@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerSkillHitbox : MonoBehaviour
@@ -6,34 +7,63 @@ public class PlayerSkillHitbox : MonoBehaviour
     [SerializeField] private bool destroyOnHit = true;
 
     private IUnit playerUnit;
+    private Collider2D hitboxCollider;
+    private ContactFilter2D filter;
+    private Collider2D[] results = new Collider2D[10];
+
+    // ✅ 이미 맞은 IUnit 목록
+    private HashSet<IUnit> damagedUnits = new HashSet<IUnit>();
 
     private void Awake()
     {
-        // 단일 플레이어 가정
         var playerObj = GameObject.FindGameObjectWithTag("Player");
         if (playerObj != null)
-            playerUnit = playerObj.GetComponent<IUnit>(); // Player : IUnit
+            playerUnit = playerObj.GetComponent<IUnit>();
+
+        hitboxCollider = GetComponent<Collider2D>();
+
+        filter = new ContactFilter2D();
+        filter.useTriggers = true;
+        filter.SetLayerMask(Physics2D.GetLayerCollisionMask(gameObject.layer));
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void Update()
     {
-        // Enemy 태그 가진 애만 맞게
-        if (!other.CompareTag("Enemy"))
+        if (playerUnit == null || hitboxCollider == null)
             return;
 
-        // ✅ 여기에서 EnemyBase 상속받는 애들 전부 잡힘
-        IUnit enemyUnit = other.GetComponent<IUnit>();          // EnemyWater : EnemyBase : IUnit
-        if (enemyUnit == null)
-            enemyUnit = other.GetComponentInParent<IUnit>();    // 콜라이더가 자식에 붙어있을 경우
+        int count = hitboxCollider.Overlap(filter, results);
 
-        if (enemyUnit == null || playerUnit == null)
-            return;
+        for (int i = 0; i < count; i++)
+        {
+            var other = results[i];
+            if (other == null) continue;
 
-        // 💥 GetDamage 안에 속성 계산 다 들어있다고 했으니까,
-        // 여기서는 "데미지 + 공격자 속성"만 넘겨주면 끝
-        enemyUnit.GetDamage(baseDamage, playerUnit.Element);
+            if (!other.CompareTag("Enemy"))
+                continue;
 
-        if (destroyOnHit)
-            Destroy(gameObject);
+            // Enemy 콜라이더가 자식에 있을 수 있으니까 부모까지
+            IUnit enemyUnit = other.GetComponent<IUnit>();
+            if (enemyUnit == null)
+                enemyUnit = other.GetComponentInParent<IUnit>();
+
+            if (enemyUnit == null)
+                continue;
+
+            // ✅ 이미 맞은 적이면 스킵
+            if (damagedUnits.Contains(enemyUnit))
+                continue;
+
+            // 💥 첫 타만 들어감
+            enemyUnit.GetDamage(baseDamage, playerUnit.Element);
+            damagedUnits.Add(enemyUnit);
+
+            // 히트박스가 한 번만 맞고 사라지는 타입이면
+            if (destroyOnHit)
+            {
+                Destroy(gameObject);
+                return; // 이 프레임에서 더 이상 처리 안 함
+            }
+        }
     }
 }
