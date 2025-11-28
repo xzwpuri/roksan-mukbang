@@ -4,9 +4,8 @@ using UnityEngine;
 public class ColaWSkill : MonoBehaviour
 {
     [Header("Cola W")]
-    public float increaseSpeed = 3f;
-    public float cooldown = 5f;
-    public float duration = 3f;
+    [SerializeField] private float cooldown = 5f;
+    [SerializeField] private float duration = 3f;
 
     private bool isWActive = false;
 
@@ -24,14 +23,7 @@ public class ColaWSkill : MonoBehaviour
         StartCoroutine(Cooldown());
 
         // 스피드 증가
-
-        float t = 0f;
-        while (t < duration)
-        {
-            float move = Mathf.Min(Time.deltaTime, duration - t);
-            t += move;
-            yield return null;
-        }
+        yield return new WaitForSeconds(duration);
         // 스피드 원상복귀
     }
 

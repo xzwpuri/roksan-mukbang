@@ -4,10 +4,8 @@ using UnityEngine;
 public class IceCreamESkill : MonoBehaviour
 {
     [Header("Ice Cream E")]
-    public float heal = 20f;
-    public float speedDiscount = -2f;
-    public float duration = 3f;
-    public float cooldown = 5f;
+    [SerializeField] private float duration = 3f;
+    [SerializeField] private float cooldown = 5f;
 
     private bool isEActive = false;
     void Update()
@@ -29,8 +27,8 @@ public class IceCreamESkill : MonoBehaviour
         float t = 0f;
         while (t < duration)
         {
-            t += Time.deltaTime;
-            //속도회복
+            t = Mathf.MoveTowards(t, duration, Time.deltaTime);
+            //천천히 속도회복
             yield return null;
         }
     }

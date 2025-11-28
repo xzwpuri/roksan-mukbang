@@ -1,12 +1,12 @@
 using System.Collections;
 using UnityEngine;
 
-public class FriesESkill : MonoBehaviour
+public class BungUhBbangESkill : MonoBehaviour
 {
-    public static bool isUpgraded = false;
+    public static bool isCustardCream = false;
 
-    [Header("Fries E")]
-    [SerializeField] private float cooldown = 5f;
+    [Header("BungUhBbang E")]
+    [SerializeField] private float cooldown = 1f;
 
     private bool isEActive = false;
     void Update()
@@ -19,7 +19,8 @@ public class FriesESkill : MonoBehaviour
     IEnumerator E()
     {
         isEActive = true;
-        isUpgraded = true;
+        isCustardCream = !isCustardCream;
+        Debug.Log("½´Å©¸² " + isCustardCream);
         StartCoroutine(Cooldown());
         yield return null;
     }

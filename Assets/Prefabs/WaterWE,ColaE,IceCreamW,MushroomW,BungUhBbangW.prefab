@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8673754692471180825}
   - component: {fileID: 165100750360227790}
   m_Layer: 0
-  m_Name: WaterWE,ColaE,IceCreamW
+  m_Name: WaterWE,ColaE,IceCreamW,MushroomW,BungUhBbangW
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

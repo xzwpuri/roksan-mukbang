@@ -4,11 +4,11 @@ using UnityEngine;
 public class FriesWSkill : MonoBehaviour
 {
     [Header("Fries W")]
-    public float speed = 15f;
-    public float cooldown = 3;
-    public float reach = 20f;
-    public float width = 1.5f;
-    public float height = 0.4f;
+    [SerializeField] private float speed = 15f;
+    [SerializeField] private float cooldown = 3;
+    [SerializeField] private float reach = 20f;
+    [SerializeField] private float width = 1.5f;
+    [SerializeField] private float height = 0.4f;
 
     public GameObject FriesWPrefab;
 
@@ -46,9 +46,12 @@ public class FriesWSkill : MonoBehaviour
         while (t < reach)
         {
             if (isHit || wSkill == null) break;
-            float move = Mathf.Min(speed * Time.deltaTime, reach - t);
+
+            float tt = t;
+            t = Mathf.MoveTowards(t, reach, speed * Time.deltaTime);
+            float move = t - tt;
+
             wSkill.transform.position += move * dir;
-            t += move;
             yield return null;
         }
         if (wSkill != null) Destroy(wSkill);

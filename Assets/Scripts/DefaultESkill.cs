@@ -4,12 +4,12 @@ using UnityEngine;
 public class DefaultESkill : MonoBehaviour
 {
     [Header("Default E")]
-    public float speed = 540f;
-    public float angle1 = 60f;
-    public float angle2 = -60f;
-    public float cooldown = 3;
-    public float width = 1.2f;
-    public float height = 0.3f;
+    [SerializeField] private float speed = 540f;
+    [SerializeField] private float angle1 = 60f;
+    [SerializeField] private float angle2 = -60f;
+    [SerializeField] private float cooldown = 3;
+    [SerializeField] private float width = 1.2f;
+    [SerializeField] private float height = 0.3f;
     public GameObject DefaultEPrefab;
 
     private bool isEActive = false;
@@ -38,7 +38,7 @@ public class DefaultESkill : MonoBehaviour
 
         while (currentAngle > angle2)
         {
-            currentAngle -= speed * Time.deltaTime;
+            currentAngle = Mathf.MoveTowardsAngle(currentAngle, angle2, speed * Time.deltaTime);
             eSkill.transform.rotation = Quaternion.Euler(0, 0, angleToMouse + currentAngle);
             yield return null;
         }

@@ -4,9 +4,9 @@ using UnityEngine;
 public class MeatESkill : MonoBehaviour
 {
     [Header("Meat E")]
-    public float speed = 10f;
-    public float cooldown = 3f;
-    public float distance = 3f;
+    [SerializeField] private float speed = 10f;
+    [SerializeField] private float cooldown = 3f;
+    [SerializeField] private float distance = 3f;
 
     private bool isEActive = false;
 
@@ -29,11 +29,11 @@ public class MeatESkill : MonoBehaviour
         Vector3 startPos = transform.position;
         while (t < distance)
         {
+            t = Mathf.MoveTowards(t, distance, speed * Time.deltaTime);
+
             float normalized = t / distance;
-            float move = Mathf.Min(speed * Time.deltaTime, distance - t);
             float easing = 1f - Mathf.Pow(1f - normalized, 5f);
             transform.position = startPos + dir * (distance * easing);
-            t += move;
             yield return null;
         }
     }

@@ -4,10 +4,10 @@ using UnityEngine;
 public class ColaESkill : MonoBehaviour
 {
     [Header("Cola E")]
-    public float speed = 3f;
-    public float cooldown = 6;
-    public float startScale = 0f;
-    public float endScale = 8f; 
+    [SerializeField] private float speed = 3f;
+    [SerializeField] private float cooldown = 6;
+    [SerializeField] private float startScale = 0f;
+    [SerializeField] private float endScale = 8f; 
     public GameObject ColaEPrefab;
 
     private bool isEActive = false;
@@ -31,11 +31,12 @@ public class ColaESkill : MonoBehaviour
         float t = 0f;
         while (t < 1f)
         {
+            t = Mathf.MoveTowards(t, 1f, Time.deltaTime * speed);
+
             float easing = Mathf.Sqrt(1 - Mathf.Pow(t - 1f, 2));
-            easing = Mathf.Clamp01(easing);
             float scale = Mathf.Lerp(startScale, endScale, easing);
             eSkill.transform.localScale = new Vector3(scale, scale, 1f);
-            t += Time.deltaTime * speed;
+
             yield return null;
         }
         Destroy(eSkill);

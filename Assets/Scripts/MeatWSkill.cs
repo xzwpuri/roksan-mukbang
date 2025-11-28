@@ -4,12 +4,12 @@ using UnityEngine;
 public class MeatWSkill : MonoBehaviour
 {
     [Header("Meat W")]
-    public float speed = 720f;
-    public float angle1 = 70f;
-    public float angle2 = -70f;
-    public float cooldown = 3;
-    public float width = 2f;
-    public float height = 0.5f;
+    [SerializeField] private float speed = 720f;
+    [SerializeField] private float angle1 = 70f;
+    [SerializeField] private float angle2 = -70f;
+    [SerializeField] private float cooldown = 3;
+    [SerializeField] private float width = 2f;
+    [SerializeField] private float height = 0.5f;
     public GameObject MeatWPrefab;
 
     private float currentAngle;
@@ -38,7 +38,7 @@ public class MeatWSkill : MonoBehaviour
 
         while (currentAngle > angle2)
         {
-            currentAngle -= speed * Time.deltaTime;
+            currentAngle = Mathf.MoveTowardsAngle(currentAngle, angle2, speed * Time.deltaTime);
             wSkill.transform.rotation = Quaternion.Euler(0, 0, angleToMouse + currentAngle);
             yield return null;
         }

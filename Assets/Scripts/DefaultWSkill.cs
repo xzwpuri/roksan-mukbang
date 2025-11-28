@@ -1,14 +1,13 @@
-using System;
 using System.Collections;
 using UnityEngine;
 
 public class DefaultWSkill : MonoBehaviour
 {
     [Header("Default W")]
-    public float speed = 5f;
-    public float cooldown = 2;
-    public float width = 1.7f;
-    public float height = 0.5f;
+    [SerializeField] private float speed = 5f;
+    [SerializeField] private float cooldown = 2;
+    [SerializeField] private float width = 1.7f;
+    [SerializeField] private float height = 0.5f;
     public GameObject DefaultWPrefab;
 
     private bool isWActive = false;
@@ -24,8 +23,7 @@ public class DefaultWSkill : MonoBehaviour
     IEnumerator W()
     {
         isWActive = true;
-
-        var (dir, angleToMouse, skillPos) = MouseDirection.Mouse(transform);
+        var (_, angleToMouse, skillPos) = MouseDirection.Mouse(transform);
 
         GameObject wSkill = Instantiate(DefaultWPrefab, skillPos, Quaternion.Euler(0, 0, angleToMouse));
         wSkill.transform.SetParent(transform);
@@ -35,6 +33,8 @@ public class DefaultWSkill : MonoBehaviour
 
         while (t < 1f)
         {
+            t = Mathf.MoveTowards(t, 1f, speed * Time.deltaTime);
+
             float tt = t < 0.5f ? t * 2f : (t - 0.5f) * 2f;
             float scale;
 
@@ -49,7 +49,6 @@ public class DefaultWSkill : MonoBehaviour
 
             wSkill.transform.localScale = new Vector3(scale * width, height, 1f);
 
-            t += Time.deltaTime * speed;
             yield return null;
         }
         Destroy(wSkill);

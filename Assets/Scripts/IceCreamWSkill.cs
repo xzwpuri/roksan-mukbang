@@ -4,10 +4,10 @@ using UnityEngine;
 public class IceCreamWSkill : MonoBehaviour
 {
     [Header("Ice Cream W")]
-    public float speed = 6;
-    public float cooldown = 3;
-    public float reach = 10f;
-    public float radius = 1f;
+    [SerializeField] private float speed = 6;
+    [SerializeField] private float cooldown = 3;
+    [SerializeField] private float reach = 10f;
+    [SerializeField] private float radius = 1f;
 
     public GameObject IceCreamWPrefab;
     private bool isWActive = false;
@@ -43,9 +43,12 @@ public class IceCreamWSkill : MonoBehaviour
         while (t < reach)
         {
             if (isHit || wSkill == null) break;
-            float move = Mathf.Min(speed * Time.deltaTime, reach - t);
+
+            float tt = t;
+            t = Mathf.MoveTowards(t, reach, speed * Time.deltaTime);
+            float move = t - tt;
+
             wSkill.transform.position += move * dir;
-            t += move;
             yield return null;
         }
         if (wSkill != null) Destroy(wSkill);

@@ -1,15 +1,15 @@
 using System.Collections;
 using UnityEngine;
 
-public class WaterWSkill : MonoBehaviour
+public class BungUhBbangWSkill : MonoBehaviour
 {
-    [Header("Water W")]
+    [Header("BungUhBbang W")]
     [SerializeField] private float speed = 10f;
-    [SerializeField] private float cooldown = 3;
+    [SerializeField] private float cooldown = 5;
     [SerializeField] private float reach = 20f;
-    [SerializeField] private float radius = 0.5f;
-    [SerializeField] private float ganGyeock = 0.1f;
-    public GameObject WaterWPrefab;
+    [SerializeField] private float radius = 0.7f;
+
+    public GameObject BungUhBbangWPrefab;
 
     private bool isWActive = false;
 
@@ -24,21 +24,31 @@ public class WaterWSkill : MonoBehaviour
     IEnumerator W()
     {
         isWActive = true;
+
         var (dir, _, skillPos) = MouseDirection.Mouse(transform);
 
         StartCoroutine(Cooldown());
 
-        for (int i = 0; i < 3; i++)
+        if (BungUhBbangESkill.isCustardCream)
         {
-            StartCoroutine(Water(skillPos, dir));
-            yield return new WaitForSeconds(ganGyeock);
+            for (int i = 0; i < 8; i++)
+            {
+                float angle = (360f / 8) * i;
+                StartCoroutine(Projectile(transform.position, Quaternion.Euler(0, 0, angle) * dir));
+            }
         }
-        isWActive = false;
+        else
+        {
+            StartCoroutine(Projectile(skillPos, Quaternion.Euler(0, 0, -45f) * dir));
+            StartCoroutine(Projectile(skillPos, dir));
+            StartCoroutine(Projectile(skillPos, Quaternion.Euler(0, 0, 45f) * dir));
+        }
+        yield return null;
     }
 
-    IEnumerator Water(Vector3 skillPos, Vector3 dir)
+    IEnumerator Projectile(Vector3 skillPos, Vector3 dir)
     {
-        GameObject wSkill = Instantiate(WaterWPrefab, skillPos, Quaternion.identity);
+        GameObject wSkill = Instantiate(BungUhBbangWPrefab, skillPos, Quaternion.identity);
         wSkill.transform.localScale = new Vector3(radius, radius, 1f);
 
         Collide p = wSkill.GetComponentInChildren<Collide>();

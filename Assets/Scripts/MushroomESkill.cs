@@ -4,9 +4,8 @@ using UnityEngine;
 public class MushroomESkill : MonoBehaviour
 {
     [Header("Mushroom E")]
-    public float heal = 30f;
-    public float duration = 5f;
-    public float cooldown = 7f;
+    [SerializeField] private float duration = 5f;
+    [SerializeField] private float cooldown = 7f;
 
     private bool isEActive = false;
     void Update()
@@ -24,11 +23,12 @@ public class MushroomESkill : MonoBehaviour
         float t = 0f;
         while (t < duration)
         {
-            t += Time.deltaTime;
+            t = Mathf.MoveTowards(t, duration, Time.deltaTime);
             //Èú ÃÊ¸¶´Ù
             yield return null;
         }
     }
+
     IEnumerator Cooldown()
     {
         yield return new WaitForSeconds(cooldown);
