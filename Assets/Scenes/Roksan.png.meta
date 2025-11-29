@@ -103,10 +103,10 @@ TextureImporter:
       name: Roksan_0
       rect:
         serializedVersion: 2
-        x: 22
-        y: 21
-        width: 1599
-        height: 2083
+        x: 0
+        y: 0
+        width: 853
+        height: 1342
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
