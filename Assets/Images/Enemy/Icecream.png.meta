@@ -103,10 +103,10 @@ TextureImporter:
       name: Icecream_0
       rect:
         serializedVersion: 2
-        x: 33
+        x: 0
         y: 0
-        width: 62
-        height: 105
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 88552d63c7f70c5448f904283a4aa098
     internalID: 0
     vertices: []
     indices: 

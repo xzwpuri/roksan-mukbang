@@ -103,10 +103,10 @@ TextureImporter:
       name: Meat_0
       rect:
         serializedVersion: 2
-        x: 30
+        x: 0
         y: 0
-        width: 68
-        height: 116
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 27863e41423a83449a384ce757869095
     internalID: 0
     vertices: []
     indices: 
