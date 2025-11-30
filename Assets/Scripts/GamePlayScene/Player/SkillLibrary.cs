@@ -237,9 +237,11 @@ public static class SkillLibrary
         }
 
         Object.Destroy(jab);
-        yield return new WaitForSeconds(c.jabCooldown);
+
+        // 쿨타임 제거: 바로 사용 가능 상태로
         c.isJabbing = false;
     }
+
 
     private static IEnumerator SwingCoroutine(Player c)
     {
@@ -272,7 +274,10 @@ public static class SkillLibrary
         }
 
         Object.Destroy(swing);
-        yield return new WaitForSeconds(c.swingCooldown);
+
+        // 쿨타임 제거: 바로 사용 가능 상태로
         c.isSwinging = false;
     }
+
+
 }
