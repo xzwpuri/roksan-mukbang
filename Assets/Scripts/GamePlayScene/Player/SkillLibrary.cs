@@ -76,6 +76,14 @@ public static class SkillLibrary
     public static void E_Cola(Player c)
     {
         if (c.isE) return;
+        if (c.Hp <= c.colaEHpCost)
+        {
+            Debug.Log("[Cola W] HP 부족, 사용 불가");
+            return;
+        }
+
+        c.Hp = Mathf.Max(0f, c.Hp - c.colaEHpCost);
+        Debug.Log($"[Cola E] HP {c.colaEHpCost} 소모, 현재 HP: {c.Hp}");
         c.StartCoroutine(ColaECoroutine(c));
     }
 
@@ -226,7 +234,7 @@ public static class SkillLibrary
         int gainedStomach = targetUnit.Stomach;
         int gainedElement = targetUnit.Element;
 
-        self.Setstomach(self.Stomach + gainedStomach);
+        self.Setstomach(gainedStomach);
         self.Element = gainedElement;
 
         // 삭제

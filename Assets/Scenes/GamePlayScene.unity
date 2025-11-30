@@ -17593,6 +17593,7 @@ MonoBehaviour:
   colaEPrefab: {fileID: 1364770963693114574, guid: c62ce34b565662143a2036da0c2a30aa, type: 3}
   colaWDuration: 3
   colaWSpeedMultiplier: 1.5
+  colaEHpCost: 5
   colaESpeed: 3
   colaEStartScale: 0
   colaEEndScale: 8

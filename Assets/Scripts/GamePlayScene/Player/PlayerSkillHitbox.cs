@@ -5,6 +5,7 @@ public class PlayerSkillHitbox : MonoBehaviour
 {
     [SerializeField] private float baseDamage = 10f;
     [SerializeField] private bool destroyOnHit = true;
+    [SerializeField] private float damageInterval = 0f; // 0이면 한 번만 데미지
 
     private IUnit playerUnit;
     private Collider2D hitboxCollider;
@@ -12,7 +13,7 @@ public class PlayerSkillHitbox : MonoBehaviour
     private Collider2D[] results = new Collider2D[10];
 
     // ✅ 이미 맞은 IUnit 목록
-    private HashSet<IUnit> damagedUnits = new HashSet<IUnit>();
+    private Dictionary<IUnit, float> damagedUnits = new Dictionary<IUnit, float>();
 
     private void Awake()
     {
@@ -50,13 +51,21 @@ public class PlayerSkillHitbox : MonoBehaviour
             if (enemyUnit == null)
                 continue;
 
-            // ✅ 이미 맞은 적이면 스킵
-            if (damagedUnits.Contains(enemyUnit))
-                continue;
+            // ✅ 데미지 간격 체크
+            if (damagedUnits.TryGetValue(enemyUnit, out var lastHitTime))
+            {
+                if (damageInterval <= 0f || Time.time - lastHitTime < damageInterval)
+                    continue;
+            }
 
-            // 💥 첫 타만 들어감
+            // 💥 데미지 적용
             enemyUnit.GetDamage(baseDamage, playerUnit.Element);
-            damagedUnits.Add(enemyUnit);
+            damagedUnits[enemyUnit] = Time.time;
+
+            // 추가 효과가 있으면 호출 (예: 아이스크림 속박)
+            var rootHitbox = GetComponent<IceCreamRootHitbox>();
+            if (rootHitbox != null)
+                rootHitbox.ApplyRootFromCollider(other);
 
             // 히트박스가 한 번만 맞고 사라지는 타입이면
             if (destroyOnHit)

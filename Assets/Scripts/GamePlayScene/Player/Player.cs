@@ -96,6 +96,7 @@ public class Player : MonoBehaviour, IUnit
     [Header("Cola Skill Parameters")]
     public float colaWDuration = 3f;
     public float colaWSpeedMultiplier = 1.5f;
+    public float colaEHpCost = 5f;
     public float colaESpeed = 3f;
     public float colaEStartScale = 0f;
     public float colaEEndScale = 8f;

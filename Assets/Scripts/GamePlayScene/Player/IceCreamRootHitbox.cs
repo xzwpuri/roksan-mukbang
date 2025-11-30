@@ -43,15 +43,26 @@ public class IceCreamRootHitbox : MonoBehaviour
                 continue;
 
             // 속박 적용
-            StartCoroutine(RootEnemy(enemyBase));
-            hasHit = true;
-
-            if (destroyOnHit)
-            {
-                Destroy(gameObject);
-                return;
-            }
+            ApplyRootFromCollider(other);
         }
+    }
+    public void ApplyRootFromCollider(Collider2D other)
+    {
+        if (hasHit)
+            return;
+
+        EnemyBase enemyBase = other.GetComponent<EnemyBase>();
+        if (enemyBase == null)
+            enemyBase = other.GetComponentInParent<EnemyBase>();
+
+        if (enemyBase == null)
+            return;
+
+        StartCoroutine(RootEnemy(enemyBase));
+        hasHit = true;
+
+        if (destroyOnHit)
+            Destroy(gameObject);
     }
 
     private System.Collections.IEnumerator RootEnemy(EnemyBase enemy)
