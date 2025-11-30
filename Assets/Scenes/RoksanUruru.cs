@@ -4,8 +4,8 @@ using UnityEngine.EventSystems;
 
 public class RoksanUruru : MonoBehaviour, IPointerEnterHandler
 {
-    [SerializeField] private float distance = 800f;
-    [SerializeField] private float speed = 350f;
+    [SerializeField] private float distance = 600f;
+    [SerializeField] private float speed = 260f;
 
     private bool isEntered = false;
     public void OnPointerEnter(PointerEventData eventData)
