@@ -17575,15 +17575,15 @@ MonoBehaviour:
   swingSpeed: 360
   swingAngle1: 60
   swingAngle2: -60
-  swingReach: 3
-  swingWidth: 0.4
-  swingPivotPrefab: {fileID: 1364770963693114574, guid: f4fa5908b92c099448b0a983a726d54b, type: 3}
+  swingReach: 3.3
+  swingWidth: 2
+  swingPivotPrefab: {fileID: 1364770963693114574, guid: 35de5849a323cea4aaef424ea123f2cc, type: 3}
   jabSpeed: 5
-  jabReach: 3.5
-  jabWidth: 1
-  jabPivotPrefab: {fileID: 1364770963693114574, guid: f4fa5908b92c099448b0a983a726d54b, type: 3}
-  isSwinging: 0
-  isJabbing: 0
+  jabReach: 2.5
+  jabWidth: 1.5
+  jabPivotPrefab: {fileID: 1364770963693114574, guid: 35de5849a323cea4aaef424ea123f2cc, type: 3}
+  isE: 0
+  isW: 0
 --- !u!50 &2004273285
 Rigidbody2D:
   serializedVersion: 5
