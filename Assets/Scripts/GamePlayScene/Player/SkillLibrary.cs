@@ -257,6 +257,9 @@ public static class SkillLibrary
         );
         jab.transform.SetParent(c.transform);
 
+        // 즉시 쿨타임 시작
+        c.isW = false;
+
         float t = 0f;
 
         while (t < 1f)
@@ -276,7 +279,6 @@ public static class SkillLibrary
         }
 
         Object.Destroy(jab);
-        c.isW = false;
     }
 
     private static IEnumerator SwingCoroutine(Player c)
@@ -299,6 +301,9 @@ public static class SkillLibrary
         swing.transform.SetParent(c.transform);
         swing.transform.localScale = new Vector3(c.swingReach, c.swingWidth, 1f);
 
+        // 즉시 쿨타임 시작
+        c.isE = false;
+
         float currentAngle = c.swingAngle1;
 
         while (currentAngle > c.swingAngle2)
@@ -309,7 +314,6 @@ public static class SkillLibrary
         }
 
         Object.Destroy(swing);
-        c.isE = false;
     }
 
     // ===========================
@@ -320,40 +324,37 @@ public static class SkillLibrary
     {
         c.isW = true;
 
-        // 붕어빵 W 파라미터
-        float speed = 10f;
-        float reach = 20f;
-        float radius = 0.7f;
-
         var (dir, _, skillPos) = MouseDirection(c);
+
+        // 크림 붕어빵이면 다른 프리팹 사용
+        GameObject prefabToUse = c.isCustardCream ? c.bungeobbangWUpgradedPrefab : c.bungeobbangWPrefab;
 
         if (c.isCustardCream)
         {
-            // 8방향 발사
+            // 8방향 발사 (크림 붕어빵)
             for (int i = 0; i < 8; i++)
             {
                 float angle = (360f / 8) * i;
-                c.StartCoroutine(BungeobbangProjectile(c, c.transform.position, Quaternion.Euler(0, 0, angle) * dir, speed, reach, radius));
+                c.StartCoroutine(BungeobbangProjectile(prefabToUse, c.transform.position, Quaternion.Euler(0, 0, angle) * dir, c.bungeobbangWSpeed, c.bungeobbangWReach, c.bungeobbangWRadius));
             }
         }
         else
         {
-            // 3방향 발사
-            c.StartCoroutine(BungeobbangProjectile(c, skillPos, Quaternion.Euler(0, 0, -45f) * dir, speed, reach, radius));
-            c.StartCoroutine(BungeobbangProjectile(c, skillPos, dir, speed, reach, radius));
-            c.StartCoroutine(BungeobbangProjectile(c, skillPos, Quaternion.Euler(0, 0, 45f) * dir, speed, reach, radius));
+            // 3방향 발사 (팥 붕어빵)
+            c.StartCoroutine(BungeobbangProjectile(prefabToUse, skillPos, Quaternion.Euler(0, 0, -45f) * dir, c.bungeobbangWSpeed, c.bungeobbangWReach, c.bungeobbangWRadius));
+            c.StartCoroutine(BungeobbangProjectile(prefabToUse, skillPos, dir, c.bungeobbangWSpeed, c.bungeobbangWReach, c.bungeobbangWRadius));
+            c.StartCoroutine(BungeobbangProjectile(prefabToUse, skillPos, Quaternion.Euler(0, 0, 45f) * dir, c.bungeobbangWSpeed, c.bungeobbangWReach, c.bungeobbangWRadius));
         }
 
         c.isW = false;
         yield return null;
     }
 
-    private static IEnumerator BungeobbangProjectile(Player c, Vector3 startPos, Vector3 dir, float speed, float reach, float radius)
+    private static IEnumerator BungeobbangProjectile(GameObject prefab, Vector3 startPos, Vector3 dir, float speed, float reach, float radius)
     {
-        // BungeobbangWPrefab 필요 (Player에 추가 필요)
-        if (c.bungeobbangWPrefab == null) yield break;
+        if (prefab == null) yield break;
 
-        GameObject projectile = Object.Instantiate(c.bungeobbangWPrefab, startPos, Quaternion.identity);
+        GameObject projectile = Object.Instantiate(prefab, startPos, Quaternion.identity);
         projectile.transform.localScale = new Vector3(radius, radius, 1f);
 
         // PlayerSkillHitbox가 알아서 데미지 처리
@@ -390,10 +391,7 @@ public static class SkillLibrary
     {
         c.isW = true;
 
-        float duration = 3f;          // 지속 시간
-        float speedMultiplier = 1.5f; // 이동속도 1.5배
-
-        c.StartColaSpeedBuff(ColaSpeedBuff(c, duration, speedMultiplier));
+        c.StartColaSpeedBuff(ColaSpeedBuff(c, c.colaWDuration, c.colaWSpeedMultiplier));
 
         c.isW = false;
         yield return null;
@@ -416,10 +414,6 @@ public static class SkillLibrary
     {
         c.isE = true;
 
-        float colaESpeed = 3f;
-        float colaEStartScale = 0f;
-        float colaEEndScale = 8f;
-
         if (c.colaEPrefab == null)
         {
             c.isE = false;
@@ -427,22 +421,24 @@ public static class SkillLibrary
         }
 
         GameObject eSkill = Object.Instantiate(c.colaEPrefab, c.transform.position, Quaternion.identity);
-        eSkill.transform.localScale = new Vector3(colaEStartScale, colaEStartScale, 1f);
+        eSkill.transform.localScale = new Vector3(c.colaEStartScale, c.colaEStartScale, 1f);
+
+        // 즉시 쿨타임 시작
+        c.isE = false;
 
         float t = 0f;
         while (t < 1f)
         {
-            t = Mathf.MoveTowards(t, 1f, Time.deltaTime * colaESpeed);
+            t = Mathf.MoveTowards(t, 1f, Time.deltaTime * c.colaESpeed);
 
             float easing = Mathf.Sqrt(1 - Mathf.Pow(t - 1f, 2));
-            float scale = Mathf.Lerp(colaEStartScale, colaEEndScale, easing);
+            float scale = Mathf.Lerp(c.colaEStartScale, c.colaEEndScale, easing);
             eSkill.transform.localScale = new Vector3(scale, scale, 1f);
 
             yield return null;
         }
 
         Object.Destroy(eSkill);
-        c.isE = false;
     }
 
     // ===========================
@@ -453,10 +449,6 @@ public static class SkillLibrary
     {
         c.isW = true;
 
-        float iceCreamWSpeed = 12f;
-        float iceCreamWReach = 20f;
-        float iceCreamWRadius = 0.6f;
-
         var (dir, _, skillPos) = MouseDirection(c);
 
         if (c.iceCreamWPrefab == null)
@@ -466,16 +458,19 @@ public static class SkillLibrary
         }
 
         GameObject wSkill = Object.Instantiate(c.iceCreamWPrefab, skillPos, Quaternion.identity);
-        wSkill.transform.localScale = new Vector3(iceCreamWRadius, iceCreamWRadius, 1f);
+        wSkill.transform.localScale = new Vector3(c.iceCreamWRadius, c.iceCreamWRadius, 1f);
+
+        // 즉시 쿨타임 시작
+        c.isW = false;
 
         // IceCreamRootHitbox가 알아서 속박 처리함
         float t = 0f;
-        while (t < iceCreamWReach)
+        while (t < c.iceCreamWReach)
         {
             if (wSkill == null) break;
 
             float tt = t;
-            t = Mathf.MoveTowards(t, iceCreamWReach, iceCreamWSpeed * Time.deltaTime);
+            t = Mathf.MoveTowards(t, c.iceCreamWReach, c.iceCreamWSpeed * Time.deltaTime);
             float move = t - tt;
 
             wSkill.transform.position += move * dir;
@@ -483,25 +478,19 @@ public static class SkillLibrary
         }
 
         if (wSkill != null) Object.Destroy(wSkill);
-        c.isW = false;
     }
 
     private static IEnumerator IceCreamECoroutine(Player c)
     {
         c.isE = true;
 
-        float slowDuration = 4f;        // 이동속도 감소 지속시간
-        float slowMultiplier = 0.5f;    // 이동속도 50%로 감소
-        float healAmount = 30f;         // 회복량
-        float recoverySpeed = 2f;       // 속도 회복 속도 (초당)
-
-        c.StartIceCreamSlow(IceCreamSlowAndHeal(c, slowDuration, slowMultiplier, healAmount, recoverySpeed));
+        c.StartIceCreamSlow(IceCreamSlowAndHeal(c, c.iceCreamESlowDuration, c.iceCreamESlowMultiplier, c.iceCreamEHealAmount));
 
         c.isE = false;
         yield return null;
     }
 
-    private static IEnumerator IceCreamSlowAndHeal(Player c, float duration, float slowMultiplier, float healAmount, float recoverySpeed)
+    private static IEnumerator IceCreamSlowAndHeal(Player c, float duration, float slowMultiplier, float healAmount)
     {
         float originalSpeed = c.MoveSpeed;
         float targetSpeed = originalSpeed * slowMultiplier;
@@ -537,37 +526,33 @@ public static class SkillLibrary
     {
         c.isW = true;
 
-        float friesWSpeed = 15f;
-        float friesWReach = 20f;
-        float friesWWidth = 1.5f;
-        float friesWHeight = 0.4f;
-
         var (dir, angleToMouse, skillPos) = MouseDirection(c);
 
-        if (c.friesWPrefab == null)
+        // 강화 여부에 따라 다른 프리팹 사용
+        GameObject prefabToUse = c.isFriesUpgraded ? c.friesWUpgradedPrefab : c.friesWPrefab;
+
+        if (prefabToUse == null)
         {
             c.isW = false;
             yield break;
         }
 
-        GameObject wSkill = Object.Instantiate(c.friesWPrefab, skillPos, Quaternion.Euler(0, 0, angleToMouse));
-
-        // Player의 isFriesUpgraded 사용
-        wSkill.transform.localScale = c.isFriesUpgraded
-            ? new Vector3(friesWWidth * 2f, friesWHeight * 2f, 1f)
-            : new Vector3(friesWWidth, friesWHeight, 1f);
+        GameObject wSkill = Object.Instantiate(prefabToUse, skillPos, Quaternion.Euler(0, 0, angleToMouse));
 
         // 사용 후 강화 상태 초기화
         c.isFriesUpgraded = false;
 
+        // 즉시 쿨타임 시작
+        c.isW = false;
+
         // PlayerSkillHitbox가 알아서 데미지 처리
         float t = 0f;
-        while (t < friesWReach)
+        while (t < c.friesWReach)
         {
             if (wSkill == null) break;
 
             float tt = t;
-            t = Mathf.MoveTowards(t, friesWReach, friesWSpeed * Time.deltaTime);
+            t = Mathf.MoveTowards(t, c.friesWReach, c.friesWSpeed * Time.deltaTime);
             float move = t - tt;
 
             wSkill.transform.position += move * dir;
@@ -575,7 +560,6 @@ public static class SkillLibrary
         }
 
         if (wSkill != null) Object.Destroy(wSkill);
-        c.isW = false;
     }
 
     private static IEnumerator FriesECoroutine(Player c)
@@ -595,12 +579,6 @@ public static class SkillLibrary
     {
         c.isW = true;
 
-        float meatWSpeed = 720f;
-        float meatWAngle1 = 70f;
-        float meatWAngle2 = -70f;
-        float meatWWidth = 2f;
-        float meatWHeight = 0.5f;
-
         var (dir, angleToMouse, skillPos) = MouseDirection(c);
 
         if (c.meatWPrefab == null)
@@ -609,45 +587,46 @@ public static class SkillLibrary
             yield break;
         }
 
-        GameObject wSkill = Object.Instantiate(c.meatWPrefab, skillPos, Quaternion.Euler(0, 0, angleToMouse + meatWAngle1));
+        GameObject wSkill = Object.Instantiate(c.meatWPrefab, skillPos, Quaternion.Euler(0, 0, angleToMouse + c.meatWAngle1));
         wSkill.transform.SetParent(c.transform);
-        wSkill.transform.localScale = new Vector3(meatWWidth, meatWHeight, 1f);
+        wSkill.transform.localScale = new Vector3(c.meatWWidth, c.meatWHeight, 1f);
 
-        float meatWCurrentAngle = meatWAngle1;
+        // 즉시 쿨타임 시작
+        c.isW = false;
 
-        while (meatWCurrentAngle > meatWAngle2)
+        float meatWCurrentAngle = c.meatWAngle1;
+
+        while (meatWCurrentAngle > c.meatWAngle2)
         {
-            meatWCurrentAngle = Mathf.MoveTowardsAngle(meatWCurrentAngle, meatWAngle2, meatWSpeed * Time.deltaTime);
+            meatWCurrentAngle = Mathf.MoveTowardsAngle(meatWCurrentAngle, c.meatWAngle2, c.meatWSpeed * Time.deltaTime);
             wSkill.transform.rotation = Quaternion.Euler(0, 0, angleToMouse + meatWCurrentAngle);
             yield return null;
         }
 
         Object.Destroy(wSkill);
-        c.isW = false;
     }
 
     private static IEnumerator MeatECoroutine(Player c)
     {
         c.isE = true;
 
-        float meatESpeed = 10f;
-        float meatEDistance = 3f;
-
         var (dir, _, _) = MouseDirection(c);
+
+        // 즉시 쿨타임 시작
+        c.isE = false;
+
         float t = 0f;
         Vector3 startPos = c.transform.position;
 
-        while (t < meatEDistance)
+        while (t < c.meatEDistance)
         {
-            t = Mathf.MoveTowards(t, meatEDistance, meatESpeed * Time.deltaTime);
+            t = Mathf.MoveTowards(t, c.meatEDistance, c.meatESpeed * Time.deltaTime);
 
-            float normalized = t / meatEDistance;
+            float normalized = t / c.meatEDistance;
             float easing = 1f - Mathf.Pow(1f - normalized, 5f);
-            c.transform.position = startPos + dir * (meatEDistance * easing);
+            c.transform.position = startPos + dir * (c.meatEDistance * easing);
             yield return null;
         }
-
-        c.isE = false;
     }
 
     // ===========================
@@ -658,9 +637,6 @@ public static class SkillLibrary
     {
         c.isW = true;
 
-        float mushroomWDuration = 6f;
-        float mushroomWRadius = 4.5f;
-
         var (dir, _, _) = MouseDirection(c);
 
         if (c.mushroomWPrefab == null)
@@ -670,23 +646,21 @@ public static class SkillLibrary
         }
 
         GameObject wSkill = Object.Instantiate(c.mushroomWPrefab, c.transform.position + dir * 3f, Quaternion.identity);
-        wSkill.transform.localScale = new Vector3(mushroomWRadius, mushroomWRadius, 1f);
+        wSkill.transform.localScale = new Vector3(c.mushroomWRadius, c.mushroomWRadius, 1f);
 
-        yield return new WaitForSeconds(mushroomWDuration);
+        // 즉시 쿨타임 시작
+        c.isW = false;
+
+        yield return new WaitForSeconds(c.mushroomWDuration);
 
         Object.Destroy(wSkill);
-        c.isW = false;
     }
 
     private static IEnumerator MushroomECoroutine(Player c)
     {
         c.isE = true;
 
-        float healDuration = 6f;       // 도트힐 지속시간
-        float healInterval = 0.5f;     // 회복 간격 (0.5초마다)
-        float healPerTick = 3f;        // 틱당 회복량
-
-        c.StartMushroomHeal(MushroomHealOverTime(c, healDuration, healInterval, healPerTick));
+        c.StartMushroomHeal(MushroomHealOverTime(c, c.mushroomEHealDuration, c.mushroomEHealInterval, c.mushroomEHealPerTick));
 
         c.isE = false;
         yield return null;
@@ -724,17 +698,12 @@ public static class SkillLibrary
     {
         c.isW = true;
 
-        float waterWSpeed = 10f;
-        float waterWReach = 20f;
-        float waterWRadius = 0.5f;
-        float waterWGanGyeock = 0.1f;
-
         var (dir, _, skillPos) = MouseDirection(c);
 
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < c.waterWCount; i++)
         {
-            c.StartCoroutine(WaterProjectile(c, skillPos, dir, waterWSpeed, waterWReach, waterWRadius));
-            yield return new WaitForSeconds(waterWGanGyeock);
+            c.StartCoroutine(WaterProjectile(c, skillPos, dir, c.waterWSpeed, c.waterWReach, c.waterWRadius));
+            yield return new WaitForSeconds(c.waterWInterval);
         }
 
         c.isW = false;
@@ -768,10 +737,6 @@ public static class SkillLibrary
     {
         c.isE = true;
 
-        float waterESpeed = 1f;
-        float waterEStartScale = 0f;
-        float waterEEndScale = 5f;
-
         if (c.waterEPrefab == null)
         {
             c.isE = false;
@@ -779,21 +744,23 @@ public static class SkillLibrary
         }
 
         GameObject eSkill = Object.Instantiate(c.waterEPrefab, c.transform.position, Quaternion.identity);
-        eSkill.transform.localScale = new Vector3(waterEStartScale, waterEStartScale, 1f);
+        eSkill.transform.localScale = new Vector3(c.waterEStartScale, c.waterEStartScale, 1f);
+
+        // 즉시 쿨타임 시작
+        c.isE = false;
 
         float t = 0f;
         while (t < 1f)
         {
-            t = Mathf.MoveTowards(t, 1f, Time.deltaTime * waterESpeed);
+            t = Mathf.MoveTowards(t, 1f, Time.deltaTime * c.waterESpeed);
 
             float easing = Mathf.Sqrt(1 - Mathf.Pow(t - 1f, 2));
-            float scale = Mathf.Lerp(waterEStartScale, waterEEndScale, easing);
+            float scale = Mathf.Lerp(c.waterEStartScale, c.waterEEndScale, easing);
 
             eSkill.transform.localScale = new Vector3(scale, scale, 1f);
             yield return null;
         }
 
         Object.Destroy(eSkill);
-        c.isE = false;
     }
 }

@@ -72,53 +72,105 @@ public class Player : MonoBehaviour, IUnit
     public GameObject jabPivotPrefab;
 
     // ===============================
-    //  붕어빵 스킬 프리팹
+    //  붕어빵 스킬 프리팹 & 파라미터
     // ===============================
     [Header("Bungeobbang Skill Prefabs")]
-    public GameObject bungeobbangWPrefab;
+    public GameObject bungeobbangWPrefab;          // 일반 팥 붕어빵 (Redbeans)
+    public GameObject bungeobbangWUpgradedPrefab;  // 크림 붕어빵 (Custardcream)
     public GameObject bungeobbangEPrefab;
 
+    [Header("Bungeobbang Skill Parameters")]
+    public float bungeobbangWSpeed = 10f;
+    public float bungeobbangWReach = 20f;
+    public float bungeobbangWRadius = 0.7f;
+
     // ===============================
-    //  콜라 스킬 프리팹
+    //  콜라 스킬 프리팹 & 파라미터
     // ===============================
     [Header("Cola Skill Prefabs")]
     public GameObject colaWPrefab;
     public GameObject colaEPrefab;
 
-    // ===============================
-    //  감자튀김 스킬 프리팹
-    // ===============================
-    [Header("Fries Skill Prefabs")]
-    public GameObject friesWPrefab;
-    public GameObject friesEPrefab;
+    [Header("Cola Skill Parameters")]
+    public float colaWDuration = 3f;
+    public float colaWSpeedMultiplier = 1.5f;
+    public float colaESpeed = 3f;
+    public float colaEStartScale = 0f;
+    public float colaEEndScale = 8f;
 
     // ===============================
-    //  아이스크림 스킬 프리팹
+    //  감자튀김 스킬 프리팹 & 파라미터
+    // ===============================
+    [Header("Fries Skill Prefabs")]
+    public GameObject friesWPrefab;           // 일반 감자튀김 (Potato)
+    public GameObject friesWUpgradedPrefab;   // 강화 감자튀김 (Tomato)
+    public GameObject friesEPrefab;
+
+    [Header("Fries Skill Parameters")]
+    public float friesWSpeed = 15f;
+    public float friesWReach = 20f;
+
+    // ===============================
+    //  아이스크림 스킬 프리팹 & 파라미터
     // ===============================
     [Header("IceCream Skill Prefabs")]
     public GameObject iceCreamWPrefab;
     public GameObject iceCreamEPrefab;
 
+    [Header("IceCream Skill Parameters")]
+    public float iceCreamWSpeed = 12f;
+    public float iceCreamWReach = 20f;
+    public float iceCreamWRadius = 0.6f;
+    public float iceCreamESlowDuration = 4f;
+    public float iceCreamESlowMultiplier = 0.5f;
+    public float iceCreamEHealAmount = 30f;
+
     // ===============================
-    //  고기 스킬 프리팹
+    //  고기 스킬 프리팹 & 파라미터
     // ===============================
     [Header("Meat Skill Prefabs")]
     public GameObject meatWPrefab;
     public GameObject meatEPrefab;
 
+    [Header("Meat Skill Parameters")]
+    public float meatWSpeed = 720f;
+    public float meatWAngle1 = 70f;
+    public float meatWAngle2 = -70f;
+    public float meatWWidth = 2f;
+    public float meatWHeight = 0.5f;
+    public float meatESpeed = 10f;
+    public float meatEDistance = 3f;
+
     // ===============================
-    //  버섯 스킬 프리팹
+    //  버섯 스킬 프리팹 & 파라미터
     // ===============================
     [Header("Mushroom Skill Prefabs")]
     public GameObject mushroomWPrefab;
     public GameObject mushroomEPrefab;
 
+    [Header("Mushroom Skill Parameters")]
+    public float mushroomWDuration = 6f;
+    public float mushroomWRadius = 4.5f;
+    public float mushroomEHealDuration = 6f;
+    public float mushroomEHealInterval = 0.5f;
+    public float mushroomEHealPerTick = 3f;
+
     // ===============================
-    //  물 스킬 프리팹
+    //  물 스킬 프리팹 & 파라미터
     // ===============================
     [Header("Water Skill Prefabs")]
     public GameObject waterWPrefab;
     public GameObject waterEPrefab;
+
+    [Header("Water Skill Parameters")]
+    public float waterWSpeed = 10f;
+    public float waterWReach = 20f;
+    public float waterWRadius = 0.5f;
+    public float waterWInterval = 0.1f; // 간격
+    public int waterWCount = 3; // 발사 개수
+    public float waterESpeed = 1f;
+    public float waterEStartScale = 0f;
+    public float waterEEndScale = 5f;
 
     // 코루틴 중복 방지 플래그
     [HideInInspector] public bool isE = false;

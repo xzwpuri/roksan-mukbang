@@ -17582,8 +17582,62 @@ MonoBehaviour:
   jabReach: 2.5
   jabWidth: 1.5
   jabPivotPrefab: {fileID: 1364770963693114574, guid: 35de5849a323cea4aaef424ea123f2cc, type: 3}
+  bungeobbangWPrefab: {fileID: 1364770963693114574, guid: 122371dc0bc3fb345acbc4d6c1fd7f7f, type: 3}
+  bungeobbangWUpgradedPrefab: {fileID: 1364770963693114574, guid: a30e286944deb314d81ac9f5ebc064fe, type: 3}
+  bungeobbangEPrefab: {fileID: 0}
+  bungeobbangWSpeed: 10
+  bungeobbangWReach: 20
+  bungeobbangWRadius: 0.7
+  colaWPrefab: {fileID: 0}
+  colaEPrefab: {fileID: 0}
+  colaWDuration: 3
+  colaWSpeedMultiplier: 1.5
+  colaESpeed: 3
+  colaEStartScale: 0
+  colaEEndScale: 8
+  friesWPrefab: {fileID: 1364770963693114574, guid: 5d7777e234817454c80111099433b9ca, type: 3}
+  friesWUpgradedPrefab: {fileID: 1364770963693114574, guid: ed682865525d02d47a267deaf49dc166, type: 3}
+  friesEPrefab: {fileID: 0}
+  friesWSpeed: 15
+  friesWReach: 20
+  iceCreamWPrefab: {fileID: 0}
+  iceCreamEPrefab: {fileID: 0}
+  iceCreamWSpeed: 12
+  iceCreamWReach: 20
+  iceCreamWRadius: 0.6
+  iceCreamESlowDuration: 4
+  iceCreamESlowMultiplier: 0.5
+  iceCreamEHealAmount: 30
+  meatWPrefab: {fileID: 1364770963693114574, guid: 1c2be0c9f83d6634fbed1ce7791ca9ab, type: 3}
+  meatEPrefab: {fileID: 0}
+  meatWSpeed: 720
+  meatWAngle1: 70
+  meatWAngle2: -70
+  meatWWidth: 4
+  meatWHeight: 3
+  meatESpeed: 10
+  meatEDistance: 3
+  mushroomWPrefab: {fileID: 0}
+  mushroomEPrefab: {fileID: 0}
+  mushroomWDuration: 6
+  mushroomWRadius: 4.5
+  mushroomEHealDuration: 6
+  mushroomEHealInterval: 0.5
+  mushroomEHealPerTick: 3
+  waterWPrefab: {fileID: 0}
+  waterEPrefab: {fileID: 0}
+  waterWSpeed: 10
+  waterWReach: 20
+  waterWRadius: 0.5
+  waterWInterval: 0.1
+  waterWCount: 3
+  waterESpeed: 1
+  waterEStartScale: 0
+  waterEEndScale: 5
   isE: 0
   isW: 0
+  isCustardCream: 0
+  isFriesUpgraded: 0
 --- !u!50 &2004273285
 Rigidbody2D:
   serializedVersion: 5
