@@ -1,5 +1,7 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 public enum StateType
 {
     Idle,
@@ -7,7 +9,6 @@ public enum StateType
     Dead,
     Attack
 }
-
 
 public class Player : MonoBehaviour, IUnit
 {
@@ -53,6 +54,88 @@ public class Player : MonoBehaviour, IUnit
     [HideInInspector] public Vector2 MoveTarget;
     [HideInInspector] public float mspeed;
 
+    // ===============================
+    //  Default Skill (Jab / Swing)
+    // ===============================
+    [Header("Default Skill - Swing")]
+    public float swingSpeed = 180f;
+    public float swingAngle1 = 60f;
+    public float swingAngle2 = -60f;
+    public float swingReach = 1.2f;
+    public float swingWidth = 0.3f;
+    public GameObject swingPivotPrefab;
+
+    [Header("Default Skill - Jab")]
+    public float jabSpeed = 5f;
+    public float jabReach = 1.7f;
+    public float jabWidth = 0.5f;
+    public GameObject jabPivotPrefab;
+
+    // ===============================
+    //  붕어빵 스킬 프리팹
+    // ===============================
+    [Header("Bungeobbang Skill Prefabs")]
+    public GameObject bungeobbangWPrefab;
+    public GameObject bungeobbangEPrefab;
+
+    // ===============================
+    //  콜라 스킬 프리팹
+    // ===============================
+    [Header("Cola Skill Prefabs")]
+    public GameObject colaWPrefab;
+    public GameObject colaEPrefab;
+
+    // ===============================
+    //  감자튀김 스킬 프리팹
+    // ===============================
+    [Header("Fries Skill Prefabs")]
+    public GameObject friesWPrefab;
+    public GameObject friesEPrefab;
+
+    // ===============================
+    //  아이스크림 스킬 프리팹
+    // ===============================
+    [Header("IceCream Skill Prefabs")]
+    public GameObject iceCreamWPrefab;
+    public GameObject iceCreamEPrefab;
+
+    // ===============================
+    //  고기 스킬 프리팹
+    // ===============================
+    [Header("Meat Skill Prefabs")]
+    public GameObject meatWPrefab;
+    public GameObject meatEPrefab;
+
+    // ===============================
+    //  버섯 스킬 프리팹
+    // ===============================
+    [Header("Mushroom Skill Prefabs")]
+    public GameObject mushroomWPrefab;
+    public GameObject mushroomEPrefab;
+
+    // ===============================
+    //  물 스킬 프리팹
+    // ===============================
+    [Header("Water Skill Prefabs")]
+    public GameObject waterWPrefab;
+    public GameObject waterEPrefab;
+
+    // 코루틴 중복 방지 플래그
+    [HideInInspector] public bool isE = false;
+    [HideInInspector] public bool isW = false;
+
+    // ===============================
+    //  스킬 상태 플래그
+    // ===============================
+    [Header("Skill States")]
+    [HideInInspector] public bool isCustardCream = false;  // 붕어빵 E 스킬 활성화 여부
+    [HideInInspector] public bool isFriesUpgraded = false; // 감자튀김 강화 여부
+
+    // 버프/디버프 관리용 코루틴
+    private Coroutine colaSpeedBuffCoroutine;
+    private Coroutine iceCreamSlowCoroutine;
+    private Coroutine mushroomHealCoroutine;
+
     private void Awake()
     {
         Rigidbody2D = GetComponent<Rigidbody2D>();
@@ -62,11 +145,10 @@ public class Player : MonoBehaviour, IUnit
 
     private void Start()
     {
-        // 초기 값 세팅 (원하면 인스펙터에서 직접 넣고 Init 생략해도 됨)
+        // 초기 값 세팅
         Init(100f, 5f, 0, 0);
         previousStomach = stomach;
 
-        // 기존에 this.movespeed 참조하던 부분을 프로퍼티로 변경
         mspeed = MoveSpeed;
 
         States = new Dictionary<StateType, State<Player>>();
@@ -82,6 +164,7 @@ public class Player : MonoBehaviour, IUnit
     {
         StateMachine.Update();
         CheckFlipX();
+
         if (stomach != previousStomach)
         {
             Setstomach(stomach);
@@ -91,7 +174,6 @@ public class Player : MonoBehaviour, IUnit
 
     private void CheckFlipX()
     {
-        // 프로젝트에 linearVelocityX 확장 프로퍼티를 쓰는 것으로 보임 (그대로 유지)
         if (Rigidbody2D.linearVelocityX > 0.01f) SpriteRenderer.flipX = false;
         else if (Rigidbody2D.linearVelocityX < -0.01f) SpriteRenderer.flipX = true;
     }
@@ -117,33 +199,38 @@ public class Player : MonoBehaviour, IUnit
         {
             Debug.Log("플레이어 사망!");
             // TODO: 죽는 상태로 State 변경 등
-            // StateMachine.ChangeState(States[StateType.Dead]); 이런 식으로 나중에 연결 가능
+            // StateMachine.ChangeState(States[StateType.Dead]);
         }
     }
+
     public void Setstomach(int newstomach)
     {
-        stomach = newstomach; // 1/2/3...
+        stomach = newstomach;
         GetComponent<SkillCaster>()?.RefreshLoadout();
     }
 
     // ===============================
-    //  Default Skill (Jab / Swing)
+    //  버프/디버프 관리 메서드
     // ===============================
-    [Header("Default Skill - Swing")]
-    public float swingSpeed = 180f;
-    public float swingAngle1 = 60f;
-    public float swingAngle2 = -60f;
-    public float swingReach = 1.2f;
-    public float swingWidth = 0.3f;
-    public GameObject swingPivotPrefab;
 
-    [Header("Default Skill - Jab")]
-    public float jabSpeed = 5f;
-    public float jabReach = 1.7f;
-    public float jabWidth = 0.5f;
-    public GameObject jabPivotPrefab;
+    public void StartColaSpeedBuff(IEnumerator coroutine)
+    {
+        if (colaSpeedBuffCoroutine != null)
+            StopCoroutine(colaSpeedBuffCoroutine);
+        colaSpeedBuffCoroutine = StartCoroutine(coroutine);
+    }
 
-    // 코루틴 중복 방지 플래그
-    [HideInInspector] public bool isE = false;
-    [HideInInspector] public bool isW = false;
+    public void StartIceCreamSlow(IEnumerator coroutine)
+    {
+        if (iceCreamSlowCoroutine != null)
+            StopCoroutine(iceCreamSlowCoroutine);
+        iceCreamSlowCoroutine = StartCoroutine(coroutine);
+    }
+
+    public void StartMushroomHeal(IEnumerator coroutine)
+    {
+        if (mushroomHealCoroutine != null)
+            StopCoroutine(mushroomHealCoroutine);
+        mushroomHealCoroutine = StartCoroutine(coroutine);
+    }
 }
