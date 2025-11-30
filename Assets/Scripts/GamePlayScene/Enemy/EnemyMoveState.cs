@@ -5,7 +5,7 @@ public class EnemyMoveState : State<EnemyBase>
     public override void Enter(EnemyBase owner)
     {
         if (owner.Animator != null)
-            owner.Animator.SetTrigger("Move");
+            owner.Animator.SetTrigger("Idle");
     }
 
     public override void Update(EnemyBase owner)
@@ -46,6 +46,6 @@ public class EnemyMoveState : State<EnemyBase>
     public override void Exit(EnemyBase owner)
     {
         if (owner.Animator != null)
-            owner.Animator.ResetTrigger("Move");
+            owner.Animator.ResetTrigger("Idle");
     }
 }
