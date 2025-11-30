@@ -17588,8 +17588,9 @@ MonoBehaviour:
   bungeobbangWSpeed: 10
   bungeobbangWReach: 20
   bungeobbangWRadius: 0.7
+  bungeobbangCustardHpCost: 5
   colaWPrefab: {fileID: 0}
-  colaEPrefab: {fileID: 0}
+  colaEPrefab: {fileID: 1364770963693114574, guid: c62ce34b565662143a2036da0c2a30aa, type: 3}
   colaWDuration: 3
   colaWSpeedMultiplier: 1.5
   colaESpeed: 3
@@ -17600,7 +17601,7 @@ MonoBehaviour:
   friesEPrefab: {fileID: 0}
   friesWSpeed: 15
   friesWReach: 20
-  iceCreamWPrefab: {fileID: 0}
+  iceCreamWPrefab: {fileID: 1364770963693114574, guid: 08dcb1048a3f3e94e8f19a90184f90c2, type: 3}
   iceCreamEPrefab: {fileID: 0}
   iceCreamWSpeed: 12
   iceCreamWReach: 20
@@ -17617,7 +17618,7 @@ MonoBehaviour:
   meatWHeight: 3
   meatESpeed: 10
   meatEDistance: 3
-  mushroomWPrefab: {fileID: 0}
+  mushroomWPrefab: {fileID: 1364770963693114574, guid: c0814fdf802a8574c955e7a1dfd2930e, type: 3}
   mushroomEPrefab: {fileID: 0}
   mushroomWDuration: 6
   mushroomWRadius: 4.5
@@ -17625,7 +17626,7 @@ MonoBehaviour:
   mushroomEHealInterval: 0.5
   mushroomEHealPerTick: 3
   waterWPrefab: {fileID: 1364770963693114574, guid: e482ef3d2ef626544a36ec6cf07d42af, type: 3}
-  waterEPrefab: {fileID: 0}
+  waterEPrefab: {fileID: 1364770963693114574, guid: eea90f3e197ce6542b482c4f99d0379e, type: 3}
   waterWSpeed: 10
   waterWReach: 20
   waterWRadius: 0.5
