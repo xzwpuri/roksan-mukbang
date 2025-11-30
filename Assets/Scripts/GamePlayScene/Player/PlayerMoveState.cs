@@ -8,7 +8,7 @@ public class PlayerMoveState : State<Player>
 
     public override void Enter(Player owner)
     {
-        //owner.Animator.SetTrigger("Move");
+        owner.Animator.SetTrigger("Move");
         // 이동 중 클릭하면 목표 지점 갱신
         onClick = (ctx) =>
         {
@@ -43,7 +43,7 @@ public class PlayerMoveState : State<Player>
 
         if (onClick != null)
             PlayerInputManager.instance.RMC.performed -= onClick;
-        //owner.Animator.ResetTrigger("Move");
+        owner.Animator.ResetTrigger("Move");
         owner.Rigidbody2D.linearVelocityX = 0f;
         owner.Rigidbody2D.linearVelocityY = 0f;
     }

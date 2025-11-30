@@ -56,7 +56,7 @@ public class Player : MonoBehaviour, IUnit
     private void Awake()
     {
         Rigidbody2D = GetComponent<Rigidbody2D>();
-        // Animator = GetComponent<Animator>();
+        Animator = GetComponent<Animator>();
         SpriteRenderer = GetComponent<SpriteRenderer>();
     }
 

@@ -4,7 +4,7 @@ public class PlayerIdleState : State<Player>
 {
     public override void Enter(Player owner)
     {
-        //owner.Animator.SetTrigger("Idle");
+        owner.Animator.SetTrigger("Idle");
     }
 
     public override void Update(Player owner)
@@ -19,6 +19,6 @@ public class PlayerIdleState : State<Player>
 
     public override void Exit(Player owner)
     {
-        //owner.Animator.ResetTrigger("Idle");
+        owner.Animator.ResetTrigger("Idle");
     }
 }
