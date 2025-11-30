@@ -29,45 +29,15 @@ public static class SkillLibrary
     public static void W_Default(Player c)
     {
         // 찌르기 (Jab) – 중복 시도 방지
-        if (c.isJabbing) return;
+        if (c.isW) return;
         c.StartCoroutine(JabCoroutine(c));
     }
 
     public static void E_Default(Player c)
     {
         // 휘두르기 (Swing) – 중복 시도 방지
-        if (c.isSwinging) return;
+        if (c.isE) return;
         c.StartCoroutine(SwingCoroutine(c));
-    }
-
-    public static void W_Fire(Player c)
-    {
-        Debug.Log("[W] Fire");
-    }
-
-    public static void E_Fire(Player c)
-    {
-        Debug.Log("[E] Fire");
-    }
-
-    public static void W_Water(Player c)
-    {
-        Debug.Log("[W] Water");
-    }
-
-    public static void E_Water(Player c)
-    {
-        Debug.Log("[E] Water");
-    }
-
-    public static void W_Grass(Player c)
-    {
-        Debug.Log("[W] Grass");
-    }
-
-    public static void E_Grass(Player c)
-    {
-        Debug.Log("[E] Grass");
     }
 
     // ===========================
@@ -200,14 +170,14 @@ public static class SkillLibrary
 
     private static IEnumerator JabCoroutine(Player c)
     {
-        c.isJabbing = true;
+        c.isW = true;
 
         var (dir, angleToMouse, skillPos) = MouseDirection(c);
 
         if (c.jabPivotPrefab == null)
         {
             // Debug.LogWarning("[SkillLibrary] jabPivotPrefab 이 설정되어 있지 않습니다.");
-            c.isJabbing = false;
+            c.isW = false;
             yield break;
         }
 
@@ -239,20 +209,20 @@ public static class SkillLibrary
         Object.Destroy(jab);
 
         // 쿨타임 제거: 바로 사용 가능 상태로
-        c.isJabbing = false;
+        c.isW = false;
     }
 
 
     private static IEnumerator SwingCoroutine(Player c)
     {
-        c.isSwinging = true;
+        c.isE = true;
 
         var (dir, angleToMouse, skillPos) = MouseDirection(c);
 
         if (c.swingPivotPrefab == null)
         {
             // Debug.LogWarning("[SkillLibrary] swingPivotPrefab 이 설정되어 있지 않습니다.");
-            c.isSwinging = false;
+            c.isE = false;
             yield break;
         }
 
@@ -276,7 +246,7 @@ public static class SkillLibrary
         Object.Destroy(swing);
 
         // 쿨타임 제거: 바로 사용 가능 상태로
-        c.isSwinging = false;
+        c.isE = false;
     }
 
 

@@ -78,19 +78,6 @@ public class SkillCaster : MonoBehaviour
                 onW = () => TryCast(ref nextWTime, 0.0f, () => SkillLibrary.W_Default(owner));
                 onE = () => TryCast(ref nextETime, 2f, () => SkillLibrary.E_Default(owner));
                 break;
-            case 1:
-                onW = () => TryCast(ref nextWTime, wCooldown, () => SkillLibrary.W_Fire(owner));
-                onE = () => TryCast(ref nextETime, eCooldown, () => SkillLibrary.E_Fire(owner));
-                break;
-            case 2:
-                onW = () => TryCast(ref nextWTime, wCooldown, () => SkillLibrary.W_Water(owner));
-                onE = () => TryCast(ref nextETime, eCooldown, () => SkillLibrary.E_Water(owner));
-                break;
-            case 3:
-                onW = () => TryCast(ref nextWTime, wCooldown, () => SkillLibrary.W_Grass(owner));
-                onE = () => TryCast(ref nextETime, eCooldown, () => SkillLibrary.E_Grass(owner));
-                break;
-
             default:
                 onW = null;
                 onE = null;

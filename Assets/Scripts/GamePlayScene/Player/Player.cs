@@ -144,6 +144,6 @@ public class Player : MonoBehaviour, IUnit
     public GameObject jabPivotPrefab;
 
     // 코루틴 중복 방지 플래그
-    [HideInInspector] public bool isSwinging = false;
-    [HideInInspector] public bool isJabbing = false;
+    [HideInInspector] public bool isE = false;
+    [HideInInspector] public bool isW = false;
 }
