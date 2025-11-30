@@ -1070,7 +1070,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 2004273282}
-  enemyPrefabs: []
+  enemyPrefabs:
+  - {fileID: 0}
   minSpawnDistance: 6
   distancePadding: 3
   spawnInterval: 3
@@ -1418,7 +1419,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   difficulty: 1
-  difficultySettings: []
+  difficultySettings:
+  - difficulty: 0
+    survivalTime: 180
+    spawnInterval: 10
+    baseSpawnCount: 1
+    enemyHpMultiplier: 50
+    enemyMoveSpeedMultiplier: 2
   enemyGenerator: {fileID: 1972087738}
   player: {fileID: 2004273284}
   remainingTime: 0
