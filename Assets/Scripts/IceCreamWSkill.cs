@@ -4,17 +4,16 @@ using UnityEngine;
 public class IceCreamWSkill : MonoBehaviour
 {
     [Header("Ice Cream W")]
-    [SerializeField] private float speed = 6;
-    [SerializeField] private float cooldown = 3;
-    [SerializeField] private float reach = 10f;
-    [SerializeField] private float radius = 1f;
+    [SerializeField] private float iceCreamWSpeed = 6;
+    [SerializeField] private float iceCreamWReach = 10f;
+    [SerializeField] private float iceCreamWRadius = 1f;
 
     public GameObject IceCreamWPrefab;
-    private bool isWActive = false;
+    private bool isIceCreamWActive = false;
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.W) && !isWActive)
+        if (Input.GetKeyDown(KeyCode.W) && !isIceCreamWActive)
         {
             StartCoroutine(W());
         }
@@ -22,11 +21,10 @@ public class IceCreamWSkill : MonoBehaviour
 
     IEnumerator W()
     {
-        isWActive = true;
+        isIceCreamWActive = true;
         var (dir, _, skillPos) = MouseDirection.Mouse(transform);
         GameObject wSkill = Instantiate(IceCreamWPrefab, skillPos, Quaternion.identity);
-        wSkill.transform.localScale = new Vector3(radius, radius, 1f);
-        StartCoroutine(Cooldown());
+        wSkill.transform.localScale = new Vector3(iceCreamWRadius, iceCreamWRadius, 1f);
 
         Collide p = wSkill.GetComponent<Collide>();
 
@@ -40,23 +38,18 @@ public class IceCreamWSkill : MonoBehaviour
         };
 
         float t = 0f;
-        while (t < reach)
+        while (t < iceCreamWReach)
         {
             if (isHit || wSkill == null) break;
 
             float tt = t;
-            t = Mathf.MoveTowards(t, reach, speed * Time.deltaTime);
+            t = Mathf.MoveTowards(t, iceCreamWReach, iceCreamWSpeed * Time.deltaTime);
             float move = t - tt;
 
             wSkill.transform.position += move * dir;
             yield return null;
         }
         if (wSkill != null) Destroy(wSkill);
-    }
-
-    IEnumerator Cooldown()
-    {
-        yield return new WaitForSeconds(cooldown);
-        isWActive = false;
+        isIceCreamWActive = false;
     }
 }

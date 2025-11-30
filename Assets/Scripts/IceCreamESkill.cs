@@ -4,13 +4,13 @@ using UnityEngine;
 public class IceCreamESkill : MonoBehaviour
 {
     [Header("Ice Cream E")]
-    [SerializeField] private float duration = 3f;
-    [SerializeField] private float cooldown = 5f;
+    [SerializeField] private float iceCreamEDuration = 3f;
 
-    private bool isEActive = false;
+    private bool isIceCreamEActive = false;
+
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && !isEActive)
+        if (Input.GetKeyDown(KeyCode.E) && !isIceCreamEActive)
         {
             StartCoroutine(E());
         }
@@ -18,24 +18,20 @@ public class IceCreamESkill : MonoBehaviour
 
     IEnumerator E()
     {
-        isEActive = true;
+        isIceCreamEActive = true;
 
         //힐
         //속도감소
-        StartCoroutine(Cooldown());
+        Debug.Log("힐, 속도감소");
 
         float t = 0f;
-        while (t < duration)
+        while (t < iceCreamEDuration)
         {
-            t = Mathf.MoveTowards(t, duration, Time.deltaTime);
+            t = Mathf.MoveTowards(t, iceCreamEDuration, Time.deltaTime);
             //천천히 속도회복
+            Debug.Log("천천히 속도회복, 속도: " + t / iceCreamEDuration);
             yield return null;
         }
-    }
-
-    IEnumerator Cooldown()
-    {
-        yield return new WaitForSeconds(cooldown);
-        isEActive = false;
+        isIceCreamEActive = false;
     }
 }

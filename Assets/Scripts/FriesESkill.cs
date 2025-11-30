@@ -3,30 +3,22 @@ using UnityEngine;
 
 public class FriesESkill : MonoBehaviour
 {
-    public static bool isUpgraded = false;
+    public static bool isFriesUpgraded = false;
 
-    [Header("Fries E")]
-    [SerializeField] private float cooldown = 5f;
+    private bool isFriesEActive = false;
 
-    private bool isEActive = false;
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && !isEActive)
+        if (Input.GetKeyDown(KeyCode.E) && !isFriesEActive)
         {
             StartCoroutine(E());
         }
     }
     IEnumerator E()
     {
-        isEActive = true;
-        isUpgraded = true;
-        StartCoroutine(Cooldown());
+        isFriesEActive = true;
+        isFriesUpgraded = true;
+        isFriesEActive = false;
         yield return null;
-    }
-
-    IEnumerator Cooldown()
-    {
-        yield return new WaitForSeconds(cooldown);
-        isEActive = false;
     }
 }

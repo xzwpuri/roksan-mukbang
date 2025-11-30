@@ -4,34 +4,30 @@ using UnityEngine;
 public class MushroomESkill : MonoBehaviour
 {
     [Header("Mushroom E")]
-    [SerializeField] private float duration = 5f;
-    [SerializeField] private float cooldown = 7f;
+    [SerializeField] private float mushroomEDuration = 5f;
 
-    private bool isEActive = false;
+    private bool isMushroomEActive = false;
+
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && !isEActive)
+        if (Input.GetKeyDown(KeyCode.E) && !isMushroomEActive)
         {
             StartCoroutine(E());
         }
     }
     IEnumerator E()
     {
-        isEActive = true;
-        StartCoroutine(Cooldown());
+        isMushroomEActive = true;
 
         float t = 0f;
-        while (t < duration)
+        while (t < mushroomEDuration)
         {
-            t = Mathf.MoveTowards(t, duration, Time.deltaTime);
+            t = Mathf.MoveTowards(t, mushroomEDuration, Time.deltaTime);
             //Èú ÃÊ¸¶´Ù
+            Debug.Log("ÃÊ¸¶´Ù Èú");
             yield return null;
         }
-    }
 
-    IEnumerator Cooldown()
-    {
-        yield return new WaitForSeconds(cooldown);
-        isEActive = false;
+        isMushroomEActive = false;
     }
 }

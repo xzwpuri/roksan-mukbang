@@ -4,18 +4,17 @@ using UnityEngine;
 public class DefaultESkill : MonoBehaviour
 {
     [Header("Default E")]
-    [SerializeField] private float speed = 540f;
-    [SerializeField] private float angle1 = 60f;
-    [SerializeField] private float angle2 = -60f;
-    [SerializeField] private float cooldown = 3;
-    [SerializeField] private float width = 1.2f;
-    [SerializeField] private float height = 0.3f;
+    [SerializeField] private float defaultESpeed = 540f;
+    [SerializeField] private float defaultEAngle1 = 60f;
+    [SerializeField] private float defaultEAngle2 = -60f;
+    [SerializeField] private float defaultEWidth = 1.2f;
+    [SerializeField] private float defaultEHeight = 0.3f;
     public GameObject DefaultEPrefab;
 
-    private bool isEActive = false;
+    private bool isDefaultEActive = false;
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && !isEActive)
+        if (Input.GetKeyDown(KeyCode.E) && !isDefaultEActive)
         {
             StartCoroutine(E());
         }
@@ -23,32 +22,25 @@ public class DefaultESkill : MonoBehaviour
 
     IEnumerator E()
     {
-        isEActive = true;
+        isDefaultEActive = true;
 
-        float currentAngle;
+        float defaultECurrentAngle;
 
         var (dir, angleToMouse, skillPos) = MouseDirection.Mouse(transform);
 
-        GameObject eSkill = Instantiate(DefaultEPrefab, skillPos, Quaternion.Euler(0, 0, angleToMouse + angle1));
+        GameObject eSkill = Instantiate(DefaultEPrefab, skillPos, Quaternion.Euler(0, 0, angleToMouse + defaultEAngle1));
         eSkill.transform.SetParent(transform);
-        eSkill.transform.localScale = new Vector3(width, height, 1f);
-        StartCoroutine(Cooldown());
+        eSkill.transform.localScale = new Vector3(defaultEWidth, defaultEHeight, 1f);
 
-        currentAngle = angle1;
+        defaultECurrentAngle = defaultEAngle1;
 
-        while (currentAngle > angle2)
+        while (defaultECurrentAngle > defaultEAngle2)
         {
-            currentAngle = Mathf.MoveTowardsAngle(currentAngle, angle2, speed * Time.deltaTime);
-            eSkill.transform.rotation = Quaternion.Euler(0, 0, angleToMouse + currentAngle);
+            defaultECurrentAngle = Mathf.MoveTowardsAngle(defaultECurrentAngle, defaultEAngle2, defaultESpeed * Time.deltaTime);
+            eSkill.transform.rotation = Quaternion.Euler(0, 0, angleToMouse + defaultECurrentAngle);
             yield return null;
         }
-
         Destroy(eSkill);
-    }
-
-    IEnumerator Cooldown()
-    {
-        yield return new WaitForSeconds(cooldown);
-        isEActive = false;
+        isDefaultEActive = false;
     }
 }

@@ -4,20 +4,17 @@ using UnityEngine;
 public class MeatWSkill : MonoBehaviour
 {
     [Header("Meat W")]
-    [SerializeField] private float speed = 720f;
-    [SerializeField] private float angle1 = 70f;
-    [SerializeField] private float angle2 = -70f;
-    [SerializeField] private float cooldown = 3;
-    [SerializeField] private float width = 2f;
-    [SerializeField] private float height = 0.5f;
+    [SerializeField] private float meatWSpeed = 720f;
+    [SerializeField] private float meatWAngle1 = 70f;
+    [SerializeField] private float meatWAngle2 = -70f;
+    [SerializeField] private float meatWWidth = 2f;
+    [SerializeField] private float meatWHeight = 0.5f;
     public GameObject MeatWPrefab;
 
-    private float currentAngle;
-
-    private bool isWActive = false;
+    private bool isMeatWActive = false;
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.W) && !isWActive)
+        if (Input.GetKeyDown(KeyCode.W) && !isMeatWActive)
         {
             StartCoroutine(W());
         }
@@ -25,30 +22,25 @@ public class MeatWSkill : MonoBehaviour
 
     IEnumerator W()
     {
-        isWActive = true;
+        isMeatWActive = true;
+
+        float meatWCurrentAngle;
 
         var (dir, angleToMouse, skillPos) = MouseDirection.Mouse(transform);
 
-        GameObject wSkill = Instantiate(MeatWPrefab, skillPos, Quaternion.Euler(0, 0, angleToMouse + angle1));
+        GameObject wSkill = Instantiate(MeatWPrefab, skillPos, Quaternion.Euler(0, 0, angleToMouse + meatWAngle1));
         wSkill.transform.SetParent(transform);
-        wSkill.transform.localScale = new Vector3(width, height, 1f);
-        StartCoroutine(Cooldown());
+        wSkill.transform.localScale = new Vector3(meatWWidth, meatWHeight, 1f);
 
-        currentAngle = angle1;
+        meatWCurrentAngle = meatWAngle1;
 
-        while (currentAngle > angle2)
+        while (meatWCurrentAngle > meatWAngle2)
         {
-            currentAngle = Mathf.MoveTowardsAngle(currentAngle, angle2, speed * Time.deltaTime);
-            wSkill.transform.rotation = Quaternion.Euler(0, 0, angleToMouse + currentAngle);
+            meatWCurrentAngle = Mathf.MoveTowardsAngle(meatWCurrentAngle, meatWAngle2, meatWSpeed * Time.deltaTime);
+            wSkill.transform.rotation = Quaternion.Euler(0, 0, angleToMouse + meatWCurrentAngle);
             yield return null;
         }
-
         Destroy(wSkill);
-    }
-
-    IEnumerator Cooldown()
-    {
-        yield return new WaitForSeconds(cooldown);
-        isWActive = false;
+        isMeatWActive = false;
     }
 }

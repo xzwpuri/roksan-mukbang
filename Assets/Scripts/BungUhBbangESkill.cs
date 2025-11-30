@@ -5,29 +5,20 @@ public class BungUhBbangESkill : MonoBehaviour
 {
     public static bool isCustardCream = false;
 
-    [Header("BungUhBbang E")]
-    [SerializeField] private float cooldown = 1f;
-
-    private bool isEActive = false;
+    private bool isBungUhBbangEActive = false;
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && !isEActive)
+        if (Input.GetKeyDown(KeyCode.E) && !isBungUhBbangEActive)
         {
             StartCoroutine(E());
         }
     }
     IEnumerator E()
     {
-        isEActive = true;
+        isBungUhBbangEActive = true;
         isCustardCream = !isCustardCream;
         Debug.Log("½´Å©¸² " + isCustardCream);
-        StartCoroutine(Cooldown());
+        isBungUhBbangEActive = false;
         yield return null;
-    }
-
-    IEnumerator Cooldown()
-    {
-        yield return new WaitForSeconds(cooldown);
-        isEActive = false;
     }
 }

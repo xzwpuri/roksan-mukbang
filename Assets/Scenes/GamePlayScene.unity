@@ -414,6 +414,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2004273282}
   - component: {fileID: 2004273281}
+  - component: {fileID: 2004273284}
   - component: {fileID: 2004273283}
   m_Layer: 0
   m_Name: Player
@@ -501,14 +502,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 2004273280}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d25455d0bb339b49ac10fb253708c59, type: 3}
+  m_Script: {fileID: 11500000, guid: 219d7497b54019e4fa00702b6a4cc593, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 6
-  cooldown: 3
-  reach: 10
-  radius: 1
-  IceCreamWPrefab: {fileID: 5438011886060961464, guid: 294932bc2bec7eb47a40f2053084fd8c, type: 3}
+--- !u!114 &2004273284
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2004273280}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c89c31eeeabcf44585a5e5097bb9b82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 10
+  reach: 20
+  radius: 0.7
+  BungUhBbangWPrefab: {fileID: 5438011886060961464, guid: 294932bc2bec7eb47a40f2053084fd8c, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

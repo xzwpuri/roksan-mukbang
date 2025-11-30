@@ -4,19 +4,18 @@ using UnityEngine;
 public class FriesWSkill : MonoBehaviour
 {
     [Header("Fries W")]
-    [SerializeField] private float speed = 15f;
-    [SerializeField] private float cooldown = 3;
-    [SerializeField] private float reach = 20f;
-    [SerializeField] private float width = 1.5f;
-    [SerializeField] private float height = 0.4f;
+    [SerializeField] private float friesWSpeed = 15f;
+    [SerializeField] private float friesWReach = 20f;
+    [SerializeField] private float friesWWidth = 1.5f;
+    [SerializeField] private float friesWHeight = 0.4f;
 
     public GameObject FriesWPrefab;
 
-    private bool isWActive = false;
+    private bool isFriesWActive = false;
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.W) && !isWActive)
+        if (Input.GetKeyDown(KeyCode.W) && !isFriesWActive)
         {
             StartCoroutine(W());
         }
@@ -24,13 +23,12 @@ public class FriesWSkill : MonoBehaviour
 
     IEnumerator W()
     {
-        isWActive = true;
+        isFriesWActive = true;
 
         var (dir, angleToMouse, skillPos) = MouseDirection.Mouse(transform);
         GameObject wSkill = Instantiate(FriesWPrefab, skillPos, Quaternion.Euler(0, 0, angleToMouse));
-        wSkill.transform.localScale = FriesESkill.isUpgraded ? new Vector3(width * 2f, height * 2f, 1f) : new Vector3(width, height, 1f);
-        StartCoroutine(Cooldown());
-        FriesESkill.isUpgraded = false;
+        wSkill.transform.localScale = FriesESkill.isFriesUpgraded ? new Vector3(friesWWidth * 2f, friesWHeight * 2f, 1f) : new Vector3(friesWWidth, friesWHeight, 1f);
+        FriesESkill.isFriesUpgraded = false;
 
         Collide p = wSkill.GetComponentInChildren<Collide>();
 
@@ -43,23 +41,18 @@ public class FriesWSkill : MonoBehaviour
         };
 
         float t = 0f;
-        while (t < reach)
+        while (t < friesWReach)
         {
             if (isHit || wSkill == null) break;
 
             float tt = t;
-            t = Mathf.MoveTowards(t, reach, speed * Time.deltaTime);
+            t = Mathf.MoveTowards(t, friesWReach, friesWSpeed * Time.deltaTime);
             float move = t - tt;
 
             wSkill.transform.position += move * dir;
             yield return null;
         }
         if (wSkill != null) Destroy(wSkill);
-    }
-
-    IEnumerator Cooldown()
-    {
-        yield return new WaitForSeconds(cooldown);
-        isWActive = false;
+        isFriesWActive = false;
     }
 }

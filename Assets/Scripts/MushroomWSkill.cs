@@ -4,36 +4,30 @@ using UnityEngine;
 public class MushroomWSkill : MonoBehaviour
 {
     [Header("Mushroom W")]
-    [SerializeField] private float cooldown = 8f;
-    [SerializeField] private float duration = 6f;
-    [SerializeField] private float radius = 4.5f;
+    [SerializeField] private float mushroomWDuration = 6f;
+    [SerializeField] private float mushroomWRadius = 4.5f;
 
     public GameObject MushroomWPrefab;
-    private bool isWActive = false;
+    private bool isMushroomWActive = false;
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.W) && !isWActive)
+        if (Input.GetKeyDown(KeyCode.W) && !isMushroomWActive)
         {
             StartCoroutine(W());
         }
     }
     IEnumerator W()
     {
-        isWActive = true;
+        isMushroomWActive = true;
 
         var (dir, _, _) = MouseDirection.Mouse(transform);
 
         GameObject wSkill = Instantiate(MushroomWPrefab, transform.position + dir * 3f, Quaternion.identity);
-        wSkill.transform.localScale = new Vector3(radius, radius, 1f);
-        StartCoroutine(Cooldown());
+        wSkill.transform.localScale = new Vector3(mushroomWRadius, mushroomWRadius, 1f);
 
-        yield return new WaitForSeconds(duration);
+        yield return new WaitForSeconds(mushroomWDuration);
         Destroy(wSkill);
-    }
-    IEnumerator Cooldown()
-    {
-        yield return new WaitForSeconds(cooldown);
-        isWActive = false;
+        isMushroomWActive = false;
     }
 }

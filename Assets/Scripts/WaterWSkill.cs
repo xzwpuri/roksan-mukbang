@@ -4,18 +4,17 @@ using UnityEngine;
 public class WaterWSkill : MonoBehaviour
 {
     [Header("Water W")]
-    [SerializeField] private float speed = 10f;
-    [SerializeField] private float cooldown = 3;
-    [SerializeField] private float reach = 20f;
-    [SerializeField] private float radius = 0.5f;
-    [SerializeField] private float ganGyeock = 0.1f;
+    [SerializeField] private float waterWSpeed = 10f;
+    [SerializeField] private float waterWReach = 20f;
+    [SerializeField] private float waterWRadius = 0.5f;
+    [SerializeField] private float waterWGanGyeock = 0.1f;
     public GameObject WaterWPrefab;
 
-    private bool isWActive = false;
+    private bool isWaterWActive = false;
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.W) && !isWActive)
+        if (Input.GetKeyDown(KeyCode.W) && !isWaterWActive)
         {
             StartCoroutine(W());
         }
@@ -23,23 +22,21 @@ public class WaterWSkill : MonoBehaviour
 
     IEnumerator W()
     {
-        isWActive = true;
+        isWaterWActive = true;
         var (dir, _, skillPos) = MouseDirection.Mouse(transform);
-
-        StartCoroutine(Cooldown());
 
         for (int i = 0; i < 3; i++)
         {
             StartCoroutine(Water(skillPos, dir));
-            yield return new WaitForSeconds(ganGyeock);
+            yield return new WaitForSeconds(waterWGanGyeock);
         }
-        isWActive = false;
+        isWaterWActive = false;
     }
 
     IEnumerator Water(Vector3 skillPos, Vector3 dir)
     {
         GameObject wSkill = Instantiate(WaterWPrefab, skillPos, Quaternion.identity);
-        wSkill.transform.localScale = new Vector3(radius, radius, 1f);
+        wSkill.transform.localScale = new Vector3(waterWRadius, waterWRadius, 1f);
 
         Collide p = wSkill.GetComponentInChildren<Collide>();
 
@@ -52,23 +49,17 @@ public class WaterWSkill : MonoBehaviour
         };
 
         float t = 0f;
-        while (t < reach)
+        while (t < waterWReach)
         {
             if (isHit || wSkill == null) break;
 
             float tt = t;
-            t = Mathf.MoveTowards(t, reach, speed * Time.deltaTime);
+            t = Mathf.MoveTowards(t, waterWReach, waterWSpeed * Time.deltaTime);
             float move = t - tt;
 
             wSkill.transform.position += move * dir;
             yield return null;
         }
         if (wSkill != null) Destroy(wSkill);
-    }
-
-    IEnumerator Cooldown()
-    {
-        yield return new WaitForSeconds(cooldown);
-        isWActive = false;
     }
 }

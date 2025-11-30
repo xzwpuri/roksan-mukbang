@@ -4,18 +4,17 @@ using UnityEngine;
 public class BungUhBbangWSkill : MonoBehaviour
 {
     [Header("BungUhBbang W")]
-    [SerializeField] private float speed = 10f;
-    [SerializeField] private float cooldown = 5;
-    [SerializeField] private float reach = 20f;
-    [SerializeField] private float radius = 0.7f;
+    [SerializeField] private float bungUhBbangWSpeed = 10f;
+    [SerializeField] private float bungUhBbangWReach = 20f;
+    [SerializeField] private float bungUhBbangWRadius = 0.7f;
 
     public GameObject BungUhBbangWPrefab;
 
-    private bool isWActive = false;
+    private bool isBungUhBbangWActive = false;
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.W) && !isWActive)
+        if (Input.GetKeyDown(KeyCode.W) && !isBungUhBbangWActive)
         {
             StartCoroutine(W());
         }
@@ -23,11 +22,9 @@ public class BungUhBbangWSkill : MonoBehaviour
 
     IEnumerator W()
     {
-        isWActive = true;
+        isBungUhBbangWActive = true;
 
         var (dir, _, skillPos) = MouseDirection.Mouse(transform);
-
-        StartCoroutine(Cooldown());
 
         if (BungUhBbangESkill.isCustardCream)
         {
@@ -43,13 +40,14 @@ public class BungUhBbangWSkill : MonoBehaviour
             StartCoroutine(Projectile(skillPos, dir));
             StartCoroutine(Projectile(skillPos, Quaternion.Euler(0, 0, 45f) * dir));
         }
+        isBungUhBbangWActive = false;
         yield return null;
     }
 
     IEnumerator Projectile(Vector3 skillPos, Vector3 dir)
     {
         GameObject wSkill = Instantiate(BungUhBbangWPrefab, skillPos, Quaternion.identity);
-        wSkill.transform.localScale = new Vector3(radius, radius, 1f);
+        wSkill.transform.localScale = new Vector3(bungUhBbangWRadius, bungUhBbangWRadius, 1f);
 
         Collide p = wSkill.GetComponentInChildren<Collide>();
 
@@ -62,23 +60,17 @@ public class BungUhBbangWSkill : MonoBehaviour
         };
 
         float t = 0f;
-        while (t < reach)
+        while (t < bungUhBbangWReach)
         {
             if (isHit || wSkill == null) break;
 
             float tt = t;
-            t = Mathf.MoveTowards(t, reach, speed * Time.deltaTime);
+            t = Mathf.MoveTowards(t, bungUhBbangWReach, bungUhBbangWSpeed * Time.deltaTime);
             float move = t - tt;
 
             wSkill.transform.position += move * dir;
             yield return null;
         }
         if (wSkill != null) Destroy(wSkill);
-    }
-
-    IEnumerator Cooldown()
-    {
-        yield return new WaitForSeconds(cooldown);
-        isWActive = false;
     }
 }
