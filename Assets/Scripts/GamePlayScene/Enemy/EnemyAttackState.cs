@@ -11,7 +11,7 @@ public class EnemyAttackState : State<EnemyBase>
         skill2Timer = 0f;
 
         if (owner.Animator != null)
-            owner.Animator.SetTrigger("Attack");
+            owner.Animator.SetTrigger("Idle");
     }
 
     public override void Update(EnemyBase owner)
@@ -76,6 +76,6 @@ public class EnemyAttackState : State<EnemyBase>
     public override void Exit(EnemyBase owner)
     {
         if (owner.Animator != null)
-            owner.Animator.ResetTrigger("Attack");
+            owner.Animator.ResetTrigger("Idle");
     }
 }
