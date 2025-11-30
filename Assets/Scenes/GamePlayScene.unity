@@ -1269,10 +1269,8 @@ MonoBehaviour:
   swingAngle2: -60
   swingReach: 3
   swingWidth: 0.4
-  swingCooldown: 3
   swingPivotPrefab: {fileID: 1364770963693114574, guid: f4fa5908b92c099448b0a983a726d54b, type: 3}
   jabSpeed: 5
-  jabCooldown: 2
   jabReach: 3.5
   jabWidth: 1
   jabPivotPrefab: {fileID: 1364770963693114574, guid: f4fa5908b92c099448b0a983a726d54b, type: 3}

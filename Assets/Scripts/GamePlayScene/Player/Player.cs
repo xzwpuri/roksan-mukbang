@@ -135,12 +135,10 @@ public class Player : MonoBehaviour, IUnit
     public float swingAngle2 = -60f;
     public float swingReach = 1.2f;
     public float swingWidth = 0.3f;
-    public float swingCooldown = 3f;
     public GameObject swingPivotPrefab;
 
     [Header("Default Skill - Jab")]
     public float jabSpeed = 5f;
-    public float jabCooldown = 2f;
     public float jabReach = 1.7f;
     public float jabWidth = 0.5f;
     public GameObject jabPivotPrefab;
