@@ -83,6 +83,8 @@ public class Player : MonoBehaviour, IUnit
     public float bungeobbangWSpeed = 10f;
     public float bungeobbangWReach = 20f;
     public float bungeobbangWRadius = 0.7f;
+    public float bungeobbangCustardHpCost = 5f; // 한 번 쓸 때 소모 HP
+
 
     // ===============================
     //  콜라 스킬 프리팹 & 파라미터

@@ -38,8 +38,24 @@ public static class SkillLibrary
     public static void W_Bungeobbang(Player c)
     {
         if (c.isW) return;
+
+        // 커스터드 모드일 때만 HP 소모
+        if (c.isCustardCream)
+        {
+            // HP 부족하면 발동 막고 싶으면 이 조건 활성화
+            if (c.Hp <= c.bungeobbangCustardHpCost)
+            {
+                 Debug.Log("[Bungeobbang W] HP 부족, 커스터드 붕어빵 사용 불가");
+                 return;
+            }
+
+            c.Hp = Mathf.Max(0f, c.Hp - c.bungeobbangCustardHpCost);
+            Debug.Log($"[Bungeobbang W] 커스터드 사용! HP {c.bungeobbangCustardHpCost} 소모, 현재 HP: {c.Hp}");
+        }
+
         c.StartCoroutine(BungeobbangWCoroutine(c));
     }
+
 
     public static void E_Bungeobbang(Player c)
     {
@@ -354,10 +370,20 @@ public static class SkillLibrary
     {
         if (prefab == null) yield break;
 
-        GameObject projectile = Object.Instantiate(prefab, startPos, Quaternion.identity);
+        // 방향 벡터 정규화
+        Vector3 dirNorm = dir.normalized;
+
+        // dir 기준으로 각도 계산
+        float angle = Mathf.Atan2(dirNorm.y, dirNorm.x) * Mathf.Rad2Deg;
+
+        GameObject projectile = Object.Instantiate(
+            prefab,
+            startPos,
+            Quaternion.Euler(0, 0, angle)
+        );
+
         projectile.transform.localScale = new Vector3(radius, radius, 1f);
 
-        // PlayerSkillHitbox가 알아서 데미지 처리
         float t = 0f;
         while (t < reach)
         {
@@ -367,7 +393,7 @@ public static class SkillLibrary
             t = Mathf.MoveTowards(t, reach, speed * Time.deltaTime);
             float move = t - tt;
 
-            projectile.transform.position += move * dir;
+            projectile.transform.position += move * dirNorm;
             yield return null;
         }
 
@@ -377,11 +403,19 @@ public static class SkillLibrary
     private static IEnumerator BungeobbangECoroutine(Player c)
     {
         c.isE = true;
-        c.isCustardCream = true;
-        Debug.Log("[Bungeobbang E] 커스터드 크림 활성화!");
+
+        // 토글
+        c.isCustardCream = !c.isCustardCream;
+
+        if (c.isCustardCream)
+            Debug.Log("[Bungeobbang E] 커스터드 크림 ON");
+        else
+            Debug.Log("[Bungeobbang E] 커스터드 크림 OFF (기본 팥 모드)");
+
         c.isE = false;
         yield return null;
     }
+
 
     // ===========================
     //  콜라 스킬 구현
@@ -457,13 +491,19 @@ public static class SkillLibrary
             yield break;
         }
 
-        GameObject wSkill = Object.Instantiate(c.iceCreamWPrefab, skillPos, Quaternion.identity);
+        Vector3 dirNorm = dir.normalized;
+        float angle = Mathf.Atan2(dirNorm.y, dirNorm.x) * Mathf.Rad2Deg;
+
+        GameObject wSkill = Object.Instantiate(
+            c.iceCreamWPrefab,
+            skillPos,
+            Quaternion.Euler(0, 0, angle)
+        );
         wSkill.transform.localScale = new Vector3(c.iceCreamWRadius, c.iceCreamWRadius, 1f);
 
         // 즉시 쿨타임 시작
         c.isW = false;
 
-        // IceCreamRootHitbox가 알아서 속박 처리함
         float t = 0f;
         while (t < c.iceCreamWReach)
         {
@@ -473,12 +513,13 @@ public static class SkillLibrary
             t = Mathf.MoveTowards(t, c.iceCreamWReach, c.iceCreamWSpeed * Time.deltaTime);
             float move = t - tt;
 
-            wSkill.transform.position += move * dir;
+            wSkill.transform.position += move * dirNorm;
             yield return null;
         }
 
         if (wSkill != null) Object.Destroy(wSkill);
     }
+
 
     private static IEnumerator IceCreamECoroutine(Player c)
     {
@@ -713,10 +754,16 @@ public static class SkillLibrary
     {
         if (c.waterWPrefab == null) yield break;
 
-        GameObject wSkill = Object.Instantiate(c.waterWPrefab, skillPos, Quaternion.identity);
+        Vector3 dirNorm = dir.normalized;
+        float angle = Mathf.Atan2(dirNorm.y, dirNorm.x) * Mathf.Rad2Deg;
+
+        GameObject wSkill = Object.Instantiate(
+            c.waterWPrefab,
+            skillPos,
+            Quaternion.Euler(0, 0, angle)
+        );
         wSkill.transform.localScale = new Vector3(radius, radius, 1f);
 
-        // PlayerSkillHitbox가 알아서 데미지 처리
         float t = 0f;
         while (t < reach)
         {
@@ -726,12 +773,13 @@ public static class SkillLibrary
             t = Mathf.MoveTowards(t, reach, speed * Time.deltaTime);
             float move = t - tt;
 
-            wSkill.transform.position += move * dir;
+            wSkill.transform.position += move * dirNorm;
             yield return null;
         }
 
         if (wSkill != null) Object.Destroy(wSkill);
     }
+
 
     private static IEnumerator WaterECoroutine(Player c)
     {

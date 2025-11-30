@@ -17624,7 +17624,7 @@ MonoBehaviour:
   mushroomEHealDuration: 6
   mushroomEHealInterval: 0.5
   mushroomEHealPerTick: 3
-  waterWPrefab: {fileID: 0}
+  waterWPrefab: {fileID: 1364770963693114574, guid: e482ef3d2ef626544a36ec6cf07d42af, type: 3}
   waterEPrefab: {fileID: 0}
   waterWSpeed: 10
   waterWReach: 20
