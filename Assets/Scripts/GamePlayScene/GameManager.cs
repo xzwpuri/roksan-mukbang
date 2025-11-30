@@ -36,6 +36,10 @@ public class GameManager : MonoBehaviour
     private bool isGameActive;
     private bool isGameOver;
 
+    public float RemainingTime => remainingTime;
+    public float SurvivalTime => activeSetting?.survivalTime ?? remainingTime;
+    public bool IsGameActive => isGameActive;
+
     private void Start()
     {
         ApplyDifficulty(difficulty);

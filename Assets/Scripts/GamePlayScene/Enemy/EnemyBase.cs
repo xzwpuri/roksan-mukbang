@@ -105,10 +105,20 @@ public abstract class EnemyBase : MonoBehaviour, IUnit
 
         Hp -= finalDamage;
 
+        // 🔴 먼저 죽었는지부터 체크
         if (Hp <= 0f)
         {
+            Hp = 0f;
+
+            // 죽는 상태로 전환 (여기서 회색 처리)
             StateMachine.ChangeState(States[StateType.Dead]);
+            return; // 👈 여기서 끝내버리기
         }
+
+        // 살아있을 때만 피격 깜빡임
+        DamageFlash flash = GetComponent<DamageFlash>();
+        if (flash != null)
+            flash.PlayFlash();
     }
 
 

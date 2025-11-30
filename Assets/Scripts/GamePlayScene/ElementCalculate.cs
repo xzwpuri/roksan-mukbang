@@ -4,6 +4,7 @@ public static class ElementCalculate
 {
     /// <summary>
     /// 1 ← 2 ← 3 ← 1 상성 기준 데미지 배율 적용
+    /// 1 : 물 2 : 풀 3 : 불
     /// attackerElement == 0 이면 상성 무시(그냥 기본 데미지)
     /// defenderElement == 0 도 상성 없음으로 처리
     /// </summary>

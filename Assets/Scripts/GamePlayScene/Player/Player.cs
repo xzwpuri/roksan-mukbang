@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,6 +15,7 @@ public class Player : MonoBehaviour, IUnit
 {
     // === IUnit 백킹 필드 ===
     [SerializeField] private float hp;
+    [SerializeField] private float maxHp;
     [SerializeField] private float moveSpeed;
     [SerializeField] private int element; // 1 -> 2 -> 3 -> 1 (f(x) = (x % 3) + 1)
     [SerializeField] public int stomach;
@@ -23,8 +25,16 @@ public class Player : MonoBehaviour, IUnit
     public float Hp
     {
         get => hp;
-        set => hp = value;
+        set
+        {
+            hp = Mathf.Clamp(value, 0f, maxHp);
+            OnHealthChanged?.Invoke(hp, maxHp);
+        }
     }
+
+    public float MaxHp => maxHp;
+
+    public event Action<float, float> OnHealthChanged;
 
     public float MoveSpeed
     {
@@ -236,6 +246,7 @@ public class Player : MonoBehaviour, IUnit
     // === IUnit 메서드 구현 ===
     public void Init(float hp, float moveSpeed, int element, int stomach)
     {
+        maxHp = hp;
         Hp = hp;
         MoveSpeed = moveSpeed;
         Element = element;
@@ -249,6 +260,9 @@ public class Player : MonoBehaviour, IUnit
         float finalDamage = ElementCalculate.ApplyElementModifier(damage, attackerElement, Element);
 
         Hp -= finalDamage;
+        DamageFlash flash = GetComponent<DamageFlash>();
+        if (flash != null)
+            flash.PlayFlash();
 
         if (Hp <= 0f)
         {
@@ -288,4 +302,17 @@ public class Player : MonoBehaviour, IUnit
             StopCoroutine(mushroomHealCoroutine);
         mushroomHealCoroutine = StartCoroutine(coroutine);
     }
+
+    [ContextMenu("Test Take 10 Damage")]
+    public void TestTake10Damage()
+    {
+        GetDamage(10f, 0); // 속성 0 공격자로부터 10뎀 받는 테스트
+    }
+
+    [ContextMenu("Test Heal 10 HP")]
+    public void TestHeal10()
+    {
+        Hp += 10f; // 프로퍼티 통해서 회복 → 이벤트 나감
+    }
+
 }

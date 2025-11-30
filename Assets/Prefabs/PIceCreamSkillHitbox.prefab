@@ -164,7 +164,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseDamage: 10
-  destroyOnHit: 1
+  destroyOnHit: 0
+  damageInterval: 0
 --- !u!95 &4926712343782314140
 Animator:
   serializedVersion: 7

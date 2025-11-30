@@ -11,7 +11,7 @@ public class EnemyWater : EnemyBase
     protected override void Start()
     {
         base.Start();             // FSM 셋업
-        Init(50f, 2.5f, 2, 2);    // EnemyWater 기본값
+        Init(50f, 2.5f, 1, 7);    // EnemyWater 기본값
     }
     public override void Skill1()
     {

@@ -28,6 +28,11 @@ public class SkillCaster : MonoBehaviour
     private float nextETime;
     private float nextRTime;
 
+    public float QCooldown => qCooldown;
+    public float WCooldown => wCooldown;
+    public float ECooldown => eCooldown;
+    public float RCooldown => rCooldown;
+
     private void Awake()
     {
         owner = GetComponent<Player>();
@@ -137,6 +142,10 @@ public class SkillCaster : MonoBehaviour
         if (remain <= 0) return 0f;
         return remain / wCooldown;   // 0~1
     }
+    public float GetWRemainingCooldown()
+    {
+        return Mathf.Max(0f, nextWTime - Time.time);
+    }
 
     public float GetECooldownRatio()
     {
@@ -145,6 +154,12 @@ public class SkillCaster : MonoBehaviour
         return remain / eCooldown;
     }
 
+    public float GetERemainingCooldown()
+    {
+        return Mathf.Max(0f, nextETime - Time.time);
+    }
+
+
     public float GetQCooldownRatio()
     {
         float remain = nextQTime - Time.time;
@@ -152,10 +167,20 @@ public class SkillCaster : MonoBehaviour
         return remain / qCooldown;
     }
 
+    public float GetQRemainingCooldown()
+    {
+        return Mathf.Max(0f, nextQTime - Time.time);
+    }
+
     public float GetRCooldownRatio()
     {
         float remain = nextRTime - Time.time;
         if (remain <= 0) return 0f;
         return remain / rCooldown;
+    }
+
+    public float GetRRemainingCooldown()
+    {
+        return Mathf.Max(0f, nextRTime - Time.time);
     }
 }
