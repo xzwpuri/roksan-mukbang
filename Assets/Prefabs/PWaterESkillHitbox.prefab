@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6292576579243763769}
   m_Layer: 0
-  m_Name: SkillHitbox 1
+  m_Name: PWaterESkillHitbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 6673028334265053232}
   - component: {fileID: 7437009530893709460}
   - component: {fileID: 6672211169460421597}
+  - component: {fileID: 3335190037334770943}
   m_Layer: 0
   m_Name: Circle
   m_TagString: Untagged
@@ -90,7 +91,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -111,7 +112,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 8796112590983493327, guid: c7967ff82f11e6e4987456cabdd9f503, type: 3}
+  m_Sprite: {fileID: 550072774, guid: 48e3c9b5fb5024adfaaf4fc095d31bdc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -199,3 +200,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseDamage: 10
   destroyOnHit: 0
+  damageInterval: 0
+--- !u!114 &3335190037334770943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5343123961289635665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8f6d3c6e4250e84192f5b34ce9e71bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  glowColor: {r: 0.010130405, g: 0, b: 1, a: 1}
+  glowBrightness: 2
+  outlineWidth: 1
+  alphaThreshold: 0.01
+  drawOutside: 0
+  enableInstancing: 0

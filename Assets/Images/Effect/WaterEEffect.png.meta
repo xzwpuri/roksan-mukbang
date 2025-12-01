@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: c7967ff82f11e6e4987456cabdd9f503
+guid: 48e3c9b5fb5024adfaaf4fc095d31bdc
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8796112590983493327
-    second: WaterEFfect_0
+      213: -855298285791758126
+    second: 1_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,7 +100,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: WaterEFfect_0
+      name: WaterEEffect_0
       rect:
         serializedVersion: 2
         x: 0
@@ -113,10 +113,10 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: fc679e53cc1121a70800000000000000
-      internalID: 8796112590983493327
+      spriteID: aef1b29899482444981a731187cdc319
+      internalID: 550072774
       vertices: []
       indices: 
       edges: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: e99445a9f6ed44bfe9ee410d1698a23e
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      WaterEFfect_0: 8796112590983493327
+      WaterEEffect_0: 550072774
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
