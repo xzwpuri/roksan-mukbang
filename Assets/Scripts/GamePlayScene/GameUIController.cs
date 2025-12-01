@@ -103,7 +103,7 @@ public class GameUIController : MonoBehaviour
     {
         if (fill != null)
         {
-            fill.fillAmount = 1f - Mathf.Clamp01(ratio);
+            fill.fillAmount = Mathf.Clamp01(ratio);
         }
 
         if (text != null)
