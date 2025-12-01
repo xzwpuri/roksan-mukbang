@@ -12,7 +12,18 @@ public static class SkillLibrary
 
     public static void R_Fixed(Player c)
     {
-        Debug.Log("[R] 고정 궁극기 발동");
+        if (c == null) return;
+
+        if (c.rSkillPrefab == null)
+        {
+            Debug.LogWarning("[R] R 스킬 프리팹이 설정되지 않았습니다.");
+            return;
+        }
+
+        Object.Instantiate(c.rSkillPrefab, c.transform.position, Quaternion.identity);
+        c.Element = 0;
+        c.Setstomach(0);
+        Debug.Log("[R] 궁극기 발동: 속성 및 스토마치 초기화, R 스킬 생성");
     }
 
     // ===========================

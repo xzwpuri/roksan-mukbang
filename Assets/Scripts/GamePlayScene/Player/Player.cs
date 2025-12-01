@@ -65,8 +65,10 @@ public class Player : MonoBehaviour, IUnit
     [HideInInspector] public float mspeed;
 
     // ===============================
-    //  Default Skill (Jab / Swing)
+    //  Default Skill
     // ===============================
+
+
     [Header("Default Skill - Swing")]
     public float swingSpeed = 180f;
     public float swingAngle1 = 60f;
@@ -80,6 +82,9 @@ public class Player : MonoBehaviour, IUnit
     public float jabReach = 1.7f;
     public float jabWidth = 0.5f;
     public GameObject jabPivotPrefab;
+
+    [Header("R Skill Prefab")]
+    public GameObject rSkillPrefab;
 
     // ===============================
     //  붕어빵 스킬 프리팹 & 파라미터
