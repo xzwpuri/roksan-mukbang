@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a91db45a-adc1-4ac6-9ede-b12c222ca5b0" name="변경" comment="">
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/GamePlayScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/GamePlayScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GamePlayScene/GameUIController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GamePlayScene/GameUIController.cs" afterDir="false" />
-    </list>
+    <list default="true" id="a91db45a-adc1-4ac6-9ede-b12c222ca5b0" name="변경" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -109,7 +106,7 @@
       <workItem from="1763448750689" duration="6000" />
       <workItem from="1763448783087" duration="496000" />
       <workItem from="1763603884008" duration="5178000" />
-      <workItem from="1764547064689" duration="6730000" />
+      <workItem from="1764547064689" duration="7330000" />
     </task>
     <servers />
   </component>
