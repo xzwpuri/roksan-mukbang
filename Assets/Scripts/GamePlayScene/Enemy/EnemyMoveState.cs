@@ -13,34 +13,37 @@ public class EnemyMoveState : State<EnemyBase>
         if (owner.Target == null)
             return;
 
-        Vector2 pos = owner.transform.position;
+        Vector2 pos       = owner.transform.position;
         Vector2 targetPos = owner.Target.position;
-        float dist = Vector2.Distance(pos, targetPos);
+        float dist        = Vector2.Distance(pos, targetPos);
 
-        // 일정 거리 이내로 들어오면 이동 멈추고 공격 or Idle
-        if (dist <= owner.StopDistance)
+        // 너무 멀어지면 아예 Idle로 (추격 포기)
+        if (dist > owner.ChaseRange * 1.5f)
         {
             if (owner.Rigidbody2D != null)
                 owner.Rigidbody2D.linearVelocity = Vector2.zero;
 
-            if (dist <= owner.AttackRange)
-                owner.StateMachine.ChangeState(owner.States[StateType.Attack]);
-            else
-                owner.StateMachine.ChangeState(owner.States[StateType.Idle]);
-
+            owner.StateMachine.ChangeState(owner.States[StateType.Idle]);
             return;
         }
 
-        // 플레이어 방향으로 이동
+        float maxSkillRange = Mathf.Max(owner.Skill1Range, owner.Skill2Range);
+
+        // 스킬 중 하나라도 닿는 거리면 공격 상태로 전환
+        if (dist <= maxSkillRange)
+        {
+            if (owner.Rigidbody2D != null)
+                owner.Rigidbody2D.linearVelocity = Vector2.zero;
+
+            owner.StateMachine.ChangeState(owner.States[StateType.Attack]);
+            return;
+        }
+
+        // 그 외: 스킬 안 닿을 정도로 멀다 → stopDistance까지 접근
         Vector2 dir = (targetPos - pos).normalized;
+
         if (owner.Rigidbody2D != null)
             owner.Rigidbody2D.linearVelocity = dir * owner.MoveSpeed;
-
-        // 너무 멀어지면 다시 Idle로 복귀
-        if (dist > owner.ChaseRange * 1.5f)
-        {
-            owner.StateMachine.ChangeState(owner.States[StateType.Idle]);
-        }
     }
 
     public override void Exit(EnemyBase owner)

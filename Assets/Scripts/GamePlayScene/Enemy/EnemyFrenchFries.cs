@@ -78,9 +78,7 @@ public class EnemyFrenchFries : EnemyBase
         GameObject projectile = Instantiate(prefab, startPos, Quaternion.Euler(0, 0, angle));
 
         // ✅ 감자튀김 투사체 히트박스 연결
-        var hitbox = projectile.GetComponent<EnemySkillHitbox>();
-        if (hitbox != null)
-            hitbox.Init(this);
+        InitHitboxesOn(projectile);
 
         float t = 0f;
         while (t < reach)
@@ -94,5 +92,12 @@ public class EnemyFrenchFries : EnemyBase
         }
 
         if (projectile != null) Destroy(projectile);
+    }
+    private void InitHitboxesOn(GameObject obj)
+    {
+        if (obj == null) return;
+        var hitboxes = obj.GetComponentsInChildren<EnemySkillHitbox>(true);
+        foreach (var hb in hitboxes)
+            hb.Init(this);
     }
 }

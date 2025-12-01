@@ -65,9 +65,7 @@ public class EnemyWater : EnemyBase
             eSkill = Instantiate(waterEPrefab, transform.position, Quaternion.identity);
 
             // ✅ 장판/범위 공격 프리팹에 EnemySkillHitbox가 있다면 owner 연결
-            var hitbox = eSkill.GetComponent<EnemySkillHitbox>();
-            if (hitbox != null)
-                hitbox.Init(this);
+            InitHitboxesOn(eSkill);
         }
 
         yield return WaterESequence(eSkill, waterEStartScale, waterEEndScale, waterESpeed);
@@ -102,9 +100,7 @@ public class EnemyWater : EnemyBase
         wSkill.transform.localScale = new Vector3(radius, radius, 1f);
 
         // ✅ 투사체 프리팹에 EnemySkillHitbox가 있으면 owner 연결
-        var hitbox = wSkill.GetComponent<EnemySkillHitbox>();
-        if (hitbox != null)
-            hitbox.Init(this);
+        InitHitboxesOn(wSkill);
 
         float t = 0f;
         while (t < reach)
@@ -138,4 +134,13 @@ public class EnemyWater : EnemyBase
             yield return null;
         }
     }
+    
+    private void InitHitboxesOn(GameObject obj)
+    {
+        if (obj == null) return;
+        var hitboxes = obj.GetComponentsInChildren<EnemySkillHitbox>(true);
+        foreach (var hb in hitboxes)
+            hb.Init(this);
+    }
+
 }

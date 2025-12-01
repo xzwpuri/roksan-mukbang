@@ -9,7 +9,7 @@ public class EnemySkillHitbox : MonoBehaviour
     [SerializeField] private float damageInterval = 0f; // 0이면 한 번만 데미지
 
     [Header("Debug")]
-    [SerializeField] private bool enableDebugLog = true;
+    [SerializeField] private bool enableDebugLog = false;
 
     private IUnit ownerUnit;                 // ✅ 공격자
     private Collider2D hitboxCollider;

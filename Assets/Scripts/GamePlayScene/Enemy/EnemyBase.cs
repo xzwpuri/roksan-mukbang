@@ -10,15 +10,18 @@ public abstract class EnemyBase : MonoBehaviour, IUnit
     [SerializeField] protected int stomach;
 
     [Header("AI 공통 옵션")]
-    [SerializeField] protected float chaseRange = 10f;   // 추격 시작 거리
-    [SerializeField] protected float stopDistance = 2f;  // 이동 멈추는 거리
-    [SerializeField] protected float attackRange = 4f;   // ✅ 스킬을 쓰기 시작하는 거리
+    [SerializeField] protected float chaseRange = 1000f;  // 추격 시작/유지 거리
+    [SerializeField] protected float stopDistance = 2f;   // ✅ 유지하고 싶은 거리(링 중심)
+    
+    [Header("스킬 사거리")]
+    [SerializeField] protected float skill1Range = 4f;    // 1번 스킬 사거리
+    [SerializeField] protected float skill2Range = 6f;    // 2번 스킬 사거리
 
     [Header("스킬 쿨타임")]
     [SerializeField] protected float skill1Cooldown = 7f;
-    [SerializeField] protected float skill2Cooldown = 8f;
+    [SerializeField] protected float skill2Cooldown = 10f;
 
-    public Transform Target { get; set; } // 보통 Player Transform
+    public Transform Target { get; set; }
 
     // IUnit 구현
     public float Hp
@@ -45,12 +48,16 @@ public abstract class EnemyBase : MonoBehaviour, IUnit
         set => stomach = value;
     }
 
-    // AI 관련 프로퍼티 (State들이 공통으로 사용)
-    public float ChaseRange => chaseRange;
-    public float StopDistance => stopDistance;
-    public float AttackRange => attackRange;          // ✅ 공격 시작/유지 거리
+    // AI 관련 프로퍼티
+    public float ChaseRange     => chaseRange;
+    public float StopDistance   => stopDistance;              // ✅ 원하는 거리
+    public float Skill1Range    => skill1Range;
+    public float Skill2Range    => skill2Range;
     public float Skill1Cooldown => skill1Cooldown;
     public float Skill2Cooldown => skill2Cooldown;
+
+    // 기존 AttackRange는 "두 스킬 중 더 먼 사거리"로 정의해둘 수도 있음 (안 써도 됨)
+    public float AttackRange => Mathf.Max(skill1Range, skill2Range);
 
     public Dictionary<StateType, State<EnemyBase>> States;
     public StateMachine<EnemyBase> StateMachine;
@@ -62,13 +69,12 @@ public abstract class EnemyBase : MonoBehaviour, IUnit
     protected virtual void Awake()
     {
         Rigidbody2D = GetComponent<Rigidbody2D>();
-        Animator = GetComponent<Animator>();
+        Animator     = GetComponent<Animator>();
         SpriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     protected virtual void Start()
     {
-        // 타겟(플레이어) 자동 세팅
         var player = GameObject.FindGameObjectWithTag("Player");
         if (player != null)
             Target = player.transform;
@@ -87,10 +93,10 @@ public abstract class EnemyBase : MonoBehaviour, IUnit
 
     public void Init(float hp, float moveSpeed, int element, int stomach)
     {
-        Hp = hp;
+        Hp       = hp;
         MoveSpeed = moveSpeed;
-        Element = element;
-        Stomach = stomach;
+        Element  = element;
+        Stomach  = stomach;
     }
 
     protected virtual void Update()
@@ -100,29 +106,22 @@ public abstract class EnemyBase : MonoBehaviour, IUnit
 
     public virtual void GetDamage(float damage, int attackerElement)
     {
-        // 공격자 속성과 내(Element) 속성으로 상성 적용
         float finalDamage = ElementCalculate.ApplyElementModifier(damage, attackerElement, Element);
 
         Hp -= finalDamage;
 
-        // 🔴 먼저 죽었는지부터 체크
         if (Hp <= 0f)
         {
             Hp = 0f;
-
-            // 죽는 상태로 전환 (여기서 회색 처리)
             StateMachine.ChangeState(States[StateType.Dead]);
-            return; // 👈 여기서 끝내버리기
+            return;
         }
 
-        // 살아있을 때만 피격 깜빡임
         DamageFlash flash = GetComponent<DamageFlash>();
         if (flash != null)
             flash.PlayFlash();
     }
 
-
-    // ★ 몬스터별 공격 구현 포인트
     public abstract void Skill1();
     public abstract void Skill2();
 }

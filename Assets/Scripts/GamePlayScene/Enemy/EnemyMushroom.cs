@@ -47,9 +47,7 @@ public class EnemyMushroom : EnemyBase
             wSkill.transform.localScale = new Vector3(mushroomWRadius, mushroomWRadius, 1f);
 
             // ✅ 버섯 독구름 장판 히트박스 연결
-            var hitbox = wSkill.GetComponent<EnemySkillHitbox>();
-            if (hitbox != null)
-                hitbox.Init(this);
+            InitHitboxesOn(wSkill);
 
             yield return new WaitForSeconds(mushroomWDuration);
 
@@ -95,5 +93,12 @@ public class EnemyMushroom : EnemyBase
     {
         yield return new WaitForSeconds(delay);
         if (target != null) Destroy(target);
+    }
+    private void InitHitboxesOn(GameObject obj)
+    {
+        if (obj == null) return;
+        var hitboxes = obj.GetComponentsInChildren<EnemySkillHitbox>(true);
+        foreach (var hb in hitboxes)
+            hb.Init(this);
     }
 }

@@ -50,9 +50,7 @@ public class EnemyIcecream : EnemyBase
             wSkill.transform.localScale = new Vector3(iceCreamWRadius, iceCreamWRadius, 1f);
 
             // ✅ 아이스크림 투사체도 히트박스 연결
-            var hitbox = wSkill.GetComponent<EnemySkillHitbox>();
-            if (hitbox != null)
-                hitbox.Init(this);
+            InitHitboxesOn(wSkill);
 
             float t = 0f;
             while (t < iceCreamWReach)
@@ -99,5 +97,12 @@ public class EnemyIcecream : EnemyBase
         if (fx != null) Destroy(fx);
 
         usingSkill2 = false;
+    }
+    private void InitHitboxesOn(GameObject obj)
+    {
+        if (obj == null) return;
+        var hitboxes = obj.GetComponentsInChildren<EnemySkillHitbox>(true);
+        foreach (var hb in hitboxes)
+            hb.Init(this);
     }
 }

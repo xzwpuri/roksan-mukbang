@@ -102,9 +102,7 @@ public class EnemyBungeobbang : EnemyBase
         projectile.transform.localScale = new Vector3(radius, radius, 1f);
 
         // ✅ 투사체에 EnemySkillHitbox 연결
-        var hitbox = projectile.GetComponent<EnemySkillHitbox>();
-        if (hitbox != null)
-            hitbox.Init(this);
+        InitHitboxesOn(projectile);
 
         float t = 0f;
         while (t < reach)
@@ -119,4 +117,13 @@ public class EnemyBungeobbang : EnemyBase
 
         if (projectile != null) Destroy(projectile);
     }
+    
+    private void InitHitboxesOn(GameObject obj)
+    {
+        if (obj == null) return;
+        var hitboxes = obj.GetComponentsInChildren<EnemySkillHitbox>(true);
+        foreach (var hb in hitboxes)
+            hb.Init(this);
+    }
+
 }
