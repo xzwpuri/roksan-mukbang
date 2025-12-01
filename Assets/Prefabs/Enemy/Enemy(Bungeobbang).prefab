@@ -80,7 +80,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 492907921
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: -1736326438656611448, guid: 79e4bcab69b26bf4b9e6edd993f5eeb6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -115,12 +115,13 @@ MonoBehaviour:
   skill2Range: 100
   skill1Cooldown: 4
   skill2Cooldown: 3
+  buffEffectOffset: {x: 0, y: 1.2, z: 0}
   Rigidbody2D: {fileID: 0}
   Animator: {fileID: 0}
   SpriteRenderer: {fileID: 0}
   bungeobbangWPrefab: {fileID: 1364770963693114574, guid: 70f76d6828e0d4b5ab420622ae19ba90, type: 3}
   bungeobbangWUpgradedPrefab: {fileID: 1364770963693114574, guid: 8f7f7e27c49af4777be03ba50b87bd5f, type: 3}
-  bungeobbangEPrefab: {fileID: 0}
+  bungeobbangEPrefab: {fileID: 4787345245438277747, guid: 5ef4a30b74b16e8439f6c8c369b99126, type: 3}
   bungeobbangWSpeed: 10
   bungeobbangWReach: 20
   bungeobbangWRadius: 0.7

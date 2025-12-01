@@ -78079,12 +78079,12 @@ MonoBehaviour:
   jabPivotPrefab: {fileID: 1364770963693114574, guid: 35de5849a323cea4aaef424ea123f2cc, type: 3}
   bungeobbangWPrefab: {fileID: 1364770963693114574, guid: 122371dc0bc3fb345acbc4d6c1fd7f7f, type: 3}
   bungeobbangWUpgradedPrefab: {fileID: 1364770963693114574, guid: a30e286944deb314d81ac9f5ebc064fe, type: 3}
-  bungeobbangEPrefab: {fileID: 0}
+  bungeobbangEPrefab: {fileID: 1523209490518884778, guid: 9b67f29bcdd28cc45a6be7cde0c4c537, type: 3}
   bungeobbangWSpeed: 10
   bungeobbangWReach: 20
   bungeobbangWRadius: 0.7
   bungeobbangCustardHpCost: 5
-  colaWPrefab: {fileID: 0}
+  colaWPrefab: {fileID: 5800375850495201759, guid: ae758934f688abd41b860b06e2a2c284, type: 3}
   colaEPrefab: {fileID: 1364770963693114574, guid: c62ce34b565662143a2036da0c2a30aa, type: 3}
   colaWDuration: 3
   colaWSpeedMultiplier: 1.5
@@ -78094,11 +78094,11 @@ MonoBehaviour:
   colaEEndScale: 8
   friesWPrefab: {fileID: 1364770963693114574, guid: 5d7777e234817454c80111099433b9ca, type: 3}
   friesWUpgradedPrefab: {fileID: 1364770963693114574, guid: ed682865525d02d47a267deaf49dc166, type: 3}
-  friesEPrefab: {fileID: 0}
+  friesEPrefab: {fileID: 1281970145312543936, guid: 940645b849b235942b6c7a615d439f64, type: 3}
   friesWSpeed: 15
   friesWReach: 20
   iceCreamWPrefab: {fileID: 1364770963693114574, guid: 08dcb1048a3f3e94e8f19a90184f90c2, type: 3}
-  iceCreamEPrefab: {fileID: 0}
+  iceCreamEPrefab: {fileID: 8799731597745138269, guid: dd64b16d3ef8f4743b820f7399464688, type: 3}
   iceCreamWSpeed: 12
   iceCreamWReach: 20
   iceCreamWRadius: 0.6
@@ -78106,7 +78106,7 @@ MonoBehaviour:
   iceCreamESlowMultiplier: 0.5
   iceCreamEHealAmount: 30
   meatWPrefab: {fileID: 1364770963693114574, guid: 1c2be0c9f83d6634fbed1ce7791ca9ab, type: 3}
-  meatEPrefab: {fileID: 0}
+  meatEPrefab: {fileID: 1191322060090402547, guid: 0ae976707007cc6439a4faf79eb70003, type: 3}
   meatWSpeed: 720
   meatWAngle1: 70
   meatWAngle2: -70
@@ -78115,7 +78115,7 @@ MonoBehaviour:
   meatESpeed: 10
   meatEDistance: 3
   mushroomWPrefab: {fileID: 1364770963693114574, guid: c0814fdf802a8574c955e7a1dfd2930e, type: 3}
-  mushroomEPrefab: {fileID: 0}
+  mushroomEPrefab: {fileID: 8486992300341388508, guid: 6b628409f7e91554c971ce3fc6075e7c, type: 3}
   mushroomWDuration: 6
   mushroomWRadius: 4.5
   mushroomEHealDuration: 6
@@ -78131,6 +78131,7 @@ MonoBehaviour:
   waterESpeed: 1
   waterEStartScale: 0
   waterEEndScale: 5
+  buffEffectOffset: {x: 0, y: 1.2, z: 0}
   isE: 0
   isW: 0
   isCustardCream: 0
@@ -78295,7 +78296,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2035896469
 MonoBehaviour:
   m_ObjectHideFlags: 0

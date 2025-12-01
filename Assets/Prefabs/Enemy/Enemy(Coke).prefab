@@ -80,7 +80,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 492907921
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: -6100460341107393699, guid: 10b02e7cb4551dd4cba04ac7ed7f9b56, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -142,10 +142,11 @@ MonoBehaviour:
   skill2Range: 2
   skill1Cooldown: 3
   skill2Cooldown: 7
+  buffEffectOffset: {x: 0, y: 1.2, z: 0}
   Rigidbody2D: {fileID: 0}
   Animator: {fileID: 0}
   SpriteRenderer: {fileID: 0}
-  colaWPrefab: {fileID: 0}
+  colaWPrefab: {fileID: 7732481393260929446, guid: e56527feb0bcdd14b95663a8ddaff8db, type: 3}
   colaEPrefab: {fileID: 1364770963693114574, guid: f5a977ae72cb646ea85d04f0fb598a7b, type: 3}
   colaWDuration: 2
   colaWSpeedMultiplier: 1.25

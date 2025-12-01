@@ -59,6 +59,8 @@ public class EnemyFrenchFries : EnemyBase
 
         SpawnBuffEffect(friesEPrefab);
 
+        yield return new WaitForSeconds(0.5f);
+
         usingSkill2 = false;
     }
 

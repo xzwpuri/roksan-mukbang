@@ -80,6 +80,8 @@ public class EnemyBungeobbang : EnemyBase
 
         SpawnBuffEffect(bungeobbangEPrefab);
 
+        yield return new WaitForSeconds(0.5f);
+
         usingSkill2 = false;
     }
 
