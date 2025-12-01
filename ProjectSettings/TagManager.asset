@@ -46,6 +46,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: SkillEffectBackBack
+    uniqueID: 2932430293
+    locked: 0
   - name: SkillEffectBack
     uniqueID: 324464139
     locked: 0
