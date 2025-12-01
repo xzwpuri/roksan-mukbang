@@ -42,11 +42,11 @@ public class EnemyCoke : EnemyBase
         float originalSpeed = MoveSpeed;
         MoveSpeed *= colaWSpeedMultiplier;
 
-        GameObject buffFx = null;
-        yield return new WaitForSeconds(colaWDuration);
+        SpawnBuffEffect(colaWPrefab);
 
-        MoveSpeed = originalSpeed;
-        if (buffFx != null) Destroy(buffFx);
+    yield return new WaitForSeconds(colaWDuration);
+
+    MoveSpeed = originalSpeed;
 
         usingSkill1 = false;
     }

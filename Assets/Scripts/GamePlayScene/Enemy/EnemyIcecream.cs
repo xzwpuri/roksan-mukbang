@@ -75,15 +75,7 @@ public class EnemyIcecream : EnemyBase
         MoveSpeed = originalSpeed * iceCreamESlowMultiplier;
         Hp = Mathf.Min(Hp + iceCreamEHealAmount, 80f);
 
-        GameObject fx = null;
-        if (iceCreamEPrefab != null)
-        {
-            fx = Instantiate(iceCreamEPrefab, transform.position, Quaternion.identity, transform);
-
-            var hitbox = fx.GetComponent<EnemySkillHitbox>();
-            if (hitbox != null)
-                hitbox.Init(this);
-        }
+        SpawnBuffEffect(iceCreamEPrefab);
 
         float elapsed = 0f;
         while (elapsed < iceCreamESlowDuration)
@@ -94,7 +86,6 @@ public class EnemyIcecream : EnemyBase
         }
 
         MoveSpeed = originalSpeed;
-        if (fx != null) Destroy(fx);
 
         usingSkill2 = false;
     }

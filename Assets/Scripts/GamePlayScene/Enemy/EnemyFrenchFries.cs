@@ -57,17 +57,7 @@ public class EnemyFrenchFries : EnemyBase
     {
         friesUpgraded = true;
 
-        if (friesEPrefab != null)
-        {
-            GameObject upgradeFx = Instantiate(friesEPrefab, transform.position, Quaternion.identity, transform);
-
-            var hitbox = upgradeFx.GetComponent<EnemySkillHitbox>();
-            if (hitbox != null)
-                hitbox.Init(this);
-
-            yield return new WaitForSeconds(0.5f);
-            Destroy(upgradeFx);
-        }
+        SpawnBuffEffect(friesEPrefab);
 
         usingSkill2 = false;
     }

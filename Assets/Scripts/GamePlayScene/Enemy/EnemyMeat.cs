@@ -5,6 +5,7 @@ public class EnemyMeat : EnemyBase
 {
     [Header("Meat Skill Prefabs")]
     [SerializeField] private GameObject meatWPrefab;
+    [SerializeField] private GameObject meatEPrefab;
 
     [Header("Meat Skill Parameters")]
     [SerializeField] private float meatWSpeed = 720f;
@@ -70,6 +71,8 @@ public class EnemyMeat : EnemyBase
     private IEnumerator CastMeatSkill2()
     {
         Vector3 dir = Target != null ? (Target.position - transform.position).normalized : Vector3.right;
+
+        SpawnBuffEffect(meatEPrefab);
 
         float t = 0f;
         Vector3 startPos = transform.position;

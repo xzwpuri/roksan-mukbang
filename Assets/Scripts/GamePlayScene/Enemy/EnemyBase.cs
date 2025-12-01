@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -20,6 +21,9 @@ public abstract class EnemyBase : MonoBehaviour, IUnit
     [Header("스킬 쿨타임")]
     [SerializeField] protected float skill1Cooldown = 7f;
     [SerializeField] protected float skill2Cooldown = 10f;
+
+    [Header("버프 FX 위치")]
+    [SerializeField] protected Vector3 buffEffectOffset = new Vector3(0f, 1.2f, 0f);
 
     public Transform Target { get; set; }
 
@@ -124,4 +128,12 @@ public abstract class EnemyBase : MonoBehaviour, IUnit
 
     public abstract void Skill1();
     public abstract void Skill2();
+
+    protected void SpawnBuffEffect(GameObject effectPrefab)
+    {
+        if (effectPrefab == null)
+            return;
+
+        Instantiate(effectPrefab, transform.position + buffEffectOffset, Quaternion.identity, transform);
+    }
 }

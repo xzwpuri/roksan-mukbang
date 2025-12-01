@@ -78,17 +78,7 @@ public class EnemyBungeobbang : EnemyBase
     {
         custardMode = !custardMode;
 
-        if (bungeobbangEPrefab != null)
-        {
-            GameObject toggleFx = Instantiate(bungeobbangEPrefab, transform.position, Quaternion.identity);
-            // 필요하다면 여기도 EnemySkillHitbox가 있을 수 있음
-            var hitbox = toggleFx.GetComponent<EnemySkillHitbox>();
-            if (hitbox != null)
-                hitbox.Init(this);
-
-            yield return new WaitForSeconds(0.5f);
-            Destroy(toggleFx);
-        }
+        SpawnBuffEffect(bungeobbangEPrefab);
 
         usingSkill2 = false;
     }

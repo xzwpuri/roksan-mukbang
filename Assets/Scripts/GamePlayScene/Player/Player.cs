@@ -185,6 +185,13 @@ public class Player : MonoBehaviour, IUnit
     public float waterEStartScale = 0f;
     public float waterEEndScale = 5f;
 
+    /// ==============================
+    /// 버프 스킬 아이콘 생성 위치
+    /// ==============================
+
+    [Header("Buff Effect Spawn Offset")]
+    public Vector3 buffEffectOffset = new Vector3(0f, 1.2f, 0f);
+
     // 코루틴 중복 방지 플래그
     [HideInInspector] public bool isE = false;
     [HideInInspector] public bool isW = false;
@@ -301,6 +308,14 @@ public class Player : MonoBehaviour, IUnit
         if (mushroomHealCoroutine != null)
             StopCoroutine(mushroomHealCoroutine);
         mushroomHealCoroutine = StartCoroutine(coroutine);
+    }
+
+    public void SpawnBuffEffect(GameObject effectPrefab)
+    {
+        if (effectPrefab == null)
+            return;
+
+        Instantiate(effectPrefab, transform.position + buffEffectOffset, Quaternion.identity, transform);
     }
 
     [ContextMenu("Test Take 10 Damage")]

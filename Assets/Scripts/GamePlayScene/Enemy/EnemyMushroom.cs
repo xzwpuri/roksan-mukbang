@@ -44,7 +44,7 @@ public class EnemyMushroom : EnemyBase
         if (mushroomWPrefab != null)
         {
             GameObject wSkill = Instantiate(mushroomWPrefab, transform.position + dir * 3f, Quaternion.identity);
-            wSkill.transform.localScale = new Vector3(mushroomWRadius, mushroomWRadius, 10f);
+            wSkill.transform.localScale = new Vector3(mushroomWRadius, mushroomWRadius, 1f);
 
             // ✅ 버섯 독구름 장판 히트박스 연결
             InitHitboxesOn(wSkill);
@@ -59,16 +59,7 @@ public class EnemyMushroom : EnemyBase
 
     private IEnumerator CastMushroomSkill2()
     {
-        if (mushroomEPrefab != null)
-        {
-            GameObject eSkill = Instantiate(mushroomEPrefab, transform.position, Quaternion.identity, transform);
-
-            var hitbox = eSkill.GetComponent<EnemySkillHitbox>();
-            if (hitbox != null)
-                hitbox.Init(this);
-
-            StartCoroutine(DestroyAfter(eSkill, mushroomEHealDuration));
-        }
+        SpawnBuffEffect(mushroomEPrefab);
 
         float elapsed = 0f;
         float nextHealTime = mushroomEHealInterval;
@@ -89,11 +80,6 @@ public class EnemyMushroom : EnemyBase
         usingSkill2 = false;
     }
 
-    private IEnumerator DestroyAfter(GameObject target, float delay)
-    {
-        yield return new WaitForSeconds(delay);
-        if (target != null) Destroy(target);
-    }
     private void InitHitboxesOn(GameObject obj)
     {
         if (obj == null) return;

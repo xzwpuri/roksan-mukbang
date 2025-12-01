@@ -414,6 +414,7 @@ public static class SkillLibrary
 
         // 토글
         c.isCustardCream = !c.isCustardCream;
+        c.SpawnBuffEffect(c.bungeobbangEPrefab);
 
         if (c.isCustardCream)
             Debug.Log("[Bungeobbang E] 커스터드 크림 ON");
@@ -432,7 +433,7 @@ public static class SkillLibrary
     private static IEnumerator ColaWCoroutine(Player c)
     {
         c.isW = true;
-
+        c.SpawnBuffEffect(c.colaWPrefab);
         c.StartColaSpeedBuff(ColaSpeedBuff(c, c.colaWDuration, c.colaWSpeedMultiplier));
 
         c.isW = false;
@@ -532,7 +533,7 @@ public static class SkillLibrary
     private static IEnumerator IceCreamECoroutine(Player c)
     {
         c.isE = true;
-
+        c.SpawnBuffEffect(c.iceCreamEPrefab);
         c.StartIceCreamSlow(IceCreamSlowAndHeal(c, c.iceCreamESlowDuration, c.iceCreamESlowMultiplier, c.iceCreamEHealAmount));
 
         c.isE = false;
@@ -615,6 +616,7 @@ public static class SkillLibrary
     {
         c.isE = true;
         c.isFriesUpgraded = true;
+        c.SpawnBuffEffect(c.friesEPrefab);
         Debug.Log("[Fries E] 감자튀김 강화!");
         c.isE = false;
         yield return null;
@@ -663,6 +665,7 @@ public static class SkillLibrary
 
         // 즉시 쿨타임 시작
         c.isE = false;
+        c.SpawnBuffEffect(c.meatEPrefab);
 
         float t = 0f;
         Vector3 startPos = c.transform.position;
@@ -708,7 +711,7 @@ public static class SkillLibrary
     private static IEnumerator MushroomECoroutine(Player c)
     {
         c.isE = true;
-
+        c.SpawnBuffEffect(c.mushroomEPrefab);
         c.StartMushroomHeal(MushroomHealOverTime(c, c.mushroomEHealDuration, c.mushroomEHealInterval, c.mushroomEHealPerTick));
 
         c.isE = false;
