@@ -24589,7 +24589,7 @@ MonoBehaviour:
   qCooldown: 2
   wCooldown: 3
   eCooldown: 4
-  rCooldown: 10
+  rCooldown: 2
 --- !u!61 &2004273287
 BoxCollider2D:
   m_ObjectHideFlags: 0

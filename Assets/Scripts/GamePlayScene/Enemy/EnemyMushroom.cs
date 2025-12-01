@@ -16,6 +16,7 @@ public class EnemyMushroom : EnemyBase
 
     private bool usingSkill1;
     private bool usingSkill2;
+    private GameObject activeWSkill;
 
     protected override void Start()
     {
@@ -37,6 +38,11 @@ public class EnemyMushroom : EnemyBase
         StartCoroutine(CastMushroomSkill2());
     }
 
+    private void OnDisable()
+    {
+        CleanupMushroomW();
+    }
+
     private IEnumerator CastMushroomSkill1()
     {
         Vector3 dir = Target != null ? (Target.position - transform.position).normalized : Vector3.right;
@@ -44,6 +50,7 @@ public class EnemyMushroom : EnemyBase
         if (mushroomWPrefab != null)
         {
             GameObject wSkill = Instantiate(mushroomWPrefab, transform.position + dir * 3f, Quaternion.identity);
+            activeWSkill = wSkill;
             wSkill.transform.localScale = new Vector3(mushroomWRadius, mushroomWRadius, 1f);
 
             // ✅ 버섯 독구름 장판 히트박스 연결
@@ -51,12 +58,11 @@ public class EnemyMushroom : EnemyBase
 
             yield return new WaitForSeconds(mushroomWDuration);
 
-            if (wSkill != null) Destroy(wSkill);
+            CleanupMushroomW();
         }
 
         usingSkill1 = false;
     }
-
     private IEnumerator CastMushroomSkill2()
     {
         SpawnBuffEffect(mushroomEPrefab);
@@ -83,8 +89,19 @@ public class EnemyMushroom : EnemyBase
     private void InitHitboxesOn(GameObject obj)
     {
         if (obj == null) return;
-        var hitboxes = obj.GetComponentsInChildren<EnemySkillHitbox>(true);
-        foreach (var hb in hitboxes)
-            hb.Init(this);
+    var hitboxes = obj.GetComponentsInChildren<EnemySkillHitbox>(true);
+    foreach (var hb in hitboxes)
+        hb.Init(this);
+    }
+
+    private void CleanupMushroomW()
+    {
+        if (activeWSkill != null)
+        {
+            Destroy(activeWSkill);
+            activeWSkill = null;
+        }
+
+        usingSkill1 = false;
     }
 }
