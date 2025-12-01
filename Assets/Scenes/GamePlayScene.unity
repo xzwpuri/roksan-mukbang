@@ -24493,15 +24493,15 @@ MonoBehaviour:
   bungeobbangWSpeed: 10
   bungeobbangWReach: 20
   bungeobbangWRadius: 0.7
-  bungeobbangCustardHpCost: 5
+  bungeobbangCustardHpCost: 1
   colaWPrefab: {fileID: 5800375850495201759, guid: ae758934f688abd41b860b06e2a2c284, type: 3}
   colaEPrefab: {fileID: 1364770963693114574, guid: c62ce34b565662143a2036da0c2a30aa, type: 3}
   colaWDuration: 3
   colaWSpeedMultiplier: 1.5
-  colaEHpCost: 5
+  colaEHpCost: 10
   colaESpeed: 3
   colaEStartScale: 0
-  colaEEndScale: 8
+  colaEEndScale: 10
   friesWPrefab: {fileID: 1364770963693114574, guid: 5d7777e234817454c80111099433b9ca, type: 3}
   friesWUpgradedPrefab: {fileID: 1364770963693114574, guid: ed682865525d02d47a267deaf49dc166, type: 3}
   friesEPrefab: {fileID: 1281970145312543936, guid: 940645b849b235942b6c7a615d439f64, type: 3}
@@ -24587,8 +24587,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   qCooldown: 2
-  wCooldown: 3
-  eCooldown: 4
+  wCooldown: 0.5
+  eCooldown: 1.5
   rCooldown: 2
 --- !u!61 &2004273287
 BoxCollider2D:

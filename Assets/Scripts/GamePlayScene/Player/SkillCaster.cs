@@ -89,43 +89,43 @@ public class SkillCaster : MonoBehaviour
         switch (stomach)
         {
             case 0: // Default
-                onW = () => TryCast(ref nextWTime, 0.0f, () => SkillLibrary.W_Default(owner));
-                onE = () => TryCast(ref nextETime, 0.0f, () => SkillLibrary.E_Default(owner));
+                onW = () => TryCast(ref nextWTime, 0.5f, () => SkillLibrary.W_Default(owner));
+                onE = () => TryCast(ref nextETime, 1.5f, () => SkillLibrary.E_Default(owner));
                 break;
 
             case 1: // 붕어빵
-                onW = () => TryCast(ref nextWTime, 0.0f, () => SkillLibrary.W_Bungeobbang(owner));
-                onE = () => TryCast(ref nextETime, 0.0f, () => SkillLibrary.E_Bungeobbang(owner));
+                onW = () => TryCast(ref nextWTime, 0.8f, () => SkillLibrary.W_Bungeobbang(owner));
+                onE = () => TryCast(ref nextETime, 0.1f, () => SkillLibrary.E_Bungeobbang(owner));
                 break;
 
             case 2: // 콜라
-                onW = () => TryCast(ref nextWTime, 0.0f, () => SkillLibrary.W_Cola(owner));
-                onE = () => TryCast(ref nextETime, 0.0f, () => SkillLibrary.E_Cola(owner));
+                onW = () => TryCast(ref nextWTime, 4.5f, () => SkillLibrary.W_Cola(owner));
+                onE = () => TryCast(ref nextETime, 0.5f, () => SkillLibrary.E_Cola(owner));
                 break;
 
             case 3: // 감자튀김
-                onW = () => TryCast(ref nextWTime, 0.0f, () => SkillLibrary.W_Fries(owner));
-                onE = () => TryCast(ref nextETime, 0.0f, () => SkillLibrary.E_Fries(owner));
+                onW = () => TryCast(ref nextWTime, 0.15f, () => SkillLibrary.W_Fries(owner));
+                onE = () => TryCast(ref nextETime, 4.0f, () => SkillLibrary.E_Fries(owner));
                 break;
 
             case 4: // 아이스크림
-                onW = () => TryCast(ref nextWTime, 0.0f, () => SkillLibrary.W_IceCream(owner));
-                onE = () => TryCast(ref nextETime, 0.0f, () => SkillLibrary.E_IceCream(owner));
+                onW = () => TryCast(ref nextWTime, 1.5f, () => SkillLibrary.W_IceCream(owner));
+                onE = () => TryCast(ref nextETime, 5.0f, () => SkillLibrary.E_IceCream(owner));
                 break;
 
             case 5: // 고기
-                onW = () => TryCast(ref nextWTime, 0.0f, () => SkillLibrary.W_Meat(owner));
-                onE = () => TryCast(ref nextETime, 0.0f, () => SkillLibrary.E_Meat(owner));
+                onW = () => TryCast(ref nextWTime, 0.65f, () => SkillLibrary.W_Meat(owner));
+                onE = () => TryCast(ref nextETime, 4.5f, () => SkillLibrary.E_Meat(owner));
                 break;
 
             case 6: // 버섯
-                onW = () => TryCast(ref nextWTime, 0.0f, () => SkillLibrary.W_Mushroom(owner));
-                onE = () => TryCast(ref nextETime, 0.0f, () => SkillLibrary.E_Mushroom(owner));
+                onW = () => TryCast(ref nextWTime, 2.0f, () => SkillLibrary.W_Mushroom(owner));
+                onE = () => TryCast(ref nextETime, 8.0f, () => SkillLibrary.E_Mushroom(owner));
                 break;
 
             case 7: // 물
-                onW = () => TryCast(ref nextWTime, 0.0f, () => SkillLibrary.W_Water(owner));
-                onE = () => TryCast(ref nextETime, 0.0f, () => SkillLibrary.E_Water(owner));
+                onW = () => TryCast(ref nextWTime, 1.0f, () => SkillLibrary.W_Water(owner));
+                onE = () => TryCast(ref nextETime, 5.5f, () => SkillLibrary.E_Water(owner));
                 break;
 
             default:
