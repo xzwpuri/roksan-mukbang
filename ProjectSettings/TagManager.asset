@@ -55,6 +55,9 @@ TagManager:
   - name: Enemy
     uniqueID: 492907921
     locked: 0
+  - name: SkillEffectMiddle
+    uniqueID: 1789790679
+    locked: 0
   - name: Player
     uniqueID: 663077639
     locked: 0

@@ -68,6 +68,8 @@ public class Player : MonoBehaviour, IUnit
     //  Default Skill
     // ===============================
 
+    [Header("Q Skill Prefabs")]
+    public GameObject[] swallowPrefabsByStomach;
 
     [Header("Default Skill - Swing")]
     public float swingSpeed = 180f;
@@ -344,6 +346,22 @@ public class Player : MonoBehaviour, IUnit
     {
         stomach = newstomach;
         GetComponent<SkillCaster>()?.RefreshLoadout();
+    }
+
+    public void SpawnSwallowPrefab(int stomachValue)
+    {
+        if (swallowPrefabsByStomach == null)
+            return;
+
+        if (stomachValue < 0 || stomachValue >= swallowPrefabsByStomach.Length)
+            return;
+
+        GameObject prefabToSpawn = swallowPrefabsByStomach[stomachValue];
+
+        if (prefabToSpawn == null)
+            return;
+
+        Instantiate(prefabToSpawn, transform.position + buffEffectOffset, Quaternion.identity);
     }
 
     // ===============================

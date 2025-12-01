@@ -247,7 +247,7 @@ public static class SkillLibrary
 
         self.Setstomach(gainedStomach);
         self.Element = gainedElement;
-
+        self.SpawnSwallowPrefab(gainedStomach);
         // 삭제
         if (closestTarget != null)
             Object.Destroy(closestTarget.gameObject);

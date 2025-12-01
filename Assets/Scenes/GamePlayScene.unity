@@ -24360,7 +24360,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 663077639
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: -2311659948842064771, guid: 8267a44da8d934b43a57f828b10d7d8d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -24467,6 +24467,15 @@ MonoBehaviour:
   SpriteRenderer: {fileID: 0}
   MoveTarget: {x: 0, y: 0}
   mspeed: 0
+  swallowPrefabsByStomach:
+  - {fileID: 0}
+  - {fileID: 2866600586310087395, guid: 4d03fded63d6fd24198d6cc0b37a12e4, type: 3}
+  - {fileID: 1025104700619230186, guid: 88ab17383256dba44bf74e9429bde1b2, type: 3}
+  - {fileID: 3977744475760412343, guid: 23e3ea3189fbc9d4e835afe147e06dbc, type: 3}
+  - {fileID: 3403796266276885210, guid: 0cbc75b89c685774e961077795ba842e, type: 3}
+  - {fileID: 3447373310181850378, guid: c70fe2c1263c9b6428b38cafe1c44fc0, type: 3}
+  - {fileID: 7447764176335662915, guid: 981f84f9d2fd1bd4fba18c614f3e1714, type: 3}
+  - {fileID: 3708294169622387691, guid: 220a18c316e26d74cb1a04d5bbd5aa3d, type: 3}
   swingSpeed: 360
   swingAngle1: 60
   swingAngle2: -60
@@ -24706,12 +24715,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2035896468}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7ecec866cd8424b4abd735044bf1b226, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  difficulty: 2
+  difficulty: 0
   difficultySettings:
   - difficulty: 0
     survivalTime: 180
