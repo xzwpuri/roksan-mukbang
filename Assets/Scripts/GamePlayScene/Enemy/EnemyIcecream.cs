@@ -21,7 +21,7 @@ public class EnemyIcecream : EnemyBase
     protected override void Start()
     {
         base.Start();
-        Init(52f, 2.3f, 1, 4);
+        Init(80f, 1.5f, 1, 4);
     }
 
     public override void Skill1()
@@ -73,7 +73,7 @@ public class EnemyIcecream : EnemyBase
     {
         float originalSpeed = MoveSpeed;
         MoveSpeed = originalSpeed * iceCreamESlowMultiplier;
-        Hp = Mathf.Min(Hp + iceCreamEHealAmount, 100f);
+        Hp = Mathf.Min(Hp + iceCreamEHealAmount, 80f);
 
         GameObject fx = null;
         if (iceCreamEPrefab != null)

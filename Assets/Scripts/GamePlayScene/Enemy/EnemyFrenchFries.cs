@@ -19,7 +19,7 @@ public class EnemyFrenchFries : EnemyBase
     protected override void Start()
     {
         base.Start();
-        Init(50f, 2.7f, 2, 3);
+        Init(60f, 2.5f, 2, 3);
     }
 
     public override void Skill1()

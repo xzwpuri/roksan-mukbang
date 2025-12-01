@@ -20,7 +20,7 @@ public class EnemyMushroom : EnemyBase
     protected override void Start()
     {
         base.Start();
-        Init(55f, 2.1f, 2, 6);
+        Init(60f, 1.8f, 2, 6);
     }
 
     public override void Skill1()
@@ -44,7 +44,7 @@ public class EnemyMushroom : EnemyBase
         if (mushroomWPrefab != null)
         {
             GameObject wSkill = Instantiate(mushroomWPrefab, transform.position + dir * 3f, Quaternion.identity);
-            wSkill.transform.localScale = new Vector3(mushroomWRadius, mushroomWRadius, 1f);
+            wSkill.transform.localScale = new Vector3(mushroomWRadius, mushroomWRadius, 10f);
 
             // ✅ 버섯 독구름 장판 히트박스 연결
             InitHitboxesOn(wSkill);
