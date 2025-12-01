@@ -81,6 +81,11 @@ public class EnemyBungeobbang : EnemyBase
         if (bungeobbangEPrefab != null)
         {
             GameObject toggleFx = Instantiate(bungeobbangEPrefab, transform.position, Quaternion.identity);
+            // 필요하다면 여기도 EnemySkillHitbox가 있을 수 있음
+            var hitbox = toggleFx.GetComponent<EnemySkillHitbox>();
+            if (hitbox != null)
+                hitbox.Init(this);
+
             yield return new WaitForSeconds(0.5f);
             Destroy(toggleFx);
         }
@@ -95,6 +100,11 @@ public class EnemyBungeobbang : EnemyBase
 
         GameObject projectile = Instantiate(prefab, startPos, Quaternion.Euler(0, 0, angle));
         projectile.transform.localScale = new Vector3(radius, radius, 1f);
+
+        // ✅ 투사체에 EnemySkillHitbox 연결
+        var hitbox = projectile.GetComponent<EnemySkillHitbox>();
+        if (hitbox != null)
+            hitbox.Init(this);
 
         float t = 0f;
         while (t < reach)

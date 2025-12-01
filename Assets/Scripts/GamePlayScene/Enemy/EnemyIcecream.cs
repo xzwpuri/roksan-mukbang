@@ -49,6 +49,11 @@ public class EnemyIcecream : EnemyBase
             GameObject wSkill = Instantiate(iceCreamWPrefab, skillPos, Quaternion.Euler(0, 0, angle));
             wSkill.transform.localScale = new Vector3(iceCreamWRadius, iceCreamWRadius, 1f);
 
+            // ✅ 아이스크림 투사체도 히트박스 연결
+            var hitbox = wSkill.GetComponent<EnemySkillHitbox>();
+            if (hitbox != null)
+                hitbox.Init(this);
+
             float t = 0f;
             while (t < iceCreamWReach)
             {
@@ -74,7 +79,13 @@ public class EnemyIcecream : EnemyBase
 
         GameObject fx = null;
         if (iceCreamEPrefab != null)
+        {
             fx = Instantiate(iceCreamEPrefab, transform.position, Quaternion.identity, transform);
+
+            var hitbox = fx.GetComponent<EnemySkillHitbox>();
+            if (hitbox != null)
+                hitbox.Init(this);
+        }
 
         float elapsed = 0f;
         while (elapsed < iceCreamESlowDuration)

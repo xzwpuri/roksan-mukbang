@@ -60,6 +60,11 @@ public class EnemyFrenchFries : EnemyBase
         if (friesEPrefab != null)
         {
             GameObject upgradeFx = Instantiate(friesEPrefab, transform.position, Quaternion.identity, transform);
+
+            var hitbox = upgradeFx.GetComponent<EnemySkillHitbox>();
+            if (hitbox != null)
+                hitbox.Init(this);
+
             yield return new WaitForSeconds(0.5f);
             Destroy(upgradeFx);
         }
@@ -71,6 +76,11 @@ public class EnemyFrenchFries : EnemyBase
     {
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         GameObject projectile = Instantiate(prefab, startPos, Quaternion.Euler(0, 0, angle));
+
+        // ✅ 감자튀김 투사체 히트박스 연결
+        var hitbox = projectile.GetComponent<EnemySkillHitbox>();
+        if (hitbox != null)
+            hitbox.Init(this);
 
         float t = 0f;
         while (t < reach)

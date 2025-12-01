@@ -50,6 +50,11 @@ public class EnemyMeat : EnemyBase
             wSkill.transform.SetParent(transform);
             wSkill.transform.localScale = new Vector3(meatWWidth, meatWHeight, 1f);
 
+            // ✅ 근접 휩쓸기 히트박스 연결
+            var hitbox = wSkill.GetComponent<EnemySkillHitbox>();
+            if (hitbox != null)
+                hitbox.Init(this);
+
             float currentAngle = meatWAngle1;
             while (currentAngle > meatWAngle2)
             {

@@ -44,7 +44,14 @@ public class EnemyCoke : EnemyBase
 
         GameObject buffFx = null;
         if (colaWPrefab != null)
+        {
             buffFx = Instantiate(colaWPrefab, transform.position, Quaternion.identity, transform);
+
+            // 🔍 만약 콜라 버프도 주변에 데미지/디버프를 주는 히트박스라면:
+            var hitbox = buffFx.GetComponent<EnemySkillHitbox>();
+            if (hitbox != null)
+                hitbox.Init(this);
+        }
 
         yield return new WaitForSeconds(colaWDuration);
 
@@ -60,6 +67,12 @@ public class EnemyCoke : EnemyBase
         {
             GameObject eSkill = Instantiate(colaEPrefab, transform.position, Quaternion.identity);
             eSkill.transform.localScale = new Vector3(colaEStartScale, colaEStartScale, 1f);
+
+            // ✅ 바닥 범위 공격일 가능성 높음 → owner 연결
+            var hitbox = eSkill.GetComponent<EnemySkillHitbox>();
+            if (hitbox != null)
+                hitbox.Init(this);
+
             yield return WaterESequence(eSkill, colaEStartScale, colaEEndScale, colaESpeed);
             Destroy(eSkill);
         }
