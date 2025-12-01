@@ -63,6 +63,15 @@ public abstract class EnemyBase : MonoBehaviour, IUnit
     // 기존 AttackRange는 "두 스킬 중 더 먼 사거리"로 정의해둘 수도 있음 (안 써도 됨)
     public float AttackRange => Mathf.Max(skill1Range, skill2Range);
 
+    // Crowd control 상태 관리
+    private bool isRooted = false;
+    [Header("CC 옵션")]
+    [SerializeField] private float rootImmunityDuration = 0.5f;
+
+    private float rootEndTime = 0f;
+    private float rootImmunityEndTime = 0f;
+    private float rootedOriginalSpeed = 0f;
+
     public Dictionary<StateType, State<EnemyBase>> States;
     public StateMachine<EnemyBase> StateMachine;
 
@@ -101,6 +110,46 @@ public abstract class EnemyBase : MonoBehaviour, IUnit
         MoveSpeed = moveSpeed;
         Element  = element;
         Stomach  = stomach;
+    }
+
+    /// ===================================================
+    /// 속박 적용. 이미 속박 중이거나 직후 무적 시간에는 무시한다.
+    /// ===================================================
+    /// <param name="duration">속박 지속 시간</param>
+    public void ApplyRoot(float duration)
+    {
+        if (duration <= 0f)
+            return;
+
+        // 해제 직후 무적 구간에는 속박이 적용되지 않는다.
+        if (Time.time < rootImmunityEndTime)
+            return;
+
+        // 이미 속박 상태면 새로 적용하지 않는다.
+        if (isRooted)
+            return;
+
+        rootedOriginalSpeed = MoveSpeed;
+        rootEndTime = Time.time + duration;
+        StartCoroutine(RootRoutine());
+    }
+
+    private IEnumerator RootRoutine()
+    {
+        isRooted = true;
+        MoveSpeed = 0f;
+
+        if (Rigidbody2D != null)
+            Rigidbody2D.linearVelocity = Vector2.zero;
+
+        while (Time.time < rootEndTime)
+        {
+            yield return null;
+        }
+
+        MoveSpeed = rootedOriginalSpeed;
+        isRooted = false;
+        rootImmunityEndTime = Time.time + rootImmunityDuration;
     }
 
     protected virtual void Update()

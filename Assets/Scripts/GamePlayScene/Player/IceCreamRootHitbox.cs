@@ -58,33 +58,8 @@ public class IceCreamRootHitbox : MonoBehaviour
         if (enemyBase == null)
             return;
 
-        StartCoroutine(RootEnemy(enemyBase));
+        enemyBase.ApplyRoot(rootDuration);
         hasHit = true;
+        Destroy(gameObject);
     }
-
-    private System.Collections.IEnumerator RootEnemy(EnemyBase enemy)
-    {
-        if (enemy == null)
-            yield break;
-
-        float originalSpeed = enemy.MoveSpeed;
-        enemy.MoveSpeed = 0f;
-
-        if (enemy.Rigidbody2D != null)
-            enemy.Rigidbody2D.linearVelocity = Vector2.zero; // linearVelocity 대신 velocity 권장
-
-        Debug.Log($"[IceCreamRootHitbox] {enemy.name} 속박! {rootDuration}초");
-
-        yield return new WaitForSeconds(rootDuration);
-
-        if (enemy != null)
-        {
-            enemy.MoveSpeed = originalSpeed;
-            Debug.Log($"[IceCreamRootHitbox] {enemy.name} 속박 해제");
-        }
-
-        if (destroyOnHit)
-            Destroy(gameObject);   // ✅ 이제 코루틴 끝나고 나서 파괴
-    }
-
 }
