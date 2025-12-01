@@ -125,9 +125,12 @@ public abstract class EnemyBase : MonoBehaviour, IUnit
         if (Time.time < rootImmunityEndTime)
             return;
 
-        // 이미 속박 상태면 새로 적용하지 않는다.
+        // 이미 속박 중이면 지속시간만 연장하고 기존 속도를 건드리지 않는다.
         if (isRooted)
+        {
+            rootEndTime = Mathf.Max(rootEndTime, Time.time + duration);
             return;
+        }
 
         rootedOriginalSpeed = MoveSpeed;
         rootEndTime = Time.time + duration;
@@ -151,7 +154,6 @@ public abstract class EnemyBase : MonoBehaviour, IUnit
         isRooted = false;
         rootImmunityEndTime = Time.time + rootImmunityDuration;
     }
-
     protected virtual void Update()
     {
         StateMachine.Update();

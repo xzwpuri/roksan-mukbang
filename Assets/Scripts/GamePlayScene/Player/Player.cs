@@ -208,6 +208,16 @@ public class Player : MonoBehaviour, IUnit
     private Coroutine iceCreamSlowCoroutine;
     private Coroutine mushroomHealCoroutine;
 
+    // Crowd control 상태 관리 (속박)
+    [Header("CC Options")]
+    [SerializeField] private float rootImmunityDuration = 0.5f;
+
+    private bool isRooted = false;
+    private float rootEndTime = 0f;
+    private float rootImmunityEndTime = 0f;
+    private float rootedOriginalSpeed = 0f;
+    private Coroutine rootCoroutine;
+
     private void Awake()
     {
         Rigidbody2D = GetComponent<Rigidbody2D>();
@@ -277,6 +287,52 @@ public class Player : MonoBehaviour, IUnit
             // TODO: 죽는 상태로 State 변경 등
             // StateMachine.ChangeState(States[StateType.Dead]);
         }
+    }
+
+    /// <summary>
+    /// 속박 적용. 이미 속박 중이면 지속시간을 연장하고, 해제 직후 짧은 무적 시간 동안은 무시한다.
+    /// </summary>
+    /// <param name="duration">속박 지속 시간</param>
+    public void ApplyRoot(float duration)
+    {
+        if (duration <= 0f)
+            return;
+
+        if (Time.time < rootImmunityEndTime)
+            return;
+
+        // 이미 속박 중이면 기존 지속시간만 연장
+        if (isRooted)
+        {
+            rootEndTime = Mathf.Max(rootEndTime, Time.time + duration);
+            return;
+        }
+
+        rootedOriginalSpeed = MoveSpeed;
+        rootEndTime = Time.time + duration;
+
+        if (rootCoroutine != null)
+            StopCoroutine(rootCoroutine);
+
+        rootCoroutine = StartCoroutine(RootRoutine());
+    }
+
+    private IEnumerator RootRoutine()
+    {
+        isRooted = true;
+        MoveSpeed = 0f;
+
+        if (Rigidbody2D != null)
+            Rigidbody2D.linearVelocity = Vector2.zero;
+
+        while (Time.time < rootEndTime)
+        {
+            yield return null;
+        }
+
+        MoveSpeed = rootedOriginalSpeed;
+        isRooted = false;
+        rootImmunityEndTime = Time.time + rootImmunityDuration;
     }
 
     public void Setstomach(int newstomach)

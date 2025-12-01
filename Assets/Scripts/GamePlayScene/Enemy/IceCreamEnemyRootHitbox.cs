@@ -51,33 +51,10 @@ public class IceCreamEnemyRootHitbox : MonoBehaviour
         if (player == null)
             return;
 
-        StartCoroutine(RootPlayer(player));
+        player.ApplyRoot(rootDuration);
         hasHit = true;
-    }
-
-    private System.Collections.IEnumerator RootPlayer(Player player)
-    {
-        if (player == null)
-            yield break;
-
-        float originalSpeed = player.MoveSpeed;
-        player.MoveSpeed = 0f;
-
-        var rb = player.GetComponent<Rigidbody2D>();
-        if (rb != null)
-            rb.linearVelocity = Vector2.zero; // velocity 써도 됨
-
-        Debug.Log($"[IceCreamEnemyRootHitbox] {player.name} 속박! {rootDuration}초");
-
-        yield return new WaitForSeconds(rootDuration);
-
-        if (player != null)
-        {
-            player.MoveSpeed = originalSpeed;
-            Debug.Log($"[IceCreamEnemyRootHitbox] {player.name} 속박 해제");
-        }
 
         if (destroyOnHit)
-            Destroy(gameObject);   // ✅ 속박 끝나고 투사체/히트박스 제거
+            Destroy(gameObject);
     }
 }
