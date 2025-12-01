@@ -80,7 +80,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 492907921
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 6049605792901559095, guid: e7232786b7bb3bb4f9f7991b26346451, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -115,12 +115,15 @@ MonoBehaviour:
   skill2Range: 3.5
   skill1Cooldown: 5
   skill2Cooldown: 10
+  buffEffectOffset: {x: 0, y: 1.2, z: 0}
+  damageTextColor: {r: 1, g: 0.55, b: 0.1, a: 1}
+  rootImmunityDuration: 0.5
   Rigidbody2D: {fileID: 0}
   Animator: {fileID: 0}
   SpriteRenderer: {fileID: 0}
   waterWPrefab: {fileID: 1364770963693114574, guid: 0eec5ddff80a9495d8f591589cdea25c, type: 3}
   waterEPrefab: {fileID: 1364770963693114574, guid: 20d5954195afd4f829bbbc738b870548, type: 3}
-  waterWSpeed: 10
+  waterWSpeed: 5
   waterWReach: 20
   waterWRadius: 0.5
   waterWInterval: 0.1

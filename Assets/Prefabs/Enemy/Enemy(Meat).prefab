@@ -241,15 +241,17 @@ MonoBehaviour:
   stopDistance: 2
   skill1Range: 4
   skill2Range: 15
-  skill1Cooldown: 3
+  skill1Cooldown: 4
   skill2Cooldown: 6
   buffEffectOffset: {x: 0, y: 1.2, z: 0}
+  damageTextColor: {r: 1, g: 0.55, b: 0.1, a: 1}
+  rootImmunityDuration: 0.5
   Rigidbody2D: {fileID: 0}
   Animator: {fileID: 0}
   SpriteRenderer: {fileID: 0}
   meatWPrefab: {fileID: 1364770963693114574, guid: e9b607d0b4b8c4e17b33f83fc63c1e98, type: 3}
   meatEPrefab: {fileID: 1526265765515828461, guid: d998ebd18f40b75499fbcc6a31a6fea5, type: 3}
-  meatWSpeed: 720
+  meatWSpeed: 520
   meatWAngle1: 70
   meatWAngle2: -70
   meatWWidth: 3

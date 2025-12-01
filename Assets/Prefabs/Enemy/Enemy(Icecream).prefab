@@ -244,12 +244,14 @@ MonoBehaviour:
   skill1Cooldown: 6
   skill2Cooldown: 12
   buffEffectOffset: {x: 0, y: 1.2, z: 0}
+  damageTextColor: {r: 1, g: 0.55, b: 0.1, a: 1}
+  rootImmunityDuration: 0.5
   Rigidbody2D: {fileID: 0}
   Animator: {fileID: 0}
   SpriteRenderer: {fileID: 0}
   iceCreamWPrefab: {fileID: 1364770963693114574, guid: 0a3cc6fd26ccb41b99e22e696acd554a, type: 3}
   iceCreamEPrefab: {fileID: 7275162531901572798, guid: 141762600fcee20488603cbb4ac9233c, type: 3}
-  iceCreamWSpeed: 10
+  iceCreamWSpeed: 5
   iceCreamWReach: 20
   iceCreamWRadius: 0.6
   iceCreamESlowDuration: 3

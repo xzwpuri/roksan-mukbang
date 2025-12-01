@@ -244,11 +244,13 @@ MonoBehaviour:
   skill1Cooldown: 0.3
   skill2Cooldown: 5
   buffEffectOffset: {x: 0, y: 1.2, z: 0}
+  damageTextColor: {r: 1, g: 0.55, b: 0.1, a: 1}
+  rootImmunityDuration: 0.5
   Rigidbody2D: {fileID: 0}
   Animator: {fileID: 0}
   SpriteRenderer: {fileID: 0}
   friesWPrefab: {fileID: 1364770963693114574, guid: f0fe91df4e3ca49b7aa6654b4a1d5d9a, type: 3}
   friesWUpgradedPrefab: {fileID: 1364770963693114574, guid: ab97c5e8ebd6348eda35359374a13aab, type: 3}
   friesEPrefab: {fileID: 5525821663179831250, guid: 95b23b59295a9594a9ff517f999b2439, type: 3}
-  friesWSpeed: 15
+  friesWSpeed: 7.5
   friesWReach: 20

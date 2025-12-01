@@ -244,13 +244,15 @@ MonoBehaviour:
   skill1Cooldown: 3
   skill2Cooldown: 15
   buffEffectOffset: {x: 0, y: 1.2, z: 0}
+  damageTextColor: {r: 1, g: 0.55, b: 0.1, a: 1}
+  rootImmunityDuration: 0.5
   Rigidbody2D: {fileID: 0}
   Animator: {fileID: 0}
   SpriteRenderer: {fileID: 0}
   mushroomWPrefab: {fileID: 1364770963693114574, guid: 886610208f4b24ea8af31d03a0459520, type: 3}
   mushroomEPrefab: {fileID: 6104229167657055245, guid: b8c42202ab8f52a46901ca38137d7d5d, type: 3}
   mushroomWDuration: 6
-  mushroomWRadius: 4.5
+  mushroomWRadius: 4
   mushroomEHealDuration: 6
   mushroomEHealInterval: 0.5
   mushroomEHealPerTick: 3

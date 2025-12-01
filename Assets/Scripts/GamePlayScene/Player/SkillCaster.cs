@@ -48,7 +48,15 @@ public class SkillCaster : MonoBehaviour
 
             TryCast(ref nextQTime, qCooldown, () => SkillLibrary.Q_Fixed(owner));
         };
-        onR = () => TryCast(ref nextRTime, rCooldown, () => SkillLibrary.R_Fixed(owner));
+        onR = () =>
+        {
+            if (owner.Stomach == 0)
+            {
+                Debug.Log("[Q] stomach이 0이므로 스킬을 사용할 수 없습니다.");
+                return;
+            }
+            TryCast(ref nextRTime, rCooldown, () => SkillLibrary.R_Fixed(owner));
+        };
     }
 
     private void OnEnable()
@@ -86,57 +94,83 @@ public class SkillCaster : MonoBehaviour
     {
         UnbindWE();
 
+        Action wAction = null;
+        Action eAction = null;
+
         switch (stomach)
         {
             case 0: // Default
-                onW = () => TryCast(ref nextWTime, 0.5f, () => SkillLibrary.W_Default(owner));
-                onE = () => TryCast(ref nextETime, 1.5f, () => SkillLibrary.E_Default(owner));
+                wCooldown = 0.5f;
+                eCooldown = 1.5f;
+                wAction = () => SkillLibrary.W_Default(owner);
+                eAction = () => SkillLibrary.E_Default(owner);
                 break;
 
             case 1: // 붕어빵
-                onW = () => TryCast(ref nextWTime, 0.8f, () => SkillLibrary.W_Bungeobbang(owner));
-                onE = () => TryCast(ref nextETime, 0.1f, () => SkillLibrary.E_Bungeobbang(owner));
+                wCooldown = 0.2f;
+                eCooldown = 0.1f;
+                wAction = () => SkillLibrary.W_Bungeobbang(owner);
+                eAction = () => SkillLibrary.E_Bungeobbang(owner);
                 break;
 
             case 2: // 콜라
-                onW = () => TryCast(ref nextWTime, 4.5f, () => SkillLibrary.W_Cola(owner));
-                onE = () => TryCast(ref nextETime, 0.5f, () => SkillLibrary.E_Cola(owner));
+                wCooldown = 4.5f;
+                eCooldown = 0.5f;
+                wAction = () => SkillLibrary.W_Cola(owner);
+                eAction = () => SkillLibrary.E_Cola(owner);
                 break;
 
             case 3: // 감자튀김
-                onW = () => TryCast(ref nextWTime, 0.15f, () => SkillLibrary.W_Fries(owner));
-                onE = () => TryCast(ref nextETime, 4.0f, () => SkillLibrary.E_Fries(owner));
+                wCooldown = 0.15f;
+                eCooldown = 1.0f;
+                wAction = () => SkillLibrary.W_Fries(owner);
+                eAction = () => SkillLibrary.E_Fries(owner);
                 break;
 
             case 4: // 아이스크림
-                onW = () => TryCast(ref nextWTime, 1.5f, () => SkillLibrary.W_IceCream(owner));
-                onE = () => TryCast(ref nextETime, 5.0f, () => SkillLibrary.E_IceCream(owner));
+                wCooldown = 0.5f;
+                eCooldown = 3.0f;
+                wAction = () => SkillLibrary.W_IceCream(owner);
+                eAction = () => SkillLibrary.E_IceCream(owner);
                 break;
 
             case 5: // 고기
-                onW = () => TryCast(ref nextWTime, 0.65f, () => SkillLibrary.W_Meat(owner));
-                onE = () => TryCast(ref nextETime, 4.5f, () => SkillLibrary.E_Meat(owner));
+                wCooldown = 0.35f;
+                eCooldown = 2.5f;
+                wAction = () => SkillLibrary.W_Meat(owner);
+                eAction = () => SkillLibrary.E_Meat(owner);
                 break;
 
             case 6: // 버섯
-                onW = () => TryCast(ref nextWTime, 2.0f, () => SkillLibrary.W_Mushroom(owner));
-                onE = () => TryCast(ref nextETime, 8.0f, () => SkillLibrary.E_Mushroom(owner));
+                wCooldown = 2.0f;
+                eCooldown = 6.0f;
+                wAction = () => SkillLibrary.W_Mushroom(owner);
+                eAction = () => SkillLibrary.E_Mushroom(owner);
                 break;
 
             case 7: // 물
-                onW = () => TryCast(ref nextWTime, 1.0f, () => SkillLibrary.W_Water(owner));
-                onE = () => TryCast(ref nextETime, 5.5f, () => SkillLibrary.E_Water(owner));
+                wCooldown = 0.3f;
+                eCooldown = 3.5f;
+                wAction = () => SkillLibrary.W_Water(owner);
+                eAction = () => SkillLibrary.E_Water(owner);
                 break;
 
             default:
-                onW = null;
-                onE = null;
                 Debug.LogWarning($"[SkillCaster] stomach {stomach} 에 대한 W/E 매핑이 없습니다.");
                 break;
         }
 
-        if (onW != null) Bus.OnWPressed += onW;
-        if (onE != null) Bus.OnEPressed += onE;
+        if (wAction != null)
+        {
+            onW = () => TryCast(ref nextWTime, wCooldown, wAction);
+            Bus.OnWPressed += onW;
+        }
+
+        if (eAction != null)
+        {
+            onE = () => TryCast(ref nextETime, eCooldown, eAction);
+            Bus.OnEPressed += onE;
+        }
     }
 
     private void UnbindWE()
