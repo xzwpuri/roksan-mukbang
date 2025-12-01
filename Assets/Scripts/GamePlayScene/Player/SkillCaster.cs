@@ -20,7 +20,7 @@ public class SkillCaster : MonoBehaviour
     [SerializeField] private float qCooldown = 2f;
     [SerializeField] private float wCooldown = 3f;
     [SerializeField] private float eCooldown = 4f;
-    [SerializeField] private float rCooldown = 10f;
+    [SerializeField] private float rCooldown = 2f;
 
     // 다음 사용 가능 시간(Time.time 기준)
     private float nextQTime;
@@ -38,7 +38,16 @@ public class SkillCaster : MonoBehaviour
         owner = GetComponent<Player>();
 
         // Q/R 고정 바인딩(쿨타임 포함)
-        onQ = () => TryCast(ref nextQTime, qCooldown, () => SkillLibrary.Q_Fixed(owner));
+        onQ = () =>
+        {
+            if (owner.Stomach != 0)
+            {
+                Debug.Log("[Q] stomach이 0이 아니므로 스킬을 사용할 수 없습니다.");
+                return;
+            }
+
+            TryCast(ref nextQTime, qCooldown, () => SkillLibrary.Q_Fixed(owner));
+        };
         onR = () => TryCast(ref nextRTime, rCooldown, () => SkillLibrary.R_Fixed(owner));
     }
 

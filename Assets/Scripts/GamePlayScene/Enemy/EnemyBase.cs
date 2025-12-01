@@ -125,10 +125,9 @@ public abstract class EnemyBase : MonoBehaviour, IUnit
         if (Time.time < rootImmunityEndTime)
             return;
 
-        // 이미 속박 중이면 지속시간만 연장하고 기존 속도를 건드리지 않는다.
+        // 이미 속박 중이면 추가 적용을 막아 무한 속박을 방지한다.
         if (isRooted)
         {
-            rootEndTime = Mathf.Max(rootEndTime, Time.time + duration);
             return;
         }
 

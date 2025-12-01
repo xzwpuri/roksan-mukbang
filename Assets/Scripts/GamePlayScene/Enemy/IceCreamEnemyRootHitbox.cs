@@ -9,6 +9,8 @@ public class IceCreamEnemyRootHitbox : MonoBehaviour
     private ContactFilter2D filter;
     private Collider2D[] results = new Collider2D[10];
     private bool hasHit = false;
+    private bool useSelfDetection = true;
+    private bool manageLifetime = true;
 
     private void Awake()
     {
@@ -17,11 +19,20 @@ public class IceCreamEnemyRootHitbox : MonoBehaviour
         filter = new ContactFilter2D();
         filter.useTriggers = true;
         filter.SetLayerMask(Physics2D.GetLayerCollisionMask(gameObject.layer));
+
+        // When paired with EnemySkillHitbox, let that component drive collision
+        // detection and lifetime so damage is not skipped by early destruction.
+        if (GetComponent<EnemySkillHitbox>() != null)
+        {
+            useSelfDetection = false;
+            manageLifetime = false;
+        }
     }
+
 
     private void Update()
     {
-        if (hasHit || hitboxCollider == null)
+        if (hasHit || hitboxCollider == null || !useSelfDetection)
             return;
 
         int count = hitboxCollider.Overlap(filter, results);
@@ -54,7 +65,7 @@ public class IceCreamEnemyRootHitbox : MonoBehaviour
         player.ApplyRoot(rootDuration);
         hasHit = true;
 
-        if (destroyOnHit)
+        if (destroyOnHit && manageLifetime)
             Destroy(gameObject);
     }
 }
