@@ -24725,19 +24725,19 @@ MonoBehaviour:
   difficulty: 0
   difficultySettings:
   - difficulty: 0
-    survivalTime: 180
+    survivalTime: 90
     spawnInterval: 10
     baseSpawnCount: 1
     enemyHpMultiplier: 0.5
     enemyMoveSpeedMultiplier: 0.5
   - difficulty: 1
-    survivalTime: 300
+    survivalTime: 180
     spawnInterval: 5
     baseSpawnCount: 1
     enemyHpMultiplier: 1
     enemyMoveSpeedMultiplier: 1
   - difficulty: 2
-    survivalTime: 480
+    survivalTime: 300
     spawnInterval: 5
     baseSpawnCount: 3
     enemyHpMultiplier: 1.5
