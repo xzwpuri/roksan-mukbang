@@ -663,6 +663,11 @@ public static class SkillLibrary
 
         var (dir, _, _) = MouseDirection(c);
 
+        // 클릭 이동 목표를 초기화하여 Meat E 사용 후 기존 목적지로 이동하지 않도록 함
+        c.MoveTarget = c.transform.position;
+        c.Rigidbody2D.linearVelocityX = 0f;
+        c.Rigidbody2D.linearVelocityY = 0f;
+
         // 즉시 쿨타임 시작
         c.isE = false;
         c.SpawnBuffEffect(c.meatEPrefab);
@@ -679,6 +684,8 @@ public static class SkillLibrary
             c.transform.position = startPos + dir * (c.meatEDistance * easing);
             yield return null;
         }
+
+        c.MoveTarget = c.transform.position;
     }
 
     // ===========================
