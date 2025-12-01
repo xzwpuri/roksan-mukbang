@@ -119,6 +119,67 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1001 &120038062
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1929409906207502976, guid: d673e519f157e5940bb7c1043602e9dc, type: 3}
+      propertyPath: m_Name
+      value: Enemy(Icecream) (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5287823919991088108, guid: d673e519f157e5940bb7c1043602e9dc, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -14.500055
+      objectReference: {fileID: 0}
+    - target: {fileID: 5287823919991088108, guid: d673e519f157e5940bb7c1043602e9dc, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.1802659
+      objectReference: {fileID: 0}
+    - target: {fileID: 5287823919991088108, guid: d673e519f157e5940bb7c1043602e9dc, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5287823919991088108, guid: d673e519f157e5940bb7c1043602e9dc, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5287823919991088108, guid: d673e519f157e5940bb7c1043602e9dc, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5287823919991088108, guid: d673e519f157e5940bb7c1043602e9dc, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5287823919991088108, guid: d673e519f157e5940bb7c1043602e9dc, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5287823919991088108, guid: d673e519f157e5940bb7c1043602e9dc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5287823919991088108, guid: d673e519f157e5940bb7c1043602e9dc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5287823919991088108, guid: d673e519f157e5940bb7c1043602e9dc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9090528845937126565, guid: d673e519f157e5940bb7c1043602e9dc, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d673e519f157e5940bb7c1043602e9dc, type: 3}
 --- !u!1 &153955469
 GameObject:
   m_ObjectHideFlags: 0
@@ -194,6 +255,67 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1001 &213000606
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1929409906207502976, guid: d673e519f157e5940bb7c1043602e9dc, type: 3}
+      propertyPath: m_Name
+      value: Enemy(Icecream) (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5287823919991088108, guid: d673e519f157e5940bb7c1043602e9dc, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -19.672916
+      objectReference: {fileID: 0}
+    - target: {fileID: 5287823919991088108, guid: d673e519f157e5940bb7c1043602e9dc, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.033518314
+      objectReference: {fileID: 0}
+    - target: {fileID: 5287823919991088108, guid: d673e519f157e5940bb7c1043602e9dc, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5287823919991088108, guid: d673e519f157e5940bb7c1043602e9dc, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5287823919991088108, guid: d673e519f157e5940bb7c1043602e9dc, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5287823919991088108, guid: d673e519f157e5940bb7c1043602e9dc, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5287823919991088108, guid: d673e519f157e5940bb7c1043602e9dc, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5287823919991088108, guid: d673e519f157e5940bb7c1043602e9dc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5287823919991088108, guid: d673e519f157e5940bb7c1043602e9dc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5287823919991088108, guid: d673e519f157e5940bb7c1043602e9dc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9090528845937126565, guid: d673e519f157e5940bb7c1043602e9dc, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d673e519f157e5940bb7c1043602e9dc, type: 3}
 --- !u!1 &234834566
 GameObject:
   m_ObjectHideFlags: 0
@@ -333,6 +455,67 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 307685577}
   m_CullTransparentMesh: 1
+--- !u!1001 &310692207
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1929409906207502976, guid: d673e519f157e5940bb7c1043602e9dc, type: 3}
+      propertyPath: m_Name
+      value: Enemy(Icecream) (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5287823919991088108, guid: d673e519f157e5940bb7c1043602e9dc, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -17.324951
+      objectReference: {fileID: 0}
+    - target: {fileID: 5287823919991088108, guid: d673e519f157e5940bb7c1043602e9dc, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.47376204
+      objectReference: {fileID: 0}
+    - target: {fileID: 5287823919991088108, guid: d673e519f157e5940bb7c1043602e9dc, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5287823919991088108, guid: d673e519f157e5940bb7c1043602e9dc, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5287823919991088108, guid: d673e519f157e5940bb7c1043602e9dc, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5287823919991088108, guid: d673e519f157e5940bb7c1043602e9dc, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5287823919991088108, guid: d673e519f157e5940bb7c1043602e9dc, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5287823919991088108, guid: d673e519f157e5940bb7c1043602e9dc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5287823919991088108, guid: d673e519f157e5940bb7c1043602e9dc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5287823919991088108, guid: d673e519f157e5940bb7c1043602e9dc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9090528845937126565, guid: d673e519f157e5940bb7c1043602e9dc, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d673e519f157e5940bb7c1043602e9dc, type: 3}
 --- !u!1 &313504457
 GameObject:
   m_ObjectHideFlags: 0
@@ -1424,6 +1607,67 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 644501062}
   m_CullTransparentMesh: 1
+--- !u!1001 &671890243
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1929409906207502976, guid: d673e519f157e5940bb7c1043602e9dc, type: 3}
+      propertyPath: m_Name
+      value: Enemy(Icecream)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5287823919991088108, guid: d673e519f157e5940bb7c1043602e9dc, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -11.455038
+      objectReference: {fileID: 0}
+    - target: {fileID: 5287823919991088108, guid: d673e519f157e5940bb7c1043602e9dc, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.1802659
+      objectReference: {fileID: 0}
+    - target: {fileID: 5287823919991088108, guid: d673e519f157e5940bb7c1043602e9dc, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5287823919991088108, guid: d673e519f157e5940bb7c1043602e9dc, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5287823919991088108, guid: d673e519f157e5940bb7c1043602e9dc, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5287823919991088108, guid: d673e519f157e5940bb7c1043602e9dc, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5287823919991088108, guid: d673e519f157e5940bb7c1043602e9dc, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5287823919991088108, guid: d673e519f157e5940bb7c1043602e9dc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5287823919991088108, guid: d673e519f157e5940bb7c1043602e9dc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5287823919991088108, guid: d673e519f157e5940bb7c1043602e9dc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9090528845937126565, guid: d673e519f157e5940bb7c1043602e9dc, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d673e519f157e5940bb7c1043602e9dc, type: 3}
 --- !u!1 &739815823
 GameObject:
   m_ObjectHideFlags: 0
@@ -78280,6 +78524,67 @@ MonoBehaviour:
   alphaThreshold: 0.01
   drawOutside: 0
   enableInstancing: 0
+--- !u!1001 &2005659419
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1929409906207502976, guid: d673e519f157e5940bb7c1043602e9dc, type: 3}
+      propertyPath: m_Name
+      value: Enemy(Icecream) (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5287823919991088108, guid: d673e519f157e5940bb7c1043602e9dc, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -21.654013
+      objectReference: {fileID: 0}
+    - target: {fileID: 5287823919991088108, guid: d673e519f157e5940bb7c1043602e9dc, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.43707466
+      objectReference: {fileID: 0}
+    - target: {fileID: 5287823919991088108, guid: d673e519f157e5940bb7c1043602e9dc, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5287823919991088108, guid: d673e519f157e5940bb7c1043602e9dc, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5287823919991088108, guid: d673e519f157e5940bb7c1043602e9dc, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5287823919991088108, guid: d673e519f157e5940bb7c1043602e9dc, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5287823919991088108, guid: d673e519f157e5940bb7c1043602e9dc, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5287823919991088108, guid: d673e519f157e5940bb7c1043602e9dc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5287823919991088108, guid: d673e519f157e5940bb7c1043602e9dc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5287823919991088108, guid: d673e519f157e5940bb7c1043602e9dc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9090528845937126565, guid: d673e519f157e5940bb7c1043602e9dc, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d673e519f157e5940bb7c1043602e9dc, type: 3}
 --- !u!1 &2035896468
 GameObject:
   m_ObjectHideFlags: 0
@@ -78304,12 +78609,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2035896468}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7ecec866cd8424b4abd735044bf1b226, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  difficulty: 1
+  difficulty: 2
   difficultySettings:
   - difficulty: 0
     survivalTime: 180
@@ -78362,3 +78667,8 @@ SceneRoots:
   - {fileID: 800621499}
   - {fileID: 1756223428}
   - {fileID: 1918398055}
+  - {fileID: 671890243}
+  - {fileID: 310692207}
+  - {fileID: 2005659419}
+  - {fileID: 213000606}
+  - {fileID: 120038062}
