@@ -22,7 +22,7 @@ public class EnemyMeat : EnemyBase
     protected override void Start()
     {
         base.Start();
-        Init(100f, 2f, 3, 5);
+        Init(40f, 2f, 3, 5);
     }
 
     public override void Skill1()

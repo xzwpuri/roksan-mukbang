@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public enum Difficulty
 {
@@ -29,6 +30,13 @@ public class GameManager : MonoBehaviour
     [Header("References")]
     [SerializeField] private EnemyGenerator enemyGenerator;
     [SerializeField] private Player player;
+    [SerializeField] private ScreenFadeTransition screenFadeTransition;
+
+    [Header("Scene Transitions")]
+    [SerializeField] private string gameOverSceneName = "GamePlayScene";
+    [SerializeField] private string gameClearSceneName = "GamePlayScene";
+    [SerializeField] private Color gameOverFadeColor = Color.black;
+    [SerializeField] private Color gameClearFadeColor = Color.white;
 
     [Header("Game State")]
     [SerializeField] private float remainingTime;
@@ -39,6 +47,12 @@ public class GameManager : MonoBehaviour
     public float RemainingTime => remainingTime;
     public float SurvivalTime => activeSetting?.survivalTime ?? remainingTime;
     public bool IsGameActive => isGameActive;
+
+    private void Awake()
+    {
+        if (screenFadeTransition == null)
+            screenFadeTransition = FindObjectOfType<ScreenFadeTransition>();
+    }
 
     private void Start()
     {
@@ -105,7 +119,7 @@ public class GameManager : MonoBehaviour
     private void HandleGameOver()
     {
         if (isGameOver)
-            return;
+           return;
 
         isGameOver = true;
         isGameActive = false;
@@ -115,13 +129,25 @@ public class GameManager : MonoBehaviour
         }
         Debug.Log("Game Over");
         // TODO: 게임 오버 UI/씬 전환 처리
+        string targetScene = string.IsNullOrEmpty(gameOverSceneName)
+                ? SceneManager.GetActiveScene().name
+                : gameOverSceneName;
+
+        if (screenFadeTransition != null)
+        {
+            screenFadeTransition.FadeToScene(gameOverFadeColor, targetScene);
+        }
+        else
+        {
+            SceneManager.LoadScene(targetScene);
+        }
     }
 
     private void HandleGameClear()
     {
         if (isGameOver)
             return;
-
+        
         isGameOver = true;
         isGameActive = false;
         if (enemyGenerator != null)
@@ -130,5 +156,17 @@ public class GameManager : MonoBehaviour
         }
         Debug.Log("Game Clear");
         // TODO: 클리어 연출 및 다음 단계 처리
+        string targetScene = string.IsNullOrEmpty(gameClearSceneName)
+            ? SceneManager.GetActiveScene().name
+            : gameClearSceneName;
+
+        if (screenFadeTransition != null)
+        {
+            screenFadeTransition.FadeToScene(gameClearFadeColor, targetScene);
+        }
+        else
+        {
+            SceneManager.LoadScene(targetScene);
+        }
     }
 }

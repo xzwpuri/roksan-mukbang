@@ -21,7 +21,7 @@ public class EnemyIcecream : EnemyBase
     protected override void Start()
     {
         base.Start();
-        Init(80f, 1.5f, 1, 4);
+        Init(70f, 1.5f, 1, 4);
     }
 
     public override void Skill1()

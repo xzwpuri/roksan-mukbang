@@ -20,7 +20,7 @@ public class EnemyBungeobbang : EnemyBase
     protected override void Start()
     {
         base.Start();
-        Init(60f, 2.0f, 3, 1);
+        Init(40f, 2.0f, 3, 1);
     }
 
     public override void Skill1()

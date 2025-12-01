@@ -20,7 +20,7 @@ public class EnemyCoke : EnemyBase
     protected override void Start()
     {
         base.Start();
-        Init(30f, 3.0f, 1, 2);
+        Init(20f, 3.0f, 1, 2);
     }
 
     public override void Skill1()

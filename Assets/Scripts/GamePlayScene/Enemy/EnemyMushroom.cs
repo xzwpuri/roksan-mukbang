@@ -21,7 +21,7 @@ public class EnemyMushroom : EnemyBase
     protected override void Start()
     {
         base.Start();
-        Init(60f, 1.8f, 2, 6);
+        Init(80f, 1.8f, 2, 6);
     }
 
     public override void Skill1()

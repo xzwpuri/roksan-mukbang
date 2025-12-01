@@ -24702,6 +24702,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2035896470}
   - component: {fileID: 2035896469}
+  - component: {fileID: 2035896471}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -24743,6 +24744,11 @@ MonoBehaviour:
     enemyMoveSpeedMultiplier: 1.25
   enemyGenerator: {fileID: 1972087738}
   player: {fileID: 2004273284}
+  screenFadeTransition: {fileID: 0}
+  gameOverSceneName: GamePlayScene
+  gameClearSceneName: GamePlayScene
+  gameOverFadeColor: {r: 0, g: 0, b: 0, a: 1}
+  gameClearFadeColor: {r: 1, g: 1, b: 1, a: 1}
   remainingTime: 0
 --- !u!4 &2035896470
 Transform:
@@ -24759,6 +24765,43 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2035896471
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2035896468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7013159ac197ee041a9ca7d1a8d68126, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadeDuration: 1.5
+  fadeCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
