@@ -301,10 +301,10 @@ public class Player : MonoBehaviour, IUnit
         if (Time.time < rootImmunityEndTime)
             return;
 
-        // 이미 속박 중이면 기존 지속시간만 연장
+        // 이미 속박 중이면 추가 적용을 막아 무한 속박을 방지한다.
+        // (해제 후 rootImmunityDuration 동안 재적용이 차단된다.)
         if (isRooted)
         {
-            rootEndTime = Mathf.Max(rootEndTime, Time.time + duration);
             return;
         }
 
