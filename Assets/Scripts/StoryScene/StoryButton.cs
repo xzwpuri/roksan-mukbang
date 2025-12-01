@@ -4,19 +4,9 @@ using UnityEngine.SceneManagement;
 
 public class StoryButton : MonoBehaviour
 {
-    IEnumerator Async(string async)
+    public void LoadScene(string scene)
     {
-        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(async);
-
-        while (!asyncLoad.isDone)
-        {
-            yield return null;
-        }
-    }
-
-    public void LoadStory(string scene)
-    {
-        StartCoroutine(Async(scene));
+        SceneManager.LoadScene(scene);
     }
 
     public void QuitStory()
