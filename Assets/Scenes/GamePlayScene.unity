@@ -24272,9 +24272,9 @@ MonoBehaviour:
   - {fileID: 212469720259475431, guid: 0ae8eb47273e9ab499135152624b4588, type: 3}
   - {fileID: 3693513577239947695, guid: ea1aca76516b0f44cb08f90b96d7ead2, type: 3}
   - {fileID: 9037874778687872641, guid: 212f308bab97cc742a6e8e9685b24eee, type: 3}
-  minSpawnDistance: 6
+  minSpawnDistance: 10
   distancePadding: 3
-  spawnInterval: 3
+  spawnInterval: 5
   baseSpawnCount: 3
   enemyHpMultiplier: 1
   enemyMoveSpeedMultiplier: 1
@@ -24467,6 +24467,7 @@ MonoBehaviour:
   SpriteRenderer: {fileID: 0}
   MoveTarget: {x: 0, y: 0}
   mspeed: 0
+  damageTextColor: {r: 0.95, g: 0.2, b: 0.2, a: 1}
   swallowPrefabsByStomach:
   - {fileID: 0}
   - {fileID: 2866600586310087395, guid: 4d03fded63d6fd24198d6cc0b37a12e4, type: 3}
@@ -24738,8 +24739,8 @@ MonoBehaviour:
     survivalTime: 480
     spawnInterval: 5
     baseSpawnCount: 3
-    enemyHpMultiplier: 2
-    enemyMoveSpeedMultiplier: 1.5
+    enemyHpMultiplier: 1.5
+    enemyMoveSpeedMultiplier: 1.25
   enemyGenerator: {fileID: 1972087738}
   player: {fileID: 2004273284}
   remainingTime: 0
