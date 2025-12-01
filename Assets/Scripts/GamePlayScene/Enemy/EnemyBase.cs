@@ -24,6 +24,7 @@ public abstract class EnemyBase : MonoBehaviour, IUnit
 
     [Header("버프 FX 위치")]
     [SerializeField] protected Vector3 buffEffectOffset = new Vector3(0f, 1.2f, 0f);
+    [SerializeField] private Color damageTextColor = new Color(1f, 0.55f, 0.1f);
 
     public Transform Target { get; set; }
 
@@ -163,6 +164,10 @@ public abstract class EnemyBase : MonoBehaviour, IUnit
         float finalDamage = ElementCalculate.ApplyElementModifier(damage, attackerElement, Element);
 
         Hp -= finalDamage;
+        if (finalDamage > 0.01f)
+        {
+            FloatingDamageText.Spawn(finalDamage, transform.position, damageTextColor);
+        }
 
         if (Hp <= 0f)
         {

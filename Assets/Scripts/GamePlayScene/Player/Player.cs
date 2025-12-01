@@ -64,6 +64,9 @@ public class Player : MonoBehaviour, IUnit
     [HideInInspector] public Vector2 MoveTarget;
     [HideInInspector] public float mspeed;
 
+    [Header("Damage Text")]
+    [SerializeField] private Color damageTextColor = new Color(0.95f, 0.2f, 0.2f);
+
     // ===============================
     //  Default Skill
     // ===============================
@@ -284,6 +287,10 @@ public class Player : MonoBehaviour, IUnit
         float finalDamage = ElementCalculate.ApplyElementModifier(damage, attackerElement, Element);
 
         Hp -= finalDamage;
+        if (finalDamage > 0.01f)
+        {
+            FloatingDamageText.Spawn(finalDamage, transform.position, damageTextColor);
+        }
         DamageFlash flash = GetComponent<DamageFlash>();
         if (flash != null)
             flash.PlayFlash();
