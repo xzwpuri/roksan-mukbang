@@ -31,6 +31,14 @@ public class GameManager : MonoBehaviour
     [SerializeField] private EnemyGenerator enemyGenerator;
     [SerializeField] private Player player;
     [SerializeField] private ScreenFadeTransition screenFadeTransition;
+    
+    [Header("Audio")]
+    [SerializeField] private AudioSource bgmSource;
+    [SerializeField] private AudioClip bgmClip;
+    [SerializeField] private AudioSource sfxSource;
+    [SerializeField] private AudioClip gameOverClip;
+    [SerializeField] private AudioClip gameClearClip;
+
 
     [Header("Scene Transitions")]
     [SerializeField] private string gameOverSceneName = "GamePlayScene";
@@ -50,6 +58,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+        EnsureAudioSources();
         if (screenFadeTransition == null)
             screenFadeTransition = FindObjectOfType<ScreenFadeTransition>();
     }
@@ -110,6 +119,7 @@ public class GameManager : MonoBehaviour
 
         isGameActive = true;
         isGameOver = false;
+        PlayBgm();
         if (enemyGenerator != null)
         {
             enemyGenerator.BeginSpawn();
@@ -127,6 +137,8 @@ public class GameManager : MonoBehaviour
         {
             enemyGenerator.StopSpawn();
         }
+        StopBgm();
+        PlaySfx(gameOverClip);
         Debug.Log("Game Over");
         // TODO: 게임 오버 UI/씬 전환 처리
         string targetScene = string.IsNullOrEmpty(gameOverSceneName)
@@ -154,6 +166,8 @@ public class GameManager : MonoBehaviour
         {
             enemyGenerator.StopSpawn();
         }
+        StopBgm();
+        PlaySfx(gameClearClip);
         Debug.Log("Game Clear");
         // TODO: 클리어 연출 및 다음 단계 처리
         string targetScene = string.IsNullOrEmpty(gameClearSceneName)
@@ -168,5 +182,48 @@ public class GameManager : MonoBehaviour
         {
             SceneManager.LoadScene(targetScene);
         }
+    }
+    
+    private void EnsureAudioSources()
+    {
+        if (bgmSource == null)
+        {
+            bgmSource = gameObject.AddComponent<AudioSource>();
+            bgmSource.playOnAwake = false;
+            bgmSource.loop = true;
+        }
+
+        if (sfxSource == null)
+        {
+            sfxSource = gameObject.AddComponent<AudioSource>();
+            sfxSource.playOnAwake = false;
+            sfxSource.loop = false;
+        }
+    }
+    private void PlayBgm()
+    {
+        if (bgmSource == null || bgmClip == null)
+            return;
+
+        bgmSource.clip = bgmClip;
+        bgmSource.loop = true;
+        if (!bgmSource.isPlaying)
+            bgmSource.Play();
+    }
+
+    private void StopBgm()
+    {
+        if (bgmSource == null)
+            return;
+
+        bgmSource.Stop();
+    }
+
+    private void PlaySfx(AudioClip clip)
+    {
+        if (sfxSource == null || clip == null)
+            return;
+
+        sfxSource.PlayOneShot(clip);
     }
 }
