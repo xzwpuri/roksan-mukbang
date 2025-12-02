@@ -73,7 +73,7 @@ public class EnemyIcecream : EnemyBase
     {
         float originalSpeed = MoveSpeed;
         MoveSpeed = originalSpeed * iceCreamESlowMultiplier;
-        Hp = Mathf.Min(Hp + iceCreamEHealAmount, 80f);
+        Hp = Mathf.Min(Hp + iceCreamEHealAmount, 70f);
 
         SpawnBuffEffect(iceCreamEPrefab);
 

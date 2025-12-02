@@ -136,13 +136,15 @@ MonoBehaviour:
   moveSpeed: 0
   element: 0
   stomach: 0
-  chaseRange: 1000
+  chaseRange: 100000
   stopDistance: 1
   skill1Range: 10
   skill2Range: 2
   skill1Cooldown: 3
   skill2Cooldown: 7
   buffEffectOffset: {x: 0, y: 1.2, z: 0}
+  damageTextColor: {r: 1, g: 0.55, b: 0.1, a: 1}
+  rootImmunityDuration: 0.5
   Rigidbody2D: {fileID: 0}
   Animator: {fileID: 0}
   SpriteRenderer: {fileID: 0}

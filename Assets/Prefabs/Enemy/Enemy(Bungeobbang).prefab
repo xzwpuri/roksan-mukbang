@@ -109,7 +109,7 @@ MonoBehaviour:
   moveSpeed: 0
   element: 0
   stomach: 0
-  chaseRange: 1000
+  chaseRange: 100000
   stopDistance: 8
   skill1Range: 10
   skill2Range: 100
@@ -125,7 +125,7 @@ MonoBehaviour:
   bungeobbangWUpgradedPrefab: {fileID: 1364770963693114574, guid: 8f7f7e27c49af4777be03ba50b87bd5f, type: 3}
   bungeobbangEPrefab: {fileID: 4787345245438277747, guid: 5ef4a30b74b16e8439f6c8c369b99126, type: 3}
   bungeobbangWSpeed: 5
-  bungeobbangWReach: 20
+  bungeobbangWReach: 30
   bungeobbangWRadius: 0.7
 --- !u!50 &1068391168809417534
 Rigidbody2D:

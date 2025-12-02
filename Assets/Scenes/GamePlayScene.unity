@@ -24041,7 +24041,7 @@ MonoBehaviour:
   - {fileID: 212469720259475431, guid: 0ae8eb47273e9ab499135152624b4588, type: 3}
   - {fileID: 3693513577239947695, guid: ea1aca76516b0f44cb08f90b96d7ead2, type: 3}
   - {fileID: 9037874778687872641, guid: 212f308bab97cc742a6e8e9685b24eee, type: 3}
-  minSpawnDistance: 10
+  minSpawnDistance: 13
   distancePadding: 3
   spawnInterval: 5
   baseSpawnCount: 3
@@ -24480,7 +24480,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &2035896469
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24493,7 +24493,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ecec866cd8424b4abd735044bf1b226, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  difficulty: 0
+  difficulty: 1
   difficultySettings:
   - difficulty: 0
     survivalTime: 90

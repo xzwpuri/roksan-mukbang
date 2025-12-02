@@ -109,7 +109,7 @@ MonoBehaviour:
   moveSpeed: 0
   element: 0
   stomach: 0
-  chaseRange: 1000
+  chaseRange: 100000
   stopDistance: 4
   skill1Range: 10
   skill2Range: 3.5
@@ -124,7 +124,7 @@ MonoBehaviour:
   waterWPrefab: {fileID: 1364770963693114574, guid: 0eec5ddff80a9495d8f591589cdea25c, type: 3}
   waterEPrefab: {fileID: 1364770963693114574, guid: 20d5954195afd4f829bbbc738b870548, type: 3}
   waterWSpeed: 5
-  waterWReach: 20
+  waterWReach: 30
   waterWRadius: 0.5
   waterWInterval: 0.1
   waterWCount: 3

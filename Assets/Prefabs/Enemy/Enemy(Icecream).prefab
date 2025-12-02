@@ -237,7 +237,7 @@ MonoBehaviour:
   moveSpeed: 0
   element: 0
   stomach: 0
-  chaseRange: 1000
+  chaseRange: 100000
   stopDistance: 6
   skill1Range: 7
   skill2Range: 100
@@ -252,7 +252,7 @@ MonoBehaviour:
   iceCreamWPrefab: {fileID: 1364770963693114574, guid: 0a3cc6fd26ccb41b99e22e696acd554a, type: 3}
   iceCreamEPrefab: {fileID: 7275162531901572798, guid: 141762600fcee20488603cbb4ac9233c, type: 3}
   iceCreamWSpeed: 5
-  iceCreamWReach: 20
+  iceCreamWReach: 50
   iceCreamWRadius: 0.6
   iceCreamESlowDuration: 3
   iceCreamESlowMultiplier: 0.5
