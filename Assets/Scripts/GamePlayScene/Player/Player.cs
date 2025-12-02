@@ -403,7 +403,80 @@ public class Player : MonoBehaviour, IUnit
 
         Instantiate(effectPrefab, transform.position + buffEffectOffset, Quaternion.identity, transform);
     }
+    
+    [Header("Animation Names")]
+    [SerializeField] private string qSkillStateName = "PlayerSwallow"; // Animator 상태 이름
+    [SerializeField] private int qSkillLayer = 0;                // 기본 레이어면 0
 
+    private Coroutine qAnimCoroutine;
+
+    /// ===============================
+    /// Q 스킬 애니메이션을 한 번 재생하고,
+    /// 끝나면 현재 FSM 상태(Idle/Move)에 맞는 애니메이션으로 돌려보낸다.
+    /// ===============================
+    public void PlayQAnimationOnce()
+    {
+        if (qAnimCoroutine != null)
+            StopCoroutine(qAnimCoroutine);
+
+        qAnimCoroutine = StartCoroutine(QAnimationRoutine());
+    }
+
+    private IEnumerator QAnimationRoutine()
+    {
+        // 혹시 남아있을 수 있는 트리거들 정리
+        Animator.ResetTrigger("Idle");
+        Animator.ResetTrigger("Move");
+        Animator.ResetTrigger("QSkill");
+
+        // Q_Skill 상태를 0초 위치부터 강제로 재생
+        Animator.Play(qSkillStateName, qSkillLayer, 0f);
+
+        // 애니메이션 클립 길이 찾기 (없으면 기본값 0.5초)
+        float length = 0.3f;
+        var clips = Animator.runtimeAnimatorController.animationClips;
+        foreach (var clip in clips)
+        {
+            if (clip.name == qSkillStateName)
+            {
+                length = clip.length;
+                break;
+            }
+        }
+
+        // 길이만큼 대기
+        yield return new WaitForSeconds(length);
+
+        // ✅ Q 끝난 시점에 "실제로 움직이는지" 보고 결정
+        bool isMoving = false;
+        if (Rigidbody2D != null)
+        {
+            // 너가 linearVelocityX/Y 쓰고 있으니까 그대로 씀
+            Vector2 v = Rigidbody2D.linearVelocity;
+            if (v.sqrMagnitude > 0.0001f)
+                isMoving = true;
+        }
+
+        if (isMoving)
+        {
+            // 이미 MoveState로 넘어가서 속도 나가고 있으면 → Move 애니메이션으로
+            Animator.SetTrigger("Move");
+        }
+        else
+        {
+            // 안 움직이면 → Idle 애니메이션으로
+            Animator.SetTrigger("Idle");
+        }
+
+        qAnimCoroutine = null;
+    }
+
+
+
+    /// ===============================
+    /// 데미지 테스트용
+    /// ===============================
+    
     [ContextMenu("Test Take 10 Damage")]
     public void TestTake10Damage()
     {

@@ -46,7 +46,14 @@ public class SkillCaster : MonoBehaviour
                 return;
             }
 
-            TryCast(ref nextQTime, qCooldown, () => SkillLibrary.Q_Fixed(owner));
+            TryCast(ref nextQTime, qCooldown, () =>
+            {
+                // ✅ Q 애니메이션 한 번 재생
+                owner.PlayQAnimationOnce();
+
+                // 실제 Q 스킬 로직 (시체 삼키기)
+                SkillLibrary.Q_Fixed(owner);
+            });
         };
         onR = () =>
         {

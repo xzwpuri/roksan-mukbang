@@ -251,6 +251,7 @@ public static class SkillLibrary
         // 삭제
         if (closestTarget != null)
             Object.Destroy(closestTarget.gameObject);
+        self.Animator.SetTrigger("Idle");
     }
 
     // ===========================
