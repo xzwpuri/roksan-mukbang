@@ -61,6 +61,8 @@ public class GameManager : MonoBehaviour
         EnsureAudioSources();
         if (screenFadeTransition == null)
             screenFadeTransition = FindObjectOfType<ScreenFadeTransition>();
+        
+        difficulty = GameConfig.SelectedDifficulty;
     }
 
     private void Start()
