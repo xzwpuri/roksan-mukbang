@@ -237,7 +237,7 @@ MonoBehaviour:
   moveSpeed: 0
   element: 0
   stomach: 0
-  chaseRange: 100000
+  chaseRange: 17
   stopDistance: 2
   runningDistance: 20
   skill1Range: 4

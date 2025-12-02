@@ -237,11 +237,11 @@ MonoBehaviour:
   moveSpeed: 0
   element: 0
   stomach: 0
-  chaseRange: 100000
+  chaseRange: 17
   stopDistance: 5
   runningDistance: 20
   skill1Range: 7
-  skill2Range: 20
+  skill2Range: 15
   skill1Cooldown: 0.3
   skill2Cooldown: 5
   buffEffectOffset: {x: 0, y: 1.2, z: 0}
