@@ -13,6 +13,7 @@ public abstract class EnemyBase : MonoBehaviour, IUnit
     [Header("AI 공통 옵션")]
     [SerializeField] protected float chaseRange = 1000f;  // 추격 시작/유지 거리
     [SerializeField] protected float stopDistance = 2f;   // ✅ 유지하고 싶은 거리(링 중심)
+    [SerializeField] protected float runningDistance = 8f; // 이 거리보다 멀어지면 달리기 속도
     
     [Header("스킬 사거리")]
     [SerializeField] protected float skill1Range = 4f;    // 1번 스킬 사거리
@@ -59,7 +60,8 @@ public abstract class EnemyBase : MonoBehaviour, IUnit
 
     // AI 관련 프로퍼티
     public float ChaseRange     => chaseRange;
-    public float StopDistance   => stopDistance;              // ✅ 원하는 거리
+    public float StopDistance   => stopDistance;
+    public float RunningDistance => runningDistance;
     public float Skill1Range    => skill1Range;
     public float Skill2Range    => skill2Range;
     public float Skill1Cooldown => skill1Cooldown;

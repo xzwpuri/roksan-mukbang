@@ -24593,7 +24593,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ecec866cd8424b4abd735044bf1b226, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  difficulty: 1
+  difficulty: 2
   difficultySettings:
   - difficulty: 0
     survivalTime: 90

@@ -41,9 +41,13 @@ public class EnemyMoveState : State<EnemyBase>
 
         // 그 외: 스킬 안 닿을 정도로 멀다 → stopDistance까지 접근
         Vector2 dir = (targetPos - pos).normalized;
-
+		float moveSpeed = owner.MoveSpeed;
+        if (dist > owner.RunningDistance)
+        {
+            moveSpeed *= 3f;
+        }
         if (owner.Rigidbody2D != null)
-            owner.Rigidbody2D.linearVelocity = dir * owner.MoveSpeed;
+            owner.Rigidbody2D.linearVelocity = dir * moveSpeed;
     }
 
     public override void Exit(EnemyBase owner)
