@@ -238,7 +238,7 @@ public class Player : MonoBehaviour, IUnit
     private void Start()
     {
         // 초기 값 세팅
-        Init(100f, 5f, 0, 0);
+        Init(100f, 4.5f, 0, 0);
         previousStomach = stomach;
 
         mspeed = MoveSpeed;
