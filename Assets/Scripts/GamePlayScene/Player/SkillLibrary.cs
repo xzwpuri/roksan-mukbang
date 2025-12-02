@@ -14,17 +14,26 @@ public static class SkillLibrary
     {
         if (c == null) return;
 
+        // ✅ 1. 모든 버프/디버프 즉시 제거
+        c.ClearAllBuffsAndDebuffs();
+
+        // ✅ 2. 궁 이펙트 생성
         if (c.rSkillPrefab == null)
         {
             Debug.LogWarning("[R] R 스킬 프리팹이 설정되지 않았습니다.");
-            return;
+        }
+        else
+        {
+            Object.Instantiate(c.rSkillPrefab, c.transform.position, Quaternion.identity);
         }
 
-        Object.Instantiate(c.rSkillPrefab, c.transform.position, Quaternion.identity);
+        // ✅ 3. 속성/스토마치 초기화
         c.Element = 0;
         c.Setstomach(0);
-        Debug.Log("[R] 궁극기 발동: 속성 및 스토마치 초기화, R 스킬 생성");
+
+        Debug.Log("[R] 궁극기 발동: 모든 버프·디버프 제거 + 속성/스토마치 초기화");
     }
+
 
     // ===========================
     //  W/E 기본 스킬 (Stomach 0)

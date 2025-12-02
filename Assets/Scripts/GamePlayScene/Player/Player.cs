@@ -276,6 +276,7 @@ public class Player : MonoBehaviour, IUnit
         maxHp = hp;
         Hp = hp;
         MoveSpeed = moveSpeed;
+        mspeed = moveSpeed;
         Element = element;
         Stomach = stomach;
         Setstomach(stomach);
@@ -389,6 +390,44 @@ public class Player : MonoBehaviour, IUnit
         iceCreamSlowCoroutine = StartCoroutine(coroutine);
     }
 
+    public void ClearAllBuffsAndDebuffs()
+    {
+        // === 버프·디버프 코루틴 정지 ===
+
+        if (colaSpeedBuffCoroutine != null)
+        {
+            StopCoroutine(colaSpeedBuffCoroutine);
+            colaSpeedBuffCoroutine = null;
+        }
+
+        if (iceCreamSlowCoroutine != null)
+        {
+            StopCoroutine(iceCreamSlowCoroutine);
+            iceCreamSlowCoroutine = null;
+        }
+
+        if (mushroomHealCoroutine != null)
+        {
+            StopCoroutine(mushroomHealCoroutine);
+            mushroomHealCoroutine = null;
+        }
+
+        // === 속박(root)도 끊어주기 (선택이지만 보통 궁 쓰면 풀려야 깔끔함) ===
+        if (rootCoroutine != null)
+        {
+            StopCoroutine(rootCoroutine);
+            rootCoroutine = null;
+        }
+        isRooted = false;
+        rootEndTime = 0f;
+        // rootImmunityEndTime은 그대로 두거나, 원하면 여기서 갱신해도 됨.
+        // rootImmunityEndTime = Time.time + rootImmunityDuration;
+
+        // === 이동속도 원래 값으로 복구 ===
+        MoveSpeed = mspeed;   // mspeed는 Start/Init에서 저장해둔 기본 이동속도
+    }
+
+    
     public void StartMushroomHeal(IEnumerator coroutine)
     {
         if (mushroomHealCoroutine != null)
@@ -470,8 +509,6 @@ public class Player : MonoBehaviour, IUnit
 
         qAnimCoroutine = null;
     }
-
-
 
     /// ===============================
     /// 데미지 테스트용
