@@ -24621,8 +24621,8 @@ MonoBehaviour:
   sfxSource: {fileID: 0}
   gameOverClip: {fileID: 8300000, guid: c8a3fe17a6641ec48b38fb455a40a223, type: 3}
   gameClearClip: {fileID: 8300000, guid: 2c4bc183a5df5aa4baf7c4fcf236a2de, type: 3}
-  gameOverSceneName: GamePlayScene
-  gameClearSceneName: GamePlayScene
+  gameOverSceneName: GameOver
+  gameClearSceneName: GameClear
   gameOverFadeColor: {r: 0, g: 0, b: 0, a: 1}
   gameClearFadeColor: {r: 1, g: 1, b: 1, a: 1}
   remainingTime: 0
