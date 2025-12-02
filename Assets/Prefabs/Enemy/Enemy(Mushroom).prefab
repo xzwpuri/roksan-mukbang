@@ -245,6 +245,8 @@ MonoBehaviour:
   skill2Cooldown: 15
   buffEffectOffset: {x: 0, y: 1.2, z: 0}
   damageTextColor: {r: 1, g: 0.55, b: 0.1, a: 1}
+  sfxSource: {fileID: 0}
+  hitClip: {fileID: 8300000, guid: 0bddcb411d826e14bb26d40ae45d8e22, type: 3}
   rootImmunityDuration: 0.5
   Rigidbody2D: {fileID: 0}
   Animator: {fileID: 0}

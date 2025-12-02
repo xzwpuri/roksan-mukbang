@@ -24041,7 +24041,7 @@ MonoBehaviour:
   - {fileID: 212469720259475431, guid: 0ae8eb47273e9ab499135152624b4588, type: 3}
   - {fileID: 3693513577239947695, guid: ea1aca76516b0f44cb08f90b96d7ead2, type: 3}
   - {fileID: 9037874778687872641, guid: 212f308bab97cc742a6e8e9685b24eee, type: 3}
-  minSpawnDistance: 13
+  minSpawnDistance: 10
   distancePadding: 3
   spawnInterval: 5
   baseSpawnCount: 3
@@ -24237,6 +24237,8 @@ MonoBehaviour:
   MoveTarget: {x: 0, y: 0}
   mspeed: 0
   damageTextColor: {r: 0.95, g: 0.2, b: 0.2, a: 1}
+  sfxSource: {fileID: 0}
+  hitClip: {fileID: 8300000, guid: 6b7eaf4532a2f614595ad58d2b86efc4, type: 3}
   swallowPrefabsByStomach:
   - {fileID: 0}
   - {fileID: 2866600586310087395, guid: 4d03fded63d6fd24198d6cc0b37a12e4, type: 3}
@@ -24516,6 +24518,11 @@ MonoBehaviour:
   enemyGenerator: {fileID: 1972087738}
   player: {fileID: 2004273284}
   screenFadeTransition: {fileID: 0}
+  bgmSource: {fileID: 0}
+  bgmClip: {fileID: 8300000, guid: 4559935c00ef8e94b846e2e03e39f0d0, type: 3}
+  sfxSource: {fileID: 0}
+  gameOverClip: {fileID: 8300000, guid: c8a3fe17a6641ec48b38fb455a40a223, type: 3}
+  gameClearClip: {fileID: 8300000, guid: 2c4bc183a5df5aa4baf7c4fcf236a2de, type: 3}
   gameOverSceneName: GamePlayScene
   gameClearSceneName: GamePlayScene
   gameOverFadeColor: {r: 0, g: 0, b: 0, a: 1}

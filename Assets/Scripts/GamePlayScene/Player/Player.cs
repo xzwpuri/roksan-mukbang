@@ -67,6 +67,11 @@ public class Player : MonoBehaviour, IUnit
     [Header("Damage Text")]
     [SerializeField] private Color damageTextColor = new Color(0.95f, 0.2f, 0.2f);
 
+	[Header("Audio")]
+    [SerializeField] private AudioSource sfxSource;
+    [SerializeField] private AudioClip hitClip;
+
+
     // ===============================
     //  Default Skill
     // ===============================
@@ -233,6 +238,25 @@ public class Player : MonoBehaviour, IUnit
         Rigidbody2D = GetComponent<Rigidbody2D>();
         Animator = GetComponent<Animator>();
         SpriteRenderer = GetComponent<SpriteRenderer>();
+
+        EnsureAudioSource();
+    }
+
+    private void EnsureAudioSource()
+    {
+        if (sfxSource == null)
+        {
+            sfxSource = GetComponent<AudioSource>();
+            if (sfxSource == null)
+            {
+                sfxSource = gameObject.AddComponent<AudioSource>();
+            }
+        }
+
+        sfxSource.playOnAwake = false;
+        sfxSource.loop = false;
+		sfxSource.spatialBlend = 0f; // 2D
+    	sfxSource.volume = 1f;       // 피격음은 쎄게
     }
 
     private void Start()
@@ -291,6 +315,7 @@ public class Player : MonoBehaviour, IUnit
         if (finalDamage > 0.01f)
         {
             FloatingDamageText.Spawn(finalDamage, transform.position, damageTextColor);
+			PlayHitSfx();
         }
         DamageFlash flash = GetComponent<DamageFlash>();
         if (flash != null)
@@ -302,6 +327,15 @@ public class Player : MonoBehaviour, IUnit
             // TODO: 죽는 상태로 State 변경 등
             // StateMachine.ChangeState(States[StateType.Dead]);
         }
+    }
+
+	private void PlayHitSfx()
+    {
+        if (hitClip == null)
+            return;
+
+        EnsureAudioSource();
+        sfxSource.PlayOneShot(hitClip);
     }
 
     /// <summary>
@@ -525,5 +559,11 @@ public class Player : MonoBehaviour, IUnit
     {
         Hp += 10f; // 프로퍼티 통해서 회복 → 이벤트 나감
     }
+
+	[ContextMenu("Test Sound")]
+	public void TestPlayHitSfxOnly()
+	{
+    	PlayHitSfx();
+	}
 
 }

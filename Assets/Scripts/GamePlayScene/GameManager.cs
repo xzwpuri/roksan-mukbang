@@ -199,6 +199,9 @@ public class GameManager : MonoBehaviour
             sfxSource.playOnAwake = false;
             sfxSource.loop = false;
         }
+
+		bgmSource.volume = 0.4f; // BGM은 약간 낮게
+    	sfxSource.volume = 0.8f; // 게임오버/클리어 SFX
     }
     private void PlayBgm()
     {

@@ -25,6 +25,10 @@ public abstract class EnemyBase : MonoBehaviour, IUnit
     [Header("버프 FX 위치")]
     [SerializeField] protected Vector3 buffEffectOffset = new Vector3(0f, 1.2f, 0f);
     [SerializeField] private Color damageTextColor = new Color(1f, 0.55f, 0.1f);
+    
+    [Header("Audio")]
+    [SerializeField] private AudioSource sfxSource;
+    [SerializeField] private AudioClip hitClip;
 
     public Transform Target { get; set; }
 
@@ -85,6 +89,7 @@ public abstract class EnemyBase : MonoBehaviour, IUnit
         Rigidbody2D = GetComponent<Rigidbody2D>();
         Animator     = GetComponent<Animator>();
         SpriteRenderer = GetComponent<SpriteRenderer>();
+        EnsureAudioSource();
     }
 
     protected virtual void Start()
@@ -167,6 +172,7 @@ public abstract class EnemyBase : MonoBehaviour, IUnit
         if (finalDamage > 0.01f)
         {
             FloatingDamageText.Spawn(finalDamage, transform.position, damageTextColor);
+            PlayHitSfx();
         }
 
         if (Hp <= 0f)
@@ -179,6 +185,32 @@ public abstract class EnemyBase : MonoBehaviour, IUnit
         DamageFlash flash = GetComponent<DamageFlash>();
         if (flash != null)
             flash.PlayFlash();
+    }
+
+    private void EnsureAudioSource()
+    {
+        if (sfxSource == null)
+        {
+            sfxSource = GetComponent<AudioSource>();
+            if (sfxSource == null)
+            {
+                sfxSource = gameObject.AddComponent<AudioSource>();
+            }
+        }
+
+        sfxSource.playOnAwake = false;
+        sfxSource.loop = false;
+        sfxSource.spatialBlend = 0f; // 2D
+        sfxSource.volume = 1f;       // 피격음은 쎄게
+    }
+
+    private void PlayHitSfx()
+    {
+        if (hitClip == null)
+            return;
+
+        EnsureAudioSource();
+        sfxSource.PlayOneShot(hitClip);
     }
 
     public abstract void Skill1();
