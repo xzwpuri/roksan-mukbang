@@ -1,0 +1,486 @@
+fileFormatVersion: 2
+guid: 2d132aa69b8558e4f9c8457fd016f69e
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 647933601242728902
+    second: CokeBomb_0
+  - first:
+      213: -6466809508886085913
+    second: CokeBomb_1
+  - first:
+      213: -1010921146522322993
+    second: CokeBomb_2
+  - first:
+      213: 6116048970939779214
+    second: CokeBomb_3
+  - first:
+      213: -421562873372588966
+    second: CokeBomb_4
+  - first:
+      213: 5140131530091222277
+    second: CokeBomb_5
+  - first:
+      213: 5612545353223716079
+    second: CokeBomb_6
+  - first:
+      213: -6077841131185558422
+    second: CokeBomb_7
+  - first:
+      213: 3372121967235049863
+    second: CokeBomb_8
+  - first:
+      213: 149038126321135375
+    second: CokeBomb_9
+  - first:
+      213: 7834560668593221550
+    second: CokeBomb_10
+  - first:
+      213: -7917392156433530524
+    second: CokeBomb_11
+  - first:
+      213: -2236156982225449162
+    second: CokeBomb_12
+  - first:
+      213: 5392412452777896758
+    second: CokeBomb_13
+  - first:
+      213: 4942452521042831535
+    second: CokeBomb_14
+  - first:
+      213: -4855672998819896140
+    second: CokeBomb_15
+  - first:
+      213: -5576134893831934606
+    second: CokeBomb_16
+  - first:
+      213: -8049604192184101105
+    second: CokeBomb_17
+  - first:
+      213: -3051898822796013038
+    second: CokeBomb_18
+  - first:
+      213: 2951247341224044061
+    second: CokeBomb_19
+  - first:
+      213: -2207894947147152476
+    second: CokeBomb_20
+  - first:
+      213: 8621928247476198587
+    second: CokeBomb_21
+  - first:
+      213: 3229005123998470898
+    second: CokeBomb_22
+  - first:
+      213: -8619843670387035458
+    second: CokeBomb_23
+  - first:
+      213: 2998072580397878515
+    second: CokeBomb_24
+  - first:
+      213: 7907081994008097035
+    second: CokeBomb_25
+  - first:
+      213: -7271672486686528316
+    second: CokeBomb_26
+  - first:
+      213: 1495837817402620825
+    second: CokeBomb_27
+  - first:
+      213: 2997858899397896383
+    second: CokeBomb_28
+  - first:
+      213: -7981898198996653179
+    second: CokeBomb_29
+  - first:
+      213: 6214775687920400458
+    second: CokeBomb_30
+  - first:
+      213: -6811444623627734403
+    second: CokeBomb_31
+  - first:
+      213: 3290299763607981864
+    second: CokeBomb_32
+  - first:
+      213: 6257695385693244412
+    second: CokeBomb_33
+  - first:
+      213: 4784267559206014063
+    second: CokeBomb_34
+  - first:
+      213: 4869959166354345542
+    second: CokeBomb_35
+  - first:
+      213: -4538877923070564817
+    second: CokeBomb_36
+  - first:
+      213: -2191187602168239786
+    second: CokeBomb_37
+  - first:
+      213: 2769306403393441417
+    second: CokeBomb_38
+  - first:
+      213: -3486868396008519349
+    second: CokeBomb_39
+  - first:
+      213: 2147738636163244614
+    second: CokeBomb_40
+  - first:
+      213: 8209805185937105192
+    second: CokeBomb_41
+  - first:
+      213: 3172760198781851383
+    second: CokeBomb_42
+  - first:
+      213: 8066810650734884606
+    second: CokeBomb_43
+  - first:
+      213: -6310024974416295168
+    second: CokeBomb_44
+  - first:
+      213: 4694561892640567964
+    second: CokeBomb_45
+  - first:
+      213: -2648435626040944911
+    second: CokeBomb_46
+  - first:
+      213: 4235653075797627313
+    second: CokeBomb_47
+  - first:
+      213: 7119276642560342291
+    second: CokeBomb_48
+  - first:
+      213: 172661832752087988
+    second: CokeBomb_49
+  - first:
+      213: -2115184418547886856
+    second: CokeBomb_50
+  - first:
+      213: -5451575231343510887
+    second: CokeBomb_51
+  - first:
+      213: 5128598068842700071
+    second: CokeBomb_52
+  - first:
+      213: 2738171673976578854
+    second: CokeBomb_53
+  - first:
+      213: 7098476652963422583
+    second: CokeBomb_54
+  - first:
+      213: -8026326926933038886
+    second: CokeBomb_55
+  - first:
+      213: -581717097635367812
+    second: CokeBomb_56
+  - first:
+      213: -8006693640638079074
+    second: CokeBomb_57
+  - first:
+      213: 6091698746933022773
+    second: CokeBomb_58
+  - first:
+      213: -1217358913077924340
+    second: CokeBomb_59
+  - first:
+      213: 6766921663653450461
+    second: CokeBomb_60
+  - first:
+      213: -1542158587571892119
+    second: CokeBomb_61
+  - first:
+      213: 5892169611620913028
+    second: CokeBomb_62
+  - first:
+      213: 2343929606891264931
+    second: CokeBomb_63
+  - first:
+      213: 4878664751727607001
+    second: CokeBomb_64
+  - first:
+      213: 1957301779438173541
+    second: CokeBomb_65
+  - first:
+      213: 7970357611395541085
+    second: CokeBomb_66
+  - first:
+      213: -2847513500005899205
+    second: CokeBomb_67
+  - first:
+      213: 6195846219742101031
+    second: CokeBomb_68
+  - first:
+      213: -9042431705934977490
+    second: CokeBomb_69
+  - first:
+      213: 9183907989448370818
+    second: CokeBomb_70
+  - first:
+      213: -2633739844717742051
+    second: CokeBomb_71
+  - first:
+      213: -145737855939315653
+    second: CokeBomb_72
+  - first:
+      213: -7782769281548694737
+    second: CokeBomb_73
+  - first:
+      213: 9069995115379777118
+    second: CokeBomb_74
+  - first:
+      213: 4929081612937524998
+    second: CokeBomb_75
+  - first:
+      213: 7375464408784513864
+    second: CokeBomb_76
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 128
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: CokeBomb_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 640
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6c9cc1c6d2cedf800800000000000000
+      internalID: 647933601242728902
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CokeBomb_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 512
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7eef9b8a3074146a0800000000000000
+      internalID: -6466809508886085913
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CokeBomb_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 384
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fc73b95c29c78f1f0800000000000000
+      internalID: -1010921146522322993
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CokeBomb_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 256
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e8842c5822290e450800000000000000
+      internalID: 6116048970939779214
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CokeBomb_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a54422adcce462af0800000000000000
+      internalID: -421562873372588966
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CokeBomb_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5055fdd946a655740800000000000000
+      internalID: 5140131530091222277
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 4d06874a72b61c7458a1c82330381df1
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      CokeBomb_0: 647933601242728902
+      CokeBomb_1: -6466809508886085913
+      CokeBomb_2: -1010921146522322993
+      CokeBomb_3: 6116048970939779214
+      CokeBomb_4: -421562873372588966
+      CokeBomb_5: 5140131530091222277
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

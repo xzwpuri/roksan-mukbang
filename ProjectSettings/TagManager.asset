@@ -3,7 +3,9 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 3
-  tags: []
+  tags:
+  - Enemy
+  - Dead
   layers:
   - Default
   - TransparentFX
@@ -11,8 +13,8 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
+  - Enemy
+  - Player
   - 
   - 
   - 
@@ -38,8 +40,29 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 934718893
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: SkillEffectBackBack
+    uniqueID: 2932430293
+    locked: 0
+  - name: SkillEffectBack
+    uniqueID: 324464139
+    locked: 0
+  - name: Enemy
+    uniqueID: 492907921
+    locked: 0
+  - name: SkillEffectMiddle
+    uniqueID: 1789790679
+    locked: 0
+  - name: Player
+    uniqueID: 663077639
+    locked: 0
+  - name: SkillEfffectFront
+    uniqueID: 3367317173
     locked: 0
   m_RenderingLayers:
   - Default
