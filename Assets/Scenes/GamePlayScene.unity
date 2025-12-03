@@ -24279,7 +24279,7 @@ MonoBehaviour:
   friesWUpgradedPrefab: {fileID: 1364770963693114574, guid: ed682865525d02d47a267deaf49dc166, type: 3}
   friesEPrefab: {fileID: 1281970145312543936, guid: 940645b849b235942b6c7a615d439f64, type: 3}
   friesWSpeed: 15
-  friesWReach: 20
+  friesWReach: 30
   iceCreamWPrefab: {fileID: 1364770963693114574, guid: 08dcb1048a3f3e94e8f19a90184f90c2, type: 3}
   iceCreamEPrefab: {fileID: 8799731597745138269, guid: dd64b16d3ef8f4743b820f7399464688, type: 3}
   iceCreamWSpeed: 12
@@ -24301,7 +24301,7 @@ MonoBehaviour:
   mushroomEPrefab: {fileID: 8486992300341388508, guid: 6b628409f7e91554c971ce3fc6075e7c, type: 3}
   mushroomWDuration: 6
   mushroomWRadius: 4.5
-  mushroomEHealDuration: 6
+  mushroomEHealDuration: 3
   mushroomEHealInterval: 0.5
   mushroomEHealPerTick: 3
   waterWPrefab: {fileID: 1364770963693114574, guid: e482ef3d2ef626544a36ec6cf07d42af, type: 3}

@@ -150,14 +150,14 @@ public class SkillCaster : MonoBehaviour
 
             case 6: // 버섯
                 wCooldown = 3.0f;
-                eCooldown = 7.0f;
+                eCooldown = 8.0f;
                 wAction = () => SkillLibrary.W_Mushroom(owner);
                 eAction = () => SkillLibrary.E_Mushroom(owner);
                 break;
 
             case 7: // 물
-                wCooldown = 0.3f;
-                eCooldown = 3.5f;
+                wCooldown = 0.5f;
+                eCooldown = 2.5f;
                 wAction = () => SkillLibrary.W_Water(owner);
                 eAction = () => SkillLibrary.E_Water(owner);
                 break;
