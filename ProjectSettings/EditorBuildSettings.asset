@@ -33,7 +33,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Strories/Story4.unity
     guid: 9c85d51e3bc2bc542a2be5a0e29aac7b
   - enabled: 1
-    path: Assets/Scenes/Strories/Story5.unity
+    path: Assets/Scenes/Strories/Story6.unity
     guid: 04e00200f8cfaf44c8090c5335d17a86
   - enabled: 1
     path: Assets/Scenes/GameClear.unity
