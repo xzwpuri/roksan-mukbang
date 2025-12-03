@@ -13,8 +13,14 @@ public class StartButton : MonoBehaviour
         SceneManager.LoadScene("Story1");
     }
 
-    public void OnClickQuit()
+    public void OnClickQuitGame()
     {
+        // 에디터에서 테스트할 때는 플레이 모드 해제
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        // 빌드된 게임에서는 앱 종료
         Application.Quit();
+#endif
     }
 }
