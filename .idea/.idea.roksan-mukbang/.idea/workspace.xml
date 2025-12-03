@@ -5,8 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a91db45a-adc1-4ac6-9ede-b12c222ca5b0" name="변경" comment="">
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/GameClear.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/GameClear.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/GameOver.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/GameOver.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.roksan-mukbang/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.roksan-mukbang/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GamePlayScene/GameUIController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GamePlayScene/GameUIController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/StartScene/RoksanUruru.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/StartScene/RoksanUruru.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -121,7 +122,7 @@
       <workItem from="1764547064689" duration="7939000" />
       <workItem from="1764633230305" duration="7954000" />
       <workItem from="1764642165583" duration="6101000" />
-      <workItem from="1764716384837" duration="2574000" />
+      <workItem from="1764716384837" duration="3757000" />
     </task>
     <servers />
   </component>

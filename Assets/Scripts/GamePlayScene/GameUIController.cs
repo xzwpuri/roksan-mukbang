@@ -108,7 +108,7 @@ public class GameUIController : MonoBehaviour
 
         if (text != null)
         {
-            text.text = remainingSeconds > 0.01f ? $"{remainingSeconds:0.0}s" : string.Empty;
+            text.text = remainingSeconds > 0.01f ? $"{remainingSeconds:0.0}" : string.Empty;
         }
     }
 }

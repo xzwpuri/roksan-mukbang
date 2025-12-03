@@ -3204,8 +3204,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "GAME \nCLEAR"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 2ab3e2c8936dd2e4499a1ca3c27afa7a, type: 2}
-  m_sharedMaterial: {fileID: -334791694987871668, guid: 2ab3e2c8936dd2e4499a1ca3c27afa7a, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: ab1367c96a2424242878e65f9fae02bf, type: 2}
+  m_sharedMaterial: {fileID: -2186963849552039895, guid: ab1367c96a2424242878e65f9fae02bf, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
