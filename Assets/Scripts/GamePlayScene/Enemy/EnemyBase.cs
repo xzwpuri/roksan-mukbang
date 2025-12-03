@@ -14,7 +14,14 @@ public abstract class EnemyBase : MonoBehaviour, IUnit
     [SerializeField] protected float chaseRange = 17f;  // 추격 시작/유지 거리
     [SerializeField] protected float stopDistance = 2f;   // ✅ 유지하고 싶은 거리(링 중심)
     [SerializeField] protected float runningDistance = 20f; // 이 거리보다 멀어지면 달리기 속도
-    
+
+    private bool hasRunBoost = false;
+    public bool HasRunBoost
+    {
+        get => hasRunBoost;
+        set => hasRunBoost = value;
+    }
+
     [Header("스킬 사거리")]
     [SerializeField] protected float skill1Range = 4f;    // 1번 스킬 사거리
     [SerializeField] protected float skill2Range = 6f;    // 2번 스킬 사거리

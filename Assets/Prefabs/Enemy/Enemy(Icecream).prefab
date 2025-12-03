@@ -239,7 +239,7 @@ MonoBehaviour:
   stomach: 0
   chaseRange: 17
   stopDistance: 6
-  runningDistance: 20
+  runningDistance: 30
   skill1Range: 7
   skill2Range: 15
   skill1Cooldown: 6
