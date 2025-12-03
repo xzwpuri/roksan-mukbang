@@ -54,6 +54,9 @@ public class Player : MonoBehaviour, IUnit
         set => stomach = value;
     }
 
+    // 🔒 외부에서 속박 상태 확인용
+    public bool IsRooted => isRooted;
+
     // === 기존 필드 ===
     public Dictionary<StateType, State<Player>> States;
     public StateMachine<Player> StateMachine;
@@ -67,7 +70,7 @@ public class Player : MonoBehaviour, IUnit
     [Header("Damage Text")]
     [SerializeField] private Color damageTextColor = new Color(0.95f, 0.2f, 0.2f);
 
-	[Header("Audio")]
+    [Header("Audio")]
     [SerializeField] private AudioSource sfxSource;
     [SerializeField] private AudioClip hitClip;
 
@@ -230,7 +233,6 @@ public class Player : MonoBehaviour, IUnit
     private bool isRooted = false;
     private float rootEndTime = 0f;
     private float rootImmunityEndTime = 0f;
-    private float rootedOriginalSpeed = 0f;
     private Coroutine rootCoroutine;
 
     private void Awake()
@@ -255,8 +257,8 @@ public class Player : MonoBehaviour, IUnit
 
         sfxSource.playOnAwake = false;
         sfxSource.loop = false;
-		sfxSource.spatialBlend = 0f; // 2D
-    	sfxSource.volume = 1f;       // 피격음은 쎄게
+        sfxSource.spatialBlend = 0f; // 2D
+        sfxSource.volume = 1f;       // 피격음은 쎄게
     }
 
     private void Start()
@@ -315,7 +317,7 @@ public class Player : MonoBehaviour, IUnit
         if (finalDamage > 0.01f)
         {
             FloatingDamageText.Spawn(finalDamage, transform.position, damageTextColor);
-			PlayHitSfx();
+            PlayHitSfx();
         }
         DamageFlash flash = GetComponent<DamageFlash>();
         if (flash != null)
@@ -329,7 +331,7 @@ public class Player : MonoBehaviour, IUnit
         }
     }
 
-	private void PlayHitSfx()
+    private void PlayHitSfx()
     {
         if (hitClip == null)
             return;
@@ -339,7 +341,8 @@ public class Player : MonoBehaviour, IUnit
     }
 
     /// <summary>
-    /// 속박 적용. 이미 속박 중이면 지속시간을 연장하고, 해제 직후 짧은 무적 시간 동안은 무시한다.
+    /// 속박 적용. 이미 속박 중이면 재적용 안 하고,
+    /// 해제 직후 짧은 무적 시간 동안은 무시한다.
     /// </summary>
     /// <param name="duration">속박 지속 시간</param>
     public void ApplyRoot(float duration)
@@ -347,17 +350,14 @@ public class Player : MonoBehaviour, IUnit
         if (duration <= 0f)
             return;
 
+        // 해제 후 무적 시간 동안은 무시
         if (Time.time < rootImmunityEndTime)
             return;
 
-        // 이미 속박 중이면 추가 적용을 막아 무한 속박을 방지한다.
-        // (해제 후 rootImmunityDuration 동안 재적용이 차단된다.)
+        // 이미 속박 중이면 추가 적용 막기
         if (isRooted)
-        {
             return;
-        }
 
-        rootedOriginalSpeed = MoveSpeed;
         rootEndTime = Time.time + duration;
 
         if (rootCoroutine != null)
@@ -369,19 +369,23 @@ public class Player : MonoBehaviour, IUnit
     private IEnumerator RootRoutine()
     {
         isRooted = true;
-        MoveSpeed = 0f;
 
+        // 속박 걸리는 순간 즉시 멈춤
         if (Rigidbody2D != null)
             Rigidbody2D.linearVelocity = Vector2.zero;
 
         while (Time.time < rootEndTime)
         {
+            // 속박 중에는 계속 속도를 0으로 유지
+            if (Rigidbody2D != null)
+                Rigidbody2D.linearVelocity = Vector2.zero;
+
             yield return null;
         }
 
-        MoveSpeed = rootedOriginalSpeed;
         isRooted = false;
         rootImmunityEndTime = Time.time + rootImmunityDuration;
+        rootCoroutine = null;
     }
 
     public void Setstomach(int newstomach)
@@ -446,7 +450,7 @@ public class Player : MonoBehaviour, IUnit
             mushroomHealCoroutine = null;
         }
 
-        // === 속박(root)도 끊어주기 (선택이지만 보통 궁 쓰면 풀려야 깔끔함) ===
+        // === 속박(root)도 끊어주기 ===
         if (rootCoroutine != null)
         {
             StopCoroutine(rootCoroutine);
@@ -454,14 +458,15 @@ public class Player : MonoBehaviour, IUnit
         }
         isRooted = false;
         rootEndTime = 0f;
-        // rootImmunityEndTime은 그대로 두거나, 원하면 여기서 갱신해도 됨.
-        // rootImmunityEndTime = Time.time + rootImmunityDuration;
+
+        if (Rigidbody2D != null)
+            Rigidbody2D.linearVelocity = Vector2.zero;
 
         // === 이동속도 원래 값으로 복구 ===
         MoveSpeed = mspeed;   // mspeed는 Start/Init에서 저장해둔 기본 이동속도
     }
 
-    
+
     public void StartMushroomHeal(IEnumerator coroutine)
     {
         if (mushroomHealCoroutine != null)
@@ -476,7 +481,7 @@ public class Player : MonoBehaviour, IUnit
 
         Instantiate(effectPrefab, transform.position + buffEffectOffset, Quaternion.identity, transform);
     }
-    
+
     [Header("Animation Names")]
     [SerializeField] private string qSkillStateName = "PlayerSwallow"; // Animator 상태 이름
     [SerializeField] private int qSkillLayer = 0;                // 기본 레이어면 0
@@ -524,7 +529,6 @@ public class Player : MonoBehaviour, IUnit
         bool isMoving = false;
         if (Rigidbody2D != null)
         {
-            // 너가 linearVelocityX/Y 쓰고 있으니까 그대로 씀
             Vector2 v = Rigidbody2D.linearVelocity;
             if (v.sqrMagnitude > 0.0001f)
                 isMoving = true;
@@ -532,12 +536,10 @@ public class Player : MonoBehaviour, IUnit
 
         if (isMoving)
         {
-            // 이미 MoveState로 넘어가서 속도 나가고 있으면 → Move 애니메이션으로
             Animator.SetTrigger("Move");
         }
         else
         {
-            // 안 움직이면 → Idle 애니메이션으로
             Animator.SetTrigger("Idle");
         }
 
@@ -545,9 +547,9 @@ public class Player : MonoBehaviour, IUnit
     }
 
     /// ===============================
-    /// 데미지 테스트용
+    /// 테스트용
     /// ===============================
-    
+
     [ContextMenu("Test Take 10 Damage")]
     public void TestTake10Damage()
     {
@@ -560,10 +562,9 @@ public class Player : MonoBehaviour, IUnit
         Hp += 10f; // 프로퍼티 통해서 회복 → 이벤트 나감
     }
 
-	[ContextMenu("Test Sound")]
-	public void TestPlayHitSfxOnly()
-	{
-    	PlayHitSfx();
-	}
-
+    [ContextMenu("Test Sound")]
+    public void TestPlayHitSfxOnly()
+    {
+        PlayHitSfx();
+    }
 }

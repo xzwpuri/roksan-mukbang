@@ -20,6 +20,16 @@ public class PlayerMoveState : State<Player>
 
     public override void Update(Player owner)
     {
+        if (owner.IsRooted)
+        {
+            if (owner.Rigidbody2D != null)
+            {
+                owner.Rigidbody2D.linearVelocityX = 0f;
+                owner.Rigidbody2D.linearVelocityY = 0f;
+            }
+            return;
+        }
+        
         Vector2 currentPos = owner.transform.position;
         Vector2 targetPos = owner.MoveTarget;
 
